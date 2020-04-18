@@ -12,18 +12,17 @@ routes.get('/usuarios', async(request, response) => {
 });
 
 routes.post('/usuarios', async (request, response) => {
-    const { email, senha, ra, termos} = request.body;
+    const { email, senha, ra} = request.body;
     
     const id = crypto.randomBytes(4).toString('HEX');
 
    await connection('usuarios').insert({
+        id,
         email,
         senha,
-        ra,
-        termos
+        ra
     })
 
-    if (termos == true) //teste se o usuário aceitou os termos
      return response.json({id});
 
 });
