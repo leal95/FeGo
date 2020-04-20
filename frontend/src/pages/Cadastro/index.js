@@ -47,7 +47,7 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.inputs}>
-                <Text style={styles.inputText}>Email</Text>
+                <Text style={styles.inputTextHeader}>Email</Text>
                 <TextInput
                     style={styles.inputText}
                     placeholder="Email"

@@ -51,7 +51,6 @@ export default StyleSheet.create({
     },
 
     inputText: {
-        
     },
 
     inputTextHeader: {
