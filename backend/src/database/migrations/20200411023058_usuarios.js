@@ -5,7 +5,6 @@ exports.up = function(knex) {
       table.string('email').notNullable();
       table.string('senha').notNullable();
       table.string('ra').notNullable();
-      table.boolean('termos').notNullable(); //verificação se o usuário aceita os termos e condições
   }); //criando a tabela de Usuários
 };
 

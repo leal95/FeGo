@@ -5,17 +5,17 @@ backend/node_modules
 # in mobile
 
 
-mobile/node_modules/*/
-mobile/.expo/*
-mobile/npm-debug.*
-mobile/*.jks
-mobile/*.p8
-mobile/*.p12
-mobile/*.key
-mobile/*.mobileprovision
-mobile/.orig.
-mobile/web-build/
-mobile/web-report/
+frontend/node_modules/*/
+frontend/.expo/*
+frontend/npm-debug.*
+frontend/*.jks
+frontend/*.p8
+frontend/*.p12
+frontend/*.key
+frontend/*.mobileprovision
+frontend/.orig.
+frontend/web-build/
+frontend/web-report/
 
 # macOS
 mobile/.DS_Store

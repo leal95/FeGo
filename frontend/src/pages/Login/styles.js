@@ -69,6 +69,7 @@ export default StyleSheet.create({
     },
 
     inputText: {
+<<<<<<< HEAD
         backgroundColor: '#fff',
         borderColor: '#347EBF',
         borderWidth: 2,
@@ -77,6 +78,8 @@ export default StyleSheet.create({
         width: 300,
         padding: 10,
         
+=======
+>>>>>>> 84838d58acc772e40fad430306229322ecc05f19
     },
 
     inputTextHeader: {
