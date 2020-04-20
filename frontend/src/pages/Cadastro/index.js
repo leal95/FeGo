@@ -43,35 +43,45 @@ export default function Cadastro() {
         <View style={styles.container}>
             <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin} />
             <View style={styles.header}>
-                <Text style={styles.headerText}>Cadastre-se</Text>
+                <Text style={styles.headerText}>Crie sua conta</Text>
             </View>
 
             <View style={styles.inputs}>
-                <Text style={styles.inputText}>Email</Text>
+                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText}
                     placeholder="Email"
                     autoCorrect={false}
                 />
 
-                <Text style={styles.inputTextHeader}>Senha</Text>
+                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
                     placeholder="Senha"
                     autoCorrect={false}
                     />
 
-                <Text style={styles.inputTextHeader}>RA</Text>
+                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
                     placeholder="RA"
                     autoCorrect={false}
+                    keyboardType="numeric"
                     />
 
             </View>
 
             <View style={styles.tos}>
-                <Text style={styles.tosText}>Você leu e aceita os Termos e Condições deste aplicativo?</Text>
+                
+                <Text style={styles.tosText}>Você leu e aceita os Termos e Condições deste aplicativo?</Text>               
+
+                <TextInput
+                 style={styles.botaoTeC} 
+                 placeholder="Ok"
+                 autoCorrect={false}
+                />
+               
+
             </View>
 
             <View style={styles.botoes}>
@@ -80,11 +90,19 @@ export default function Cadastro() {
                 onPress={cadastrarUsuario}>
                     <Text style={styles.botaoCadastrarText}>Concluir Cadastro</Text>
                 </TouchableOpacity>
+                
+            </View>
+
+            <View style={styles.textosfinais}>
+
+                <Text style={styles.textoLogin}> Já possui conta?  </Text>
+
                 <TouchableOpacity 
                 style={styles.botaoLogin}
                 onPress={navigateToLogin}>
                     <Text style={styles.botaoLoginText}>Login</Text>
                 </TouchableOpacity>
+
             </View>
         </View>
     )

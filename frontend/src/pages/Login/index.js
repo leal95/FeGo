@@ -31,18 +31,18 @@ export default function Login() {
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerText}>Login</Text>
+                <Text style={styles.headerText}>Faça seu login para continuar</Text>
             </View>
 
             <View style={styles.inputs}>
-                <Text style={styles.inputTextHeader}>Email</Text>
+                
                 <TextInput
                     style={styles.inputText}
                     placeholder="Email"
                     autoCorrect={false}
                 />
 
-                <Text style={styles.inputTextHeader}>Senha</Text>
+                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
                     placeholder="Senha"
@@ -56,6 +56,14 @@ export default function Login() {
                 onPress={handleLogin}>
                     <Text style={styles.botaoLoginText}>Entrar</Text>
                 </TouchableOpacity>
+
+            </View >
+
+            <View style={styles.textosfinais}>
+                <TouchableOpacity>
+                    <Text style={styles.textoCadastrese}> Não possui conta? </Text>  
+                </TouchableOpacity>
+
                 <TouchableOpacity 
                 style={styles.botaoCadastrar} 
                 onPress={navigateToCadastro}>

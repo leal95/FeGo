@@ -5,57 +5,82 @@ export default StyleSheet.create({
     botaoCadastrar: {
     },
 
+    textoCadastrese:{
+        color: '#c4c4c4',
+        fontSize: 14,
+        justifyContent: 'center',
+        alignItems: 'center',
+        
+    },
+    
     botaoCadastrarText: {
-        color: '#C4C4C4',
-        fontSize: 20
+        color: '#347EBF',
+        fontSize: 16,
+        textDecorationLine: "underline",
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     botaoLogin: {
         backgroundColor: '#347EBF',
-        borderRadius: 10,
-        height: 40,
-        width: 200,
+        borderRadius: 50,
+        height: 50,
+        width: 250,
         alignItems: 'center',
         justifyContent: 'center'
     },
 
     botaoLoginText: {
         color: '#fff',
-        fontSize: 20
+        fontSize: 24,
+        letterSpacing: 7,
     },
 
     botoes: {
         alignItems: 'center'
     },
 
+    textosfinais:{
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+
     container: {
         flex: 1,
-        backgroundColor: 'lightblue',
-        paddingTop: Constants.statusBarHeight + 20,
+        backgroundColor: 'white',
+        paddingTop: Constants.statusBarHeight + 35,
     },
 
     header: {
-        alignItems: 'center'
+        paddingLeft: 32,
     },
 
     headerText: {
-        fontSize: 24,
+        fontSize: 25,
         fontWeight: 'bold',
         color: '#818181'
     },
 
     inputs: {
         alignItems: 'center',
-        height: 350,
+        height: 375,
         justifyContent: 'center'
     },
 
     inputText: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 300,
+        padding: 10,
         
     },
 
     inputTextHeader: {
-        fontSize: 18,
+        fontSize: 19,
         color: '#A2A2A2',
     }
 });
