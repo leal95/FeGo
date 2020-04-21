@@ -71,7 +71,7 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.tos}>
-                <Text style={styles.tosText}>Você leu e aceita os Termos e Condições deste aplicativo?</Text>
+                <Text style={styles.tosText}>Ao se Cadastrar, vc está aceitando os Termos e Condições de Serviço do FeGo</Text>
             </View>
 
             <View style={styles.botoes}>
