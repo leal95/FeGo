@@ -78,7 +78,6 @@ export default StyleSheet.create({
     },
 
     tos: {
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly'
                
@@ -88,21 +87,10 @@ export default StyleSheet.create({
     tosText: {
 
         fontSize: 20,
-        paddingLeft: 0,
-        maxWidth: 220,
-        
-    },
-
-    botaoTeC:{
-        borderColor: '#347EBF',
-        paddingTop: 3,
+        fontWeight: 'bold',
+        paddingLeft: 20,
         paddingRight: 20,
-        paddingLeft: 10,
-        backgroundColor: '#fff',
-        borderWidth: 3,
-        borderRadius: 10,
-        maxHeight: 50,
-        maxWidth: 50,
+        marginBottom: 40,
         
     },
 

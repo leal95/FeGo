@@ -1,31 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
-/*import api from '../../services/api';*/
+import api from '../../services/api';
 
 export default function Login() {
-    /*const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [infos, setInfos] = useState([]);*/
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [infos, setInfos] = useState([]);
 
     const navigation = useNavigation();
-
-    /*useEffect(() => {
-        api.get('/')
-        .then(response => {
-            setInfos(response.data);
-        })
-    },[]);*/
 
     function navigateToCadastro() {
         navigation.navigate('Cadastro');
     };
 
-    function handleLogin() {
-        alert('Dados incluidos com sucesso');
+    async function handleLogin() {
+        try{
+            await api.get(`/?email=${email}`, info);
+
+            alert("Conta encontrada com sucesso");
+
+        }
+        catch(err){
+            alert('Erro ao fazer cadastro!');
+        };
     };
 
     return(
@@ -40,6 +41,7 @@ export default function Login() {
                     style={styles.inputText}
                     placeholder="Email"
                     autoCorrect={false}
+                    onChange={e => setEmail(e.target.value)}
                 />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -47,6 +49,7 @@ export default function Login() {
                     style={styles.inputText} 
                     placeholder="Senha"
                     autoCorrect={false}
+                    onChange={e => setSenha(e.target.value)}
                     />
             </View>
 

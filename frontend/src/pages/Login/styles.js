@@ -33,7 +33,7 @@ export default StyleSheet.create({
     botaoLoginText: {
         color: '#fff',
         fontSize: 24,
-        letterSpacing: 7,
+        letterSpacing: 3,
     },
 
     botoes: {

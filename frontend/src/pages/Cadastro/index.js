@@ -8,7 +8,7 @@ import api from '../../services/api';
 
 export default function Cadastro() {
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [senha, setSenha] = useState('');
     const [ra, setRA] = useState('');
 
     const navigation = useNavigation();
@@ -21,21 +21,19 @@ export default function Cadastro() {
         
         const info = ({
             email,
-            pass,
+            senha,
             ra
         });
 
         try{
-            const response = await api.post('/', info);
+            await api.post('/', info);
 
-            localStorage.setItem('id', response.data._id);
-
-            alert('Sua conta foi criada com sucesso');
+            alert('Conta criada com sucesso');
 
             navigation.navigate('Login');
         }
         catch(err){
-            alert('Erro ao cadastrar usuário!');
+            alert('Erro ao fazer cadastro!');
         };
     };
 
@@ -48,11 +46,11 @@ export default function Cadastro() {
 
             <View style={styles.inputs}>
                 <Text style={styles.inputTextHeader}></Text>
-                <Text style={styles.inputTextHeader}>Email</Text>
                 <TextInput
                     style={styles.inputText}
                     placeholder="Email"
                     autoCorrect={false}
+                    onChange={e => setEmail(e.target.value)}
                 />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -60,6 +58,7 @@ export default function Cadastro() {
                     style={styles.inputText} 
                     placeholder="Senha"
                     autoCorrect={false}
+                    onChange={e => setSenha(e.target.value)}
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -68,20 +67,14 @@ export default function Cadastro() {
                     placeholder="RA"
                     autoCorrect={false}
                     keyboardType="numeric"
+                    onChange={e => setRA(e.target.value)}
                     />
 
             </View>
 
             <View style={styles.tos}>
                 
-                <Text style={styles.tosText}>Ao se cadastrar vc está concordando em aceitar os Termos e Condições de Serviço do FeGo</Text>               
-
-                <TextInput
-                 style={styles.botaoTeC} 
-                 placeholder="Ok"
-                 autoCorrect={false}
-                />
-               
+                <Text style={styles.tosText}>Ao cadastrar você admite  que está ciente e aceita os Termos e Condições de Serviço do FeGoApp</Text>               
 
             </View>
 
