@@ -1,8 +1,9 @@
 {
-  "expoServerPort": 19003,
-  "packagerPort": 19004,
-  "packagerPid": 10072,
+  "expoServerPort": 19000,
+  "packagerPort": 19003,
+  "packagerPid": 22104,
   "expoServerNgrokUrl": "https://mz-bn3.anonymous.frontend.exp.direct",
   "packagerNgrokUrl": "https://packager.mz-bn3.anonymous.frontend.exp.direct",
-  "ngrokPid": 17444
+  "ngrokPid": 16840,
+  "devToolsPort": 19002
 }

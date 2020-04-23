@@ -9,7 +9,7 @@ import api from '../../services/api';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [infos, setInfos] = useState([]);
+    const [info, setInfo] = useState('');
 
     const navigation = useNavigation();
 
@@ -19,13 +19,21 @@ export default function Login() {
 
     async function handleLogin() {
         try{
-            await api.get(`/?email=${email}`, info);
-
-            alert("Conta encontrada com sucesso");
-
+            await api.get(`/?email=${email}`)
+            .then(response => {
+                setInfo(response.data);
+            })
+            
+            if(info.senha === senha){
+                alert("Conta encontrada com sucesso!");
+                navigation.navigate('ProxPag');
+            }
+            else{
+                alert("Email ou senha inválidos")
+            }
         }
         catch(err){
-            alert('Erro ao fazer cadastro!');
+            alert('Erro ao processar login!');
         };
     };
 

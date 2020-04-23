@@ -1,53 +1,17 @@
-import React, { useState } from 'react';
+import React/*, { useState }*/ from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 import styles from './styles';
-import api from '../../services/api';
+/*import api from '../../services/api';*/
 
 export default function Cadastro() {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confirmacao, setConfirmacao] = useState('');
-    const [ra, setRA] = useState('');
-    const [nome, setNome] = useState('');
-    const [sobrenome, setSobrenome] = useState('');
-    const [numTelefone, setNumTelefone] = useState('');
 
     const navigation = useNavigation();
 
     function navigateToLogin() {
         navigation.navigate('Login');
-    };
-
-    async function cadastrarUsuario() {
-        
-        const info = ({
-            email,
-            senha,
-            ra,
-            nome, 
-            sobrenome,
-            numTelefone,
-        });
-
-        if(confirmacao === senha){
-            try{
-                await api.post('/usuarios', info);
-    
-                alert('Conta criada com sucesso');
-    
-                navigation.navigate('Login');
-            }
-            catch(err){
-                alert('Erro ao fazer cadastro!');
-            };
-        }
-
-        else{
-            alert("As senhas digitadas não são correspondentes");
-        }
     };
 
     return(
@@ -68,7 +32,6 @@ export default function Cadastro() {
                         style={styles.inputText}
                         placeholder="Nome"
                         autoCorrect={false}
-                        onChange={e => setNome(e.target.value)}
                     />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -76,7 +39,6 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Sobrenome"
                         autoCorrect={false}
-                        onChange={e => setSobrenome(e.target.value)}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -84,7 +46,6 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Email"
                         autoCorrect={false}
-                        onChange={e => setEmail(e.target.value)}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -93,7 +54,6 @@ export default function Cadastro() {
                         placeholder="Numero de Telefone (somente numeros)"
                         autoCorrect={false}
                         keyboardType="numeric"
-                        onChange={e => setNumTelefone(e.target.value)}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -102,7 +62,6 @@ export default function Cadastro() {
                         placeholder="RA"
                         autoCorrect={false}
                         keyboardType="numeric"
-                        onChange={e => setRA(e.target.value)}
                         />
                     
                     <Text style={styles.inputTextHeader}></Text>
@@ -110,7 +69,6 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Senha"
                         autoCorrect={false}
-                        onChange={e => setSenha(e.target.value)}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -118,15 +76,13 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Confirme sua senha"
                         autoCorrect={false}
-                        onChange={e => setConfirmacao(e.target.value)}
                         />
                 </ScrollView>
             </View>
 
             <View style={styles.botoes}>
                 <TouchableOpacity 
-                style={styles.botaoCadastrar} 
-                onPress={cadastrarUsuario}>
+                style={styles.botaoCadastrar}>
                     <Text style={styles.botaoCadastrarText}>Concluir Cadastro</Text>
                 </TouchableOpacity>
                 
@@ -137,8 +93,7 @@ export default function Cadastro() {
                 <Text style={styles.textoLogin}> Já possui conta?  </Text>
 
                 <TouchableOpacity 
-                style={styles.botaoLogin}
-                onPress={navigateToLogin}>
+                style={styles.botaoLogin}>
                     <Text style={styles.botaoLoginText}>Login</Text>
                 </TouchableOpacity>
 

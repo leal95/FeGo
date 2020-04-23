@@ -9,17 +9,25 @@ module.exports = {
     },
     
     async create(request, response) {
-        const { email, senha, ra} = request.body;
+        const { email, senha, ra, nome, sobrenome, numTelefone } = request.body;
     
-    const id = crypto.randomBytes(4).toString('HEX');
+        const id = crypto.randomBytes(4).toString('HEX');
 
-   await connection('usuarios').insert({
-        id,
-        email,
-        senha,
-        ra
-    })
+        try{
+            await connection('usuarios').insert({
+                id,
+                email,
+                senha,
+                ra,
+                nome,
+                sobrenome,
+                numTelefone
+                })
 
-     return response.json({id});
+                response.json({id});
+        }
+        catch(err){
+            response.json({message:err});
+        }
     }
 } 
