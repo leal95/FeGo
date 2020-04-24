@@ -9,11 +9,11 @@ import api from '../../services/api';
 export default function Cadastro() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [confirmacao, setConfirmacao] = useState('');
     const [ra, setRA] = useState('');
     const [nome, setNome] = useState('');
     const [sobrenome, setSobrenome] = useState('');
     const [numTelefone, setNumTelefone] = useState('');
+    const [confirmacao, setConfirmacao] = useState('');
 
     const navigation = useNavigation();
 
