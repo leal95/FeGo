@@ -4,7 +4,7 @@ exports.up = function(knex) {
       table.string('id').primary();
       table.string('email').notNullable();
       table.string('senha').notNullable();
-      table.integer('ra').notNullable();
+      table.string('ra').notNullable();
       table.string('nome').notNullable();
       table.string('sobrenome').notNullable();
       table.string('numTelefone').notNullable();
