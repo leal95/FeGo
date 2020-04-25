@@ -24,7 +24,7 @@ module.exports = {
                 numTelefone
                 })
 
-                response.json({id});
+                response.json({ email, senha, ra, nome, sobrenome, numTelefone });
         }
         catch(err){
             response.json({message:err});

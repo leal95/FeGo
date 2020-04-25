@@ -1,5 +1,5 @@
 const express = require ('express');
-const routes = require ('./routes');
+const routes = require ('./routes'); //importando rotas
 
 const app = express();
 
