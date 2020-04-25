@@ -7,7 +7,7 @@ exports.up = function(knex) {
       table.integer('ra').notNullable();
       table.string('nome').notNullable();
       table.string('sobrenome').notNullable();
-      table.integer('numTelefone').notNullable();
+      table.string('numTelefone').notNullable();
   }); //criando a tabela de Usuários
 };
 
