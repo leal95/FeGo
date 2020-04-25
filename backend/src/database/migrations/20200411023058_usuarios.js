@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-  return knex.schema.createTable('usuarios', function(table){
+  return knex.schema.createTable('usuarios', function(table){ //criando tabela com os dados necessários
       table.string('id').primary();
       table.string('email').notNullable();
       table.string('senha').notNullable();
@@ -11,6 +11,6 @@ exports.up = function(knex) {
   }); //criando a tabela de Usuários
 };
 
-exports.down = function(knex) {
+exports.down = function(knex) { //  dropar tabela
  return knex.schema.dropTable('usuarios');
 };
