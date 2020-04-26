@@ -4,7 +4,7 @@ const SessionController = require ('./controllers/SessionController'); //importa
 
 const routes = express.Router(); //desacoplando Router do express e alocando na nova variável
 
-routes.get('/sessions', SessionController.login); //login (criando uma sessão)
+routes.post('/sessions', SessionController.login); //login (criando uma sessão)
 routes.get('/usuarios', UsuariosController.index); //listagem
 routes.post('/usuarios', UsuariosController.create); //cadastro
 
