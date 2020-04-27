@@ -49,7 +49,8 @@ export default function Login() {
                     style={styles.inputText}
                     placeholder="Email"
                     autoCorrect={false}
-                    onChange={e => setEmail(e.target.value)}
+                    value={email}
+                    onChangeText={setEmail}
                 />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -57,7 +58,7 @@ export default function Login() {
                     style={styles.inputText} 
                     placeholder="Senha"
                     autoCorrect={false}
-                    onChange={e => setSenha(e.target.value)}
+                    onChangeText={setSenha}
                     />
             </View>
 

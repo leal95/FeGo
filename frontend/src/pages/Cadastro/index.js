@@ -60,15 +60,14 @@ export default function Cadastro() {
             
             <View style={styles.inputs}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Text style={styles.tosText}>
-                    Ao cadastrar você admite  que está ciente e aceita os Termos e Condições de Serviço do FeGoApp
-                    </Text>
+
                     <Text style={styles.inputTextHeader}></Text>
                     <TextInput
                         style={styles.inputText}
                         placeholder="Nome"
                         autoCorrect={false}
-                        onChange={e => setNome(e.target.value)}
+                        value={nome}
+                        onChangeText={setNome}
                     />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -76,7 +75,8 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Sobrenome"
                         autoCorrect={false}
-                        onChange={e => setSobrenome(e.target.value)}
+                        value={sobrenome}
+                        onChangeText={setSobrenome}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -84,7 +84,8 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Email"
                         autoCorrect={false}
-                        onChange={e => setEmail(e.target.value)}
+                        value={email}
+                        onChangeText={setEmail}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -93,7 +94,8 @@ export default function Cadastro() {
                         placeholder="Numero de Telefone (somente numeros)"
                         autoCorrect={false}
                         keyboardType="numeric"
-                        onChange={e => setNumTelefone(e.target.value)}
+                        value={numTelefone}
+                        onChangeText={setNumTelefone}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -102,7 +104,8 @@ export default function Cadastro() {
                         placeholder="RA"
                         autoCorrect={false}
                         keyboardType="numeric"
-                        onChange={e => setRA(e.target.value)}
+                        value={ra}
+                        onChangeText={setRA}
                         />
                     
                     <Text style={styles.inputTextHeader}></Text>
@@ -110,7 +113,8 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Senha"
                         autoCorrect={false}
-                        onChange={e => setSenha(e.target.value)}
+                        value={senha}
+                        onChangeText={setSenha}
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -118,8 +122,13 @@ export default function Cadastro() {
                         style={styles.inputText} 
                         placeholder="Confirme sua senha"
                         autoCorrect={false}
-                        onChange={e => setConfirmacao(e.target.value)}
+                        value={confirmacao}
+                        onChangeText={setConfirmacao}
                         />
+
+                    <Text style={styles.tosText}>
+                        Ao cadastrar você admite  que está ciente e aceita os Termos e Condições de Serviço do FeGoApp
+                    </Text>
                 </ScrollView>
             </View>
 
