@@ -19,12 +19,12 @@ export default function Login() {
 
     async function handleLogin() {
         try{
-            await api.get(`/?email=${email}`)
+            await api.get(`/sessions/?email=${email}`)
             .then(response => {
                 setInfo(response.data);
             })
             
-            if(info.senha === senha){
+            if(info[0].senha == senha){
                 alert("Conta encontrada com sucesso!");
                 navigation.navigate('ProxPag');
             }
