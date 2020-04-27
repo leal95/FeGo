@@ -38,7 +38,7 @@ export default function Cadastro() {
     
                 alert('Conta criada com sucesso');
     
-                navigation.navigate('Login');
+                navigateToLogin();
             }
             catch(err){
                 alert('Erro ao fazer cadastro!');
