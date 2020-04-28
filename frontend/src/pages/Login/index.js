@@ -9,7 +9,6 @@ import api from '../../services/api';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [info, setInfo] = useState('');
 
     const navigation = useNavigation();
 
@@ -21,16 +20,14 @@ export default function Login() {
         try{
             await api.get(`/sessions/?email=${email}`)
             .then(response => {
-                setInfo(response.data);
+                if(response.data[0].senha == senha){
+                    alert("Conta encontrada com sucesso!");
+                    navigation.navigate('ProxPag');
+                }
+                else{
+                    alert("Email ou senha inválidos")
+                }
             })
-            
-            if(info[0].senha == senha){
-                alert("Conta encontrada com sucesso!");
-                navigation.navigate('ProxPag');
-            }
-            else{
-                alert("Email ou senha inválidos")
-            }
         }
         catch(err){
             alert('Erro ao processar login!');
@@ -65,7 +62,7 @@ export default function Login() {
             <View style={styles.botoes}>
                 <TouchableOpacity 
                 style={styles.botaoLogin} 
-                onPress={handleLogin}>
+                onPress={() => handleLogin()}>
                     <Text style={styles.botaoLoginText}>Entrar</Text>
                 </TouchableOpacity>
 
