@@ -55,7 +55,7 @@ export default function Login() {
                     style={styles.inputText} 
                     placeholder="Senha"
                     autoCorrect={false}
-                    onChangeText={setSenha}
+                    onChangeText={setSenha}  
                     />
             </View>
 
