@@ -9,7 +9,6 @@ import api from '../../services/api';
 export default function Login() {
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
-    const [dados, setDados] = useState();
 
     const navigation = useNavigation();
 
@@ -23,7 +22,10 @@ export default function Login() {
             .then(response => {
                 if(response.data[0].senha == senha){
                     alert("Conta encontrada com sucesso!");
-                    navigation.navigate('ProxPag');
+
+                    const dados = response.data[0];
+                    
+                    navigation.navigate('TelaInicial', { dados });
                 }
                 else{
                     alert("Email ou senha inválidos")
