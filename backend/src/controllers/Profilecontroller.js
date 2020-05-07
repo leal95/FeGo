@@ -21,6 +21,10 @@ module.exports={
                 ra: {ra},
                 nome: {nome},
                 sobrenome: {sobrenome},
+                apelido: {apelido},
+                fumante: {fumante},
+                curso: {curso},
+                musica: {musica},
                 numTelefone: {numTelefone}
             })
             response.json({ email, senha, ra, nome, sobrenome, apelido, fumante, curso, musica, numTelefone });
