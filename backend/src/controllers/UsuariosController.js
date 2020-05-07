@@ -8,7 +8,8 @@ module.exports = {
     },
     
     async create(request, response) { //método post
-        const { email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica } = request.body; //requisitando informações de cadastro
+        const { email, senha, ra, nome, sobrenome, numTelefone } = request.body; //requisitando informações de cadastro
+        const { apelido, fumante, curso, musica } = []
 
 
         try{
