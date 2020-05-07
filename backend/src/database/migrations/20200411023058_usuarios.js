@@ -6,11 +6,11 @@ exports.up = function(knex) {
       table.string('ra').notNullable();
       table.string('nome').notNullable();
       table.string('sobrenome').notNullable();
-      table.string('apelido').notNullable();
-      table.string('fumante').notNullable();
-      table.string('curso').notNullable();
-      table.string('musica').notNullable();
       table.string('numTelefone').notNullable();
+      table.string('apelido').nullable();
+      table.string('fumante').nullable();
+      table.string('curso').nullable();
+      table.string('musica').nullable();
   }); //criando a tabela de Usuários
 };
 
