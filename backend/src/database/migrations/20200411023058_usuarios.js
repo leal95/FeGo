@@ -6,6 +6,10 @@ exports.up = function(knex) {
       table.string('ra').notNullable();
       table.string('nome').notNullable();
       table.string('sobrenome').notNullable();
+      table.string('apelido').notNullable();
+      table.string('fumante').notNullable();
+      table.string('curso').notNullable();
+      table.string('musica').notNullable();
       table.string('numTelefone').notNullable();
   }); //criando a tabela de Usuários
 };
@@ -13,3 +17,4 @@ exports.up = function(knex) {
 exports.down = function(knex) { //  dropar tabela
  return knex.schema.dropTable('usuarios');
 };
+

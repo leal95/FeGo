@@ -8,7 +8,7 @@ module.exports = {
     },
     
     async create(request, response) { //método post
-        const { email, senha, ra, nome, sobrenome, numTelefone } = request.body; //requisitando informações de cadastro
+        const { email, senha, ra, nome, sobrenome, apelido, fumante, curso, musica, numTelefone } = request.body; //requisitando informações de cadastro
 
 
         try{
@@ -18,10 +18,14 @@ module.exports = {
                 ra,
                 nome,
                 sobrenome,
+                apelido,
+                fumante,
+                curso,
+                musica,
                 numTelefone
                 })
 
-                response.json({ email, senha, ra, nome, sobrenome, numTelefone }); //retornar resultado com os dados
+                response.json({ email, senha, ra, nome, sobrenome, apelido, fumante, curso, musica, numTelefone }); //retornar resultado com os dados
         }
         catch(err){ //mensagem de erro
             response.json({message:err});
