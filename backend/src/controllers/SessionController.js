@@ -2,12 +2,12 @@ const connection = require ('../database/connection'); //importando conexão com
 
 module.exports = {
     async login (request, response) { //método get
-        const email = request.query;
+        const {emailEntrada} = request.body;
 
         try{
             const usuario = await connection('usuarios') //buscar o usuario indicado
-            .where(email) // autenticação
-            .select('*') // dado a ser retornado
+            .where('email', emailEntrada) // autenticação
+            .select('nome') // dado a ser retornado
       
             return response.json(usuario); //retornar usuário requisitado
             }
