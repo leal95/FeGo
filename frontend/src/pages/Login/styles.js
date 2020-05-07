@@ -76,7 +76,6 @@ export default StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
-        
     },
 
     inputTextHeader: {

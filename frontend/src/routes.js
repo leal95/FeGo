@@ -6,7 +6,7 @@ const AppStack = createStackNavigator();
 
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
-import ProxPag from './pages/ProxPag';
+import TelaInicial from './pages/TelaInicial';
 
 export default function Routes() {
     return(
@@ -14,7 +14,7 @@ export default function Routes() {
             <AppStack.Navigator screenOptions={{headerShown: false}} >
                 <AppStack.Screen name="Login" component={Login} />
                 <AppStack.Screen name="Cadastro" component={Cadastro} />
-                <AppStack.Screen name="ProxPag" component={ProxPag} />
+                <AppStack.Screen name="TelaInicial" component={TelaInicial} />
             </AppStack.Navigator>
         </NavigationContainer>
     );
