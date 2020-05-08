@@ -3,23 +3,24 @@ const connection = require ('../database/connection'); //importando conexão com
 module.exports={
     async edit (request, response){
        
-        const {email} = request.body
-        const {senha} = request.body;
-        const {ra} = request.body;
-        const {nome} = request.body;
-        const {sobrenome} = request.body;
-        const {numTelefone} = request.body; //requisitando dados de mudança
+        const { emailLogin, senhaMod, raMod, nomeMod, sobrenomeMod, numTelefoneMod, apelidoMod, fumanteMod, cursoMod, musicaMod } = request.body;
 
         try{
-            await connection('usuarios').where('email',email).update({
-                email: {email},
-                senha: {senha},
-                ra: {ra},
-                nome: {nome},
-                sobrenome: {sobrenome},
-                numTelefone: {numTelefone}
+            await connection('usuarios')
+            .where(email, {emailLogin})
+            .update({
+                senha: {senhaMod},
+                ra: {raMod},
+                nome: {nomeMod},
+                sobrenome: {sobrenomeMod},
+                numTelefone: {numTelefoneMod},
+                apelido: {apelidoMod},
+                fumante: {fumanteMod},
+                curso: {cursoMod},
+                musica: {musicaMod}
             })
-            response.json({ email, senha, ra, nome, sobrenome, numTelefone });
+          
+            response.json({ email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica });
         }
         catch(err){ //mensagem de erro
             response.json({message:err});
