@@ -7,9 +7,14 @@ exports.up = function(knex) {
       table.string('nome').notNullable();
       table.string('sobrenome').notNullable();
       table.string('numTelefone').notNullable();
+      table.string('apelido').nullable();
+      table.string('fumante').nullable();
+      table.string('curso').nullable();
+      table.string('musica').nullable();
   }); //criando a tabela de Usuários
 };
 
 exports.down = function(knex) { //  dropar tabela
  return knex.schema.dropTable('usuarios');
 };
+

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
 
 export default function Login() {
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
 
     const navigation = useNavigation();
 
@@ -22,7 +22,10 @@ export default function Login() {
             .then(response => {
                 if(response.data[0].senha == senha){
                     alert("Conta encontrada com sucesso!");
-                    navigation.navigate('ProxPag');
+
+                    const dados = response.data[0];
+                    
+                    navigation.navigate('TelaInicial', { dados });
                 }
                 else{
                     alert("Email ou senha inválidos")
@@ -40,7 +43,7 @@ export default function Login() {
                 <Text style={styles.headerText}>Faça seu login para continuar</Text>
             </View>
 
-            <View style={styles.inputs}>
+            <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
                 
                 <TextInput
                     style={styles.inputText}
@@ -48,6 +51,8 @@ export default function Login() {
                     autoCorrect={false}
                     value={email}
                     onChangeText={setEmail}
+                    keyboardType='email-address'
+                    autoCapitalize='none'
                 />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -56,8 +61,10 @@ export default function Login() {
                     placeholder="Senha"
                     autoCorrect={false}
                     onChangeText={setSenha}  
+                    secureTextEntry
+                    autoCapitalize='none'
                     />
-            </View>
+            </KeyboardAvoidingView>
 
             <View style={styles.botoes}>
                 <TouchableOpacity 

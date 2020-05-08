@@ -113,6 +113,7 @@ export default function Cadastro() {
                         autoCorrect={false}
                         value={nome}
                         onChangeText={setNome}
+                        autoCapitalize='none'
                     />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -122,6 +123,7 @@ export default function Cadastro() {
                         autoCorrect={false}
                         value={sobrenome}
                         onChangeText={setSobrenome}
+                        autoCapitalize='none'
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -131,6 +133,7 @@ export default function Cadastro() {
                         autoCorrect={false}
                         value={email}
                         onChangeText={setEmail}
+                        autoCapitalize='none'
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -160,6 +163,7 @@ export default function Cadastro() {
                         autoCorrect={false}
                         value={senha}
                         onChangeText={setSenha}
+                        autoCapitalize='none'
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
@@ -169,6 +173,7 @@ export default function Cadastro() {
                         autoCorrect={false}
                         value={confirmacao}
                         onChangeText={setConfirmacao}
+                        autoCapitalize='none'
                         />
                 </ScrollView>
             </View>
