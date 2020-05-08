@@ -16,9 +16,8 @@ module.exports={
 
         try{
             await connection('usuarios')
-            .where('email',email)
+            .where('email', {email})
             .update({
-                email: {email},
                 senha: {senha},
                 ra: {ra},
                 nome: {nome},
