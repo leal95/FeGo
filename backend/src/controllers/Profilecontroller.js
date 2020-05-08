@@ -8,16 +8,26 @@ module.exports={
         const {ra} = request.body;
         const {nome} = request.body;
         const {sobrenome} = request.body;
-        const {numTelefone} = request.body; //requisitando dados de mudança
+        const {numTelefone} = request.body;
+        const {apelido} = request.body;
+        const {fumante} = request.body;
+        const {curso} = request.body;
+        const {musica} = request.body; //requisitando dados de mudança
 
         try{
-            await connection('usuarios').where('email',email).update({
+            await connection('usuarios')
+            .where('email',email)
+            .update({
                 email: {email},
                 senha: {senha},
                 ra: {ra},
                 nome: {nome},
                 sobrenome: {sobrenome},
-                numTelefone: {numTelefone}
+                numTelefone: {numTelefone},
+                apelido: {apelido},
+                fumante: {fumante},
+                curso: {curso},
+                musica: {musica}
             })
             response.json({ email, senha, ra, nome, sobrenome, numTelefone });
         }
