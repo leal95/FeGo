@@ -28,7 +28,7 @@ module.exports={
                 curso: {curso},
                 musica: {musica}
             })
-            response.json({ email, senha, ra, nome, sobrenome, numTelefone });
+            response.json({ email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica });
         }
         catch(err){ //mensagem de erro
             response.json({message:err});
