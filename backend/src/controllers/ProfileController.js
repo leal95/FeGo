@@ -6,10 +6,9 @@ module.exports={
         const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica} = request.body
 
         try{
-            await connection('usuarios')
-            .where('email', {email})
+            const dados = await connection('usuarios')
+            .where('email', email)
             .update({
-                senha,
                 ra,
                 nome,
                 sobrenome,
@@ -20,7 +19,7 @@ module.exports={
                 musica,
             })
 
-            response.json({ email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica });
+            response.json(dados);
         }
         catch(err){ //mensagem de erro
             response.json({message:err});
