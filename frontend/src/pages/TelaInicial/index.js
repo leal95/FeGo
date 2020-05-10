@@ -15,8 +15,54 @@ export default function Cadastro() {
         navigation.navigate('Login');
     };
 
+    function navigateToPage(page) {
+        navigation.navigate(page, { dados });
+    }
+
     return(
         <>
+        <View style={styles.container}>
+            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin} />
+            <View style={styles.header}>
+                <Text style={styles.headerText}>Tela Inicial</Text>
+            </View>
+
+            <View style={styles.user}>
+                <View style={styles.userFoto}></View>
+                <Text style={styles.userName}> {dados.nome} {dados.sobrenome}</Text>
+            </View>
+
+            <View style={styles.botoesIniciais}>
+                <TouchableOpacity style={styles.botaoInicialAzul}>
+
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botaoInicialAzul}>
+                    
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.botoesIniciais}>
+                <TouchableOpacity 
+                style={styles.botaoInicialAmarelo}
+                onPress={() => navigateToPage('Perfil')}>
+
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botaoInicialAmarelo}>
+                    
+                </TouchableOpacity>
+            </View>
+
+            <View style={styles.botoesCaronas}>
+                <TouchableOpacity style={styles.botaoCarona}>
+                    <Text style={styles.textCaronas}>Procurar</Text>
+                    <Text style={styles.textCaronas}>Carona</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.botaoCarona}>
+                    <Text style={styles.textCaronas}>Oferecer</Text>
+                    <Text style={styles.textCaronas}>Carona</Text>
+                </TouchableOpacity>
+            </View>
+        </View>
         </>
     )
 }
