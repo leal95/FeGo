@@ -9,15 +9,18 @@ module.exports={
             const dados = await connection('usuarios')
             .where('email', email)
             .update({
-                ra,
-                nome,
-                sobrenome,
-                numTelefone,
-                apelido,
-                fumante,
-                curso,
-                musica,
+                senha: senha,
+                ra: ra,
+                nome: nome,
+                sobrenome: sobrenome,
+                numTelefone: numTelefone,
+                apelido: apelido,
+                fumante: fumante,
+                curso: curso,
+                musica: musica
             })
+
+            console.log('Chegou no try');
 
             response.json(dados);
         }
