@@ -8,12 +8,11 @@ Este aplicativo foi desenvolvido com as seguintes ferramentas:
 
 # Autores
 ## IEEE Computer Society Guaratinuetá
-- Fernando Zagatto Penha
+- [Fernando Zagatto Penha](https://github.com/FZPenha)
 - Gabriel Leal
 - Gabriel Knopp
 - Lukas Itiro Hanajima
 - Rafael Costa e Silva
-- Victor Vinci Fantucci
 
 ## CaePro
 - Ana Carolina Gonçalves Martins
