@@ -41,10 +41,14 @@ export default function Cadastro() {
 
         try{
             const response = await api.put('/profile', info);
+
+            const dadosAtt = response.data[0];
+
+            console.log(dadosAtt);
     
             alert('Alterações feitas com sucesso');
     
-            navigation.navigate('Tela Inicial', { response } );
+            navigation.navigate('TelaInicial', {dadosAtt} );
         }
         catch(err){
             alert('Erro ao fazer alteração das informações!');
@@ -55,11 +59,11 @@ export default function Cadastro() {
         <>
         <View style={styles.container}>
             <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} />
-            <View style={styles.header}>
-                <Text style={styles.headerText}>Perfil</Text>
-            </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>Perfil</Text>
+                </View>
 
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
