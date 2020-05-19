@@ -10,19 +10,6 @@ export default function Login() {
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
 
-    const objeto = {
-        email: "fzpenha@gmail.com",
-        senha: "banana",
-        ra: "181323281",
-        nome: "Fernando",
-        sobrenome: "Penha",
-        numTelefone: "12988259871",
-        apelido: "Sequela",
-        fumante: null,
-        curso: null,
-        musica: null
-      }
-
     const navigation = useNavigation();
 
     function navigateToCadastro() {
@@ -30,7 +17,19 @@ export default function Login() {
     };
 
     function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial', {objeto});
+        const dados = {
+            email: "fzpenha@gmail.com",
+            senha: "banana",
+            ra: "181323281",
+            nome: "Fernando",
+            sobrenome: "Penha",
+            numTelefone: "12988259871",
+            apelido: "Sequela",
+            fumante: null,
+            curso: null,
+            musica: null
+          }
+        navigation.navigate('TelaInicial', {dados});
     };
 
     async function handleLogin() {
