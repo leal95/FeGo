@@ -11,24 +11,24 @@ export default function Cadastro() {
     const route = useRoute();
     const navigation = useNavigation();
 
-    const dados = route.params.dados;
+    const dadosAnt = route.params.dados;
 
-    const [nome, setNome] = useState(dados.nome);
-    const [sobrenome, setSobrenome] = useState(dados.sobrenome);
-    const [apelido, setApelido] = useState(dados.apelido);
-    const [numTelefone, setNumTelefone] = useState(dados.NumTelefone);
-    const [ra, setRA] = useState(dados.ra);
-    const [fumante, setFumante] = useState(dados.fumante);
-    const [curso, setCurso] = useState(dados.curso);
-    const [musica, setMusica] = useState(dados.musica);
+    const [nome, setNome] = useState(dadosAnt.nome);
+    const [sobrenome, setSobrenome] = useState(dadosAnt.sobrenome);
+    const [apelido, setApelido] = useState(dadosAnt.apelido);
+    const [numTelefone, setNumTelefone] = useState(dadosAnt.NumTelefone);
+    const [ra, setRA] = useState(dadosAnt.ra);
+    const [fumante, setFumante] = useState(dadosAnt.fumante);
+    const [curso, setCurso] = useState(dadosAnt.curso);
+    const [musica, setMusica] = useState(dadosAnt.musica);
 
     function navigateToInicio() {
-        navigation.navigate('TelaInicial', {dados});
+        navigation.navigate('TelaInicial', {dadosAnt});
     };
 
     async function salvarDados() {
         const info = ({
-            email: dados.email,
+            email: dadosAnt.email,
             nome, 
             sobrenome,
             apelido,
@@ -42,13 +42,13 @@ export default function Cadastro() {
         try{
             const response = await api.put('/profile', info);
 
-            const dadosAtt = response.data[0];
+            const dados = response.data[0];
 
-            console.log(dadosAtt);
+            console.log(dados);
     
             alert('Alterações feitas com sucesso');
     
-            navigation.navigate('TelaInicial', {dadosAtt} );
+            navigation.navigate('TelaInicial', {dados} );
         }
         catch(err){
             alert('Erro ao fazer alteração das informações!');
@@ -67,7 +67,7 @@ export default function Cadastro() {
 
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
-                    <Text style={styles.userName}> {dados.email}</Text>
+                    <Text style={styles.userName}> {dadosAnt.email}</Text>
                 </View>
 
                 <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
@@ -75,7 +75,7 @@ export default function Cadastro() {
                     <Text>Nome:</Text>
                     <TextInput
                         style={styles.inputText}
-                        placeholder={dados.nome}
+                        placeholder={dadosAnt.nome}
                         autoCorrect={false}
                         onChangeText={() => setNome()}
                     />
@@ -83,7 +83,7 @@ export default function Cadastro() {
                     <Text>Sobrenome:</Text>
                     <TextInput
                         style={styles.inputText}
-                        placeholder={dados.sobrenome}
+                        placeholder={dadosAnt.sobrenome}
                         autoCorrect={false}
                         onChangeText={setSobrenome}
                     />
@@ -91,7 +91,7 @@ export default function Cadastro() {
                     <Text>Apelido:</Text>  
                     <TextInput
                         style={styles.inputText} 
-                        placeholder={dados.apelido}
+                        placeholder={dadosAnt.apelido}
                         autoCorrect={false}
                         onChangeText={setApelido}
                         />
@@ -99,7 +99,7 @@ export default function Cadastro() {
                         <Text>Telefone:</Text>
                         <TextInput
                         style={styles.inputText} 
-                        placeholder={dados.numTelefone}
+                        placeholder={dadosAnt.numTelefone}
                         autoCorrect={false}
                         onChangeText={setNumTelefone}  
                         autoCapitalize='none'
@@ -109,7 +109,7 @@ export default function Cadastro() {
                     <Text>RA:</Text>
                     <TextInput
                         style={styles.inputText} 
-                        placeholder={dados.ra}
+                        placeholder={dadosAnt.ra}
                         autoCorrect={false}
                         onChangeText={setRA}  
                         autoCapitalize='none'
@@ -119,7 +119,7 @@ export default function Cadastro() {
                     <Text>Fumante?:</Text>
                     <TextInput
                     style={styles.inputText} 
-                    placeholder={dados.fumante}
+                    placeholder={dadosAnt.fumante}
                     autoCorrect={false}
                     onChangeText={setFumante}
                     />
@@ -127,7 +127,7 @@ export default function Cadastro() {
                     <Text>Curso:</Text>
                     <TextInput
                     style={styles.inputText} 
-                    placeholder={dados.curso}
+                    placeholder={dadosAnt.curso}
                     autoCorrect={false}
                     onChangeText={setCurso}  
                     autoCapitalize='words'
@@ -136,7 +136,7 @@ export default function Cadastro() {
                     <Text>Musicas:</Text>
                     <TextInput
                     style={styles.inputText} 
-                    placeholder={dados.musica}
+                    placeholder={dadosAnt.musica}
                     autoCorrect={false}
                     onChangeText={setMusica}  
                     autoCapitalize='words'
