@@ -4,11 +4,12 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
     botaoCarona: {
         backgroundColor: '#347EBF',
-        borderRadius: 15,
-        height: 50,
-        width: 150,
+        borderRadius: 10,
+        height: 70,
+        width: 135,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 40,
     },
 
     botoesCaronas: {
@@ -17,23 +18,27 @@ export default StyleSheet.create({
     },
 
     botaoInicialAzul: {
-        borderColor: '#F2CA04',
-        borderRadius: 25,
-        width: 50,
-        height: 50,
+        borderColor: '#347EBF',
+        borderWidth: 3,
+        borderRadius: 60,
+        width: 100,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#347EBF',
+        backgroundColor: '#fff',
+        marginTop: 40,
     },
 
     botaoInicialAmarelo: {
         borderColor: '#347EBF',
-        borderRadius: 25,
-        width: 50,
-        height: 50,
+        borderWidth: 3,
+        borderRadius: 60,
+        width: 100,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F2CA04',
+        backgroundColor: '#fff',
+        marginTop: 40,
     },
 
     botoesIniciais: {
@@ -52,7 +57,7 @@ export default StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: 'bold',
         color: '#999',
     },
@@ -71,13 +76,14 @@ export default StyleSheet.create({
 
     userFoto: {
         borderColor: '#F2CA04',
-        borderWidth: 2,
+        borderWidth: 3,
         borderRadius: 50,
         width: 100,
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
+        marginRight: 15,
     },
 
     userName: {
