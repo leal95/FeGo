@@ -17,27 +17,15 @@ export default StyleSheet.create({
         justifyContent: 'space-evenly',
     },
 
-    botaoInicialAzul: {
+    botaoInicial: {
         borderColor: '#347EBF',
-        borderWidth: 3,
+        backgroundColor: '#fff',
+        borderWidth: 3.8,
         borderRadius: 60,
         width: 100,
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
-        marginTop: 40,
-    },
-
-    botaoInicialAmarelo: {
-        borderColor: '#347EBF',
-        borderWidth: 3,
-        borderRadius: 60,
-        width: 100,
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
         marginTop: 40,
     },
 

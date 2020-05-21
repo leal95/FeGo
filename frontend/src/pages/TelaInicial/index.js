@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather, MaterialCommunityIcons, SimpleLineIcons, } from '@expo/vector-icons'
+import { MaterialCommunityIcons, SimpleLineIcons, } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity } from 'react-native';
 
@@ -22,7 +22,6 @@ export default function Cadastro() {
     return(
         <>
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin} />
             <View style={styles.header}>
                 <Text style={styles.headerText}>Tela Inicial</Text>
             </View>
@@ -33,34 +32,34 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.botoesIniciais}>
-                <TouchableOpacity style={styles.botaoInicialAzul}>
+                <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="car-hatchback"
-                    size={36}
-                    color="white"/> 
+                    size={60}
+                    color="#F2CA04"/> 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botaoInicialAzul}>
+                <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="history"
-                    size={36}
-                    color="white"/>  
+                    size={55}
+                    color="#F2CA04"/>  
                 </TouchableOpacity>
             </View>
 
             <View style={styles.botoesIniciais}>
                 <TouchableOpacity 
-                style={styles.botaoInicialAmarelo}
+                style={styles.botaoInicial}
                 onPress={() => navigateToPage('Perfil')}>
                     <SimpleLineIcons
                     name="settings"
-                    size={34}
-                    color="white"/>
+                    size={55}
+                    color="#F2CA04"/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botaoInicialAmarelo}>
+                <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="message-text-outline"
-                    size={34}
-                    color="white"/>
+                    size={55}
+                    color="#F2CA04"/>
                 </TouchableOpacity>
             </View>
 

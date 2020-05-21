@@ -58,6 +58,7 @@ export default function Cadastro() {
         <View style={styles.container}>
             <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} />
 
+            <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Perfil</Text>
@@ -67,8 +68,6 @@ export default function Cadastro() {
                     <View style={styles.userFoto}></View>
                     <Text style={styles.userName}> {dadosAnt.email}</Text>
                 </View>
-
-                <View style={styles.inputs}>
                     
                     <Text>Nome:</Text>
                     <TextInput
@@ -139,7 +138,6 @@ export default function Cadastro() {
                     onChangeText={setMusica}  
                     autoCapitalize='words'
                     />
-                </View>
 
                 <View style={styles.botoes}>
                     <TouchableOpacity 
@@ -150,6 +148,7 @@ export default function Cadastro() {
 
                 </View >
             </ScrollView>
+            </KeyboardAvoidingView>
         </View>
         </>
     )
