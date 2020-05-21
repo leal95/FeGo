@@ -32,34 +32,34 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.botoesIniciais}>
-                <TouchableOpacity style={styles.botaoInicialAzul}>
+                <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="car-hatchback"
                     size={36}
-                    color="white"/> 
+                    color="#347EBF"/> 
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botaoInicialAzul}>
+                <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="history"
                     size={36}
-                    color="white"/>  
+                    color="#347EBF"/>  
                 </TouchableOpacity>
             </View>
 
             <View style={styles.botoesIniciais}>
                 <TouchableOpacity 
-                style={styles.botaoInicialAmarelo}
+                style={styles.botaoInicial}
                 onPress={() => navigateToPage('Perfil')}>
                     <SimpleLineIcons
                     name="settings"
                     size={34}
-                    color="white"/>
+                    color="#347EBF"/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.botaoInicialAmarelo}>
+                <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="message-text-outline"
                     size={34}
-                    color="white"/>
+                    color="#347EBF"/>
                 </TouchableOpacity>
             </View>
 
