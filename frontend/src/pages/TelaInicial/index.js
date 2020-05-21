@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather } from '@expo/vector-icons'
+import { Feather, MaterialCommunityIcons, SimpleLineIcons, } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity } from 'react-native';
 
@@ -34,10 +34,16 @@ export default function Cadastro() {
 
             <View style={styles.botoesIniciais}>
                 <TouchableOpacity style={styles.botaoInicialAzul}>
-
+                    <MaterialCommunityIcons
+                    name="car-hatchback"
+                    size={36}
+                    color="white"/> 
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.botaoInicialAzul}>
-                    
+                    <MaterialCommunityIcons
+                    name="history"
+                    size={36}
+                    color="white"/>  
                 </TouchableOpacity>
             </View>
 
@@ -45,10 +51,16 @@ export default function Cadastro() {
                 <TouchableOpacity 
                 style={styles.botaoInicialAmarelo}
                 onPress={() => navigateToPage('Perfil')}>
-
+                    <SimpleLineIcons
+                    name="settings"
+                    size={34}
+                    color="white"/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.botaoInicialAmarelo}>
-                    
+                    <MaterialCommunityIcons
+                    name="message-text-outline"
+                    size={34}
+                    color="white"/>
                 </TouchableOpacity>
             </View>
 
