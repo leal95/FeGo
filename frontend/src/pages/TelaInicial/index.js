@@ -14,7 +14,7 @@ export default function Cadastro() {
     function navigateToLogin() {
         navigation.navigate('Login');
     };
-
+  
     function navigateToPage(page) {
         navigation.navigate(page, { dados });
     }
