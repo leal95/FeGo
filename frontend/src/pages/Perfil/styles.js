@@ -6,9 +6,10 @@ export default StyleSheet.create({
         backgroundColor: '#347EBF',
         borderRadius: 50,
         height: 50,
-        width: 250,
+        width: 175,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     },
 
     botaoLoginText: {
@@ -32,9 +33,9 @@ export default StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
-        color: '#818181'
+        color: '#818181',
     },
 
     inputs: {
@@ -65,17 +66,18 @@ export default StyleSheet.create({
 
     userFoto: {
         borderColor: '#F2CA04',
-        borderWidth: 2,
+        borderWidth: 3,
         borderRadius: 50,
-        width: 100,
-        height: 100,
+        width: 90,
+        height: 90,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
+        marginRight: 5,
     },
 
     userName: {
-        fontSize: 22,
+        fontSize: 19,
         fontWeight: 'bold',
         color: '#999',
     }
