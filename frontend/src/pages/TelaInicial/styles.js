@@ -49,7 +49,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 15,
+        paddingTop: Constants.statusBarHeight + 5,
     },
 
     header: {
@@ -57,7 +57,7 @@ export default StyleSheet.create({
     },
 
     headerText: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#999',
     },

@@ -9,13 +9,14 @@ export default StyleSheet.create({
         width: 175,
         alignItems: 'center',
         justifyContent: 'center',
-        
+        marginTop: 10,
     },
 
     botaoLoginText: {
         color: '#fff',
         fontSize: 24,
         letterSpacing: 3,
+        
     },
 
     botoes: {
@@ -25,7 +26,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 35,
+        paddingTop: Constants.statusBarHeight - 7,
     },
 
     header: {
