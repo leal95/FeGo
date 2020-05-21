@@ -9,7 +9,7 @@ export default function Cadastro() {
     const route = useRoute();
     const navigation = useNavigation();
 
-    const dados = route.params.objeto;
+    const dados = route.params.dados;
 
     function navigateToLogin() {
         navigation.navigate('Login');

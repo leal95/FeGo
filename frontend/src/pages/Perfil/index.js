@@ -43,8 +43,6 @@ export default function Cadastro() {
             const response = await api.put('/profile', info);
 
             const dados = response.data[0];
-
-            console.log(dados);
     
             alert('Alterações feitas com sucesso');
     
@@ -70,14 +68,14 @@ export default function Cadastro() {
                     <Text style={styles.userName}> {dadosAnt.email}</Text>
                 </View>
 
-                <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
+                <View style={styles.inputs}>
                     
                     <Text>Nome:</Text>
                     <TextInput
                         style={styles.inputText}
                         placeholder={dadosAnt.nome}
                         autoCorrect={false}
-                        onChangeText={() => setNome()}
+                        onChangeText={setNome}
                     />
 
                     <Text>Sobrenome:</Text>
@@ -141,7 +139,7 @@ export default function Cadastro() {
                     onChangeText={setMusica}  
                     autoCapitalize='words'
                     />
-                </KeyboardAvoidingView>
+                </View>
 
                 <View style={styles.botoes}>
                     <TouchableOpacity 
