@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView,Image } from 'react-native';
 
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
@@ -108,6 +108,8 @@ export default function Login() {
                     <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL</Text>
                 </TouchableOpacity>
             </View>
+
+            
         </View>
     )
 }
