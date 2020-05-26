@@ -8,10 +8,10 @@ exports.up = function(knex) {
         table.decimal('hora').notNullable();
         table.decimal('minuto').notNullable();
         table.decimal('dia').notNullable();
-        table.decimal('mes').nullable();
-        table.decimal('ano').nullable();
+        table.decimal('mes').notNullable();
+        table.decimal('ano').notNullable();
 
-        table.string('usuario_email').nullable();
+        table.string('usuario_email').notNullable();
 
         table.foreign('usuario_email').references('email').inTable('usuarios');
     });
