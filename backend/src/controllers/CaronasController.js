@@ -13,7 +13,7 @@ module.exports = {
 
 
         try{
-            const [id] = await connection('caronas').insert({ 
+            await connection('caronas').insert({ 
                 origem, 
                 destino, 
                 hora, 
@@ -24,7 +24,7 @@ module.exports = {
                 usuario_email
                 })
 
-                response.json({ id });
+                response.json({ origem, destino, hora, minuto, dia, mes, ano, usuario_email});
         }
         catch(err){ 
             response.json({message:err});
