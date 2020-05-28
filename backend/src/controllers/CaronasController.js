@@ -24,10 +24,10 @@ module.exports = {
                 usuario_email
                 })
 
-                response.json({ origem, destino, hora, minuto, dia, mes, ano, usuario_email});
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano});
         }
         catch(err){ 
-            response.json({message:err});
+            return response.json({message:err});
         }
     }
 }
