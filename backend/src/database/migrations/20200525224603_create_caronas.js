@@ -5,11 +5,11 @@ exports.up = function(knex) {
 
         table.string('origem').notNullable();
         table.string('destino').notNullable();
-        table.decimal('hora',2).notNullable();
-        table.decimal('minuto',2).notNullable();
-        table.decimal('dia',2).notNullable();
-        table.decimal('mes',2).notNullable();
-        table.decimal('ano',4).notNullable();
+        table.integer('hora').notNullable();
+        table.integer('minuto').notNullable();
+        table.integer('dia').notNullable();
+        table.integer('mes').notNullable();
+        table.integer('ano').notNullable();
 
         table.string('usuario_email').notNullable();
 
