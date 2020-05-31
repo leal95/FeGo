@@ -9,12 +9,12 @@ export default StyleSheet.create({
         width: 150,
         alignItems: 'center',
         justifyContent: 'center'
-    },
+    }, //Estilos dos dois botões do fim da página ("Oferecer carona" e "Procurar Carona")
 
     botoesCaronas: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-    },
+    },  //posição dos botões do fim da página
 
     botaoInicialAzul: {
         borderColor: '#F2CA04',
@@ -24,7 +24,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#347EBF',
-    },
+    }, //estilos dos dois botões redondos azuis (do carrinho e de histórico)
 
     botaoInicialAmarelo: {
         borderColor: '#347EBF',
@@ -34,40 +34,40 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F2CA04',
-    },
+    }, //estilos dos dois botões redondos amarelos (Engrenagem e mensagem)
 
     botoesIniciais: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
-    },
+    }, //Posição dos botões redondos
 
     container: {
         flex: 1,
         backgroundColor: 'white',
         paddingTop: Constants.statusBarHeight + 15,
-    },
+    }, //Estilo do Container
 
     header: {
         alignItems: 'center'
-    },
+    }, //Estilo do cabeçalho
 
     headerText: {
         fontSize: 22,
         fontWeight: 'bold',
         color: '#999',
-    },
+    }, //Estilo do texto do cabelçalho
 
     textCaronas: {
         color: '#fff',
         fontSize: 22,
         letterSpacing: 2,
-    },
+    }, //estilo dos textos dos dois botões do final da página
 
     user: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    },
+    }, //posição dos elementos para a foto de perfil e nome de usuário
 
     userFoto: {
         borderColor: '#F2CA04',
@@ -78,11 +78,11 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
-    },
+    }, //estilo da foto de perfil
 
     userName: {
         fontSize: 22,
         fontWeight: 'bold',
         color: '#999',
-    }
+    } //estilo da fonte para o nome do usuário
 });

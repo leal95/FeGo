@@ -3,9 +3,11 @@ import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+//Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
 
 import styles from './styles';
 import api from '../../services/api';
+//Importando os stylos do arquivo styles.js e api do arquivo api.js na pasta services
 
 export default function Cadastro() {
     const route = useRoute();
@@ -24,9 +26,10 @@ export default function Cadastro() {
 
     function navigateToInicio() {
         navigation.navigate('TelaInicial', {dadosAnt});
-    };
+    }; //função que navega para a Tela Inicial
 
     async function salvarDados() {
+    //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
         const info = ({
             email: dadosAnt.email,
             nome, 
@@ -37,7 +40,7 @@ export default function Cadastro() {
             fumante,
             curso,
             musica,
-        });
+        }); 
 
         try{
             const response = await api.put('/profile', info);
@@ -56,20 +59,20 @@ export default function Cadastro() {
     return(
         <>
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} />
+            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} /> {/* Botão de voltar */}
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Perfil</Text>
-                </View>
+                </View> {/* Texto do cabeçalho */}
 
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
                     <Text style={styles.userName}> {dadosAnt.email}</Text>
-                </View>
+                </View> {/* Foto de perfil + nome do usuário */}
 
                 <View style={styles.inputs}>
-                    
+                    {/* Caixas de texto para alteração de dados (Começo) */}
                     <Text>Nome:</Text>
                     <TextInput
                         style={styles.inputText}
@@ -139,6 +142,8 @@ export default function Cadastro() {
                     onChangeText={setMusica}  
                     autoCapitalize='words'
                     />
+                    
+                    {/* Caixas de texpo para alteração de dados (Final) */}
                 </View>
 
                 <View style={styles.botoes}>
@@ -146,7 +151,7 @@ export default function Cadastro() {
                     style={styles.botaoLogin} 
                     onPress={() => salvarDados()}>
                         <Text style={styles.botaoLoginText}>Salvar</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> {/* Botão "Salvar" para salvar dados modificados */}
 
                 </View >
             </ScrollView>
