@@ -4,11 +4,12 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
     botaoCarona: {
         backgroundColor: '#347EBF',
-        borderRadius: 15,
-        height: 50,
-        width: 150,
+        borderRadius: 10,
+        height: 70,
+        width: 135,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 40,
     }, //Estilos dos dois botões do fim da página ("Oferecer carona" e "Procurar Carona")
 
     botoesCaronas: {
@@ -16,25 +17,17 @@ export default StyleSheet.create({
         justifyContent: 'space-evenly',
     },  //posição dos botões do fim da página
 
-    botaoInicialAzul: {
-        borderColor: '#F2CA04',
-        borderRadius: 25,
-        width: 50,
-        height: 50,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#347EBF',
-    }, //estilos dos dois botões redondos azuis (do carrinho e de histórico)
-
-    botaoInicialAmarelo: {
+    botaoInicial: {
         borderColor: '#347EBF',
-        borderRadius: 25,
-        width: 50,
-        height: 50,
+        backgroundColor: '#fff',
+        borderWidth: 3.8,
+        borderRadius: 60,
+        width: 100,
+        height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F2CA04',
-    }, //estilos dos dois botões redondos amarelos (Engrenagem e mensagem)
+        marginTop: 40,
+    }, //Estilos dos botões redondos
 
     botoesIniciais: {
         flexDirection: 'row',
@@ -44,7 +37,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 15,
+        paddingTop: Constants.statusBarHeight + 5,
     }, //Estilo do Container
 
     header: {
@@ -71,13 +64,14 @@ export default StyleSheet.create({
 
     userFoto: {
         borderColor: '#F2CA04',
-        borderWidth: 2,
+        borderWidth: 3,
         borderRadius: 50,
         width: 100,
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
+        marginRight: 15,    
     }, //estilo da foto de perfil
 
     userName: {

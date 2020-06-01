@@ -6,9 +6,10 @@ export default StyleSheet.create({
         backgroundColor: '#347EBF',
         borderRadius: 50,
         height: 50,
-        width: 250,
+        width: 175,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 10,
     }, //Estilos dos botão "Salvar"
 
     botaoLoginText: {
@@ -24,7 +25,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 35,
+    paddingTop: Constants.statusBarHeight - 7,
     }, //Estilos do Container
 
     header: {
@@ -32,7 +33,7 @@ export default StyleSheet.create({
     }, //Estilos do cabeçalho
  
     headerText: {
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: 'bold',
         color: '#818181'
     }, // Estilos do texto do cabeçalho
@@ -65,17 +66,18 @@ export default StyleSheet.create({
 
     userFoto: {
         borderColor: '#F2CA04',
-        borderWidth: 2,
+        borderWidth: 3,
         borderRadius: 50,
-        width: 100,
-        height: 100,
+        width: 90,
+        height: 90,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
+    marginRight: 5,
     }, //Estilos da foto de Perfil
 
     userName: {
-        fontSize: 22,
+        fontSize: 19,
         fontWeight: 'bold',
         color: '#999',
     } //Estilos da fonte para o nome do usuário

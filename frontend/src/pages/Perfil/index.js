@@ -61,6 +61,7 @@ export default function Cadastro() {
         <View style={styles.container}>
             <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} /> {/* Botão de voltar */}
 
+            <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Perfil</Text>
@@ -69,11 +70,8 @@ export default function Cadastro() {
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
                     <Text style={styles.userName}> {dadosAnt.email}</Text>
-                </View> {/* Foto de perfil + nome do usuário */}
-            
-                {/* Caixas de texto para alteração de dados (Começo) */}
-                <View style={styles.inputs}>
-
+                </View>
+                    
                     <Text>Nome:</Text>
                     <TextInput
                         style={styles.inputText}
@@ -143,8 +141,6 @@ export default function Cadastro() {
                     onChangeText={setMusica}  
                     autoCapitalize='words'
                     />
-                    {/* Caixas de texpo para alteração de dados (Final) */}
-                </View>
 
                 <View style={styles.botoes}>
                     <TouchableOpacity 
@@ -155,6 +151,7 @@ export default function Cadastro() {
 
                 </View >
             </ScrollView>
+            </KeyboardAvoidingView>
         </View>
         </>
     )
