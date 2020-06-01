@@ -9,7 +9,7 @@ export default StyleSheet.create({
         width: 250,
         alignItems: 'center',
         justifyContent: 'center'
-    }, //Esilo do botão "Concluir Cadastro" 
+    }, //Estilo do botão "Concluir Cadastro" 
 
     botaoCadastrarText: {
         color: '#fff',
@@ -91,4 +91,4 @@ export default StyleSheet.create({
         justifyContent: 'center'
     } //Estilos dos textos no final da página
 
-});
+}); 

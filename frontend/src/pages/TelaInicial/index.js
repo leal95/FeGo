@@ -69,12 +69,14 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.botoesCaronas}>
-                <TouchableOpacity style={styles.botaoCarona}>
+                <TouchableOpacity style={styles.botaoCarona}
+                onPress ={()=>navigateToPage('Caronas')}>
                     <Text style={styles.textCaronas}>Procurar</Text>
                     <Text style={styles.textCaronas}>Carona</Text>
                 </TouchableOpacity> {/* Botão "Procurar Carona" */}
 
-                <TouchableOpacity style={styles.botaoCarona}>
+                <TouchableOpacity style={styles.botaoCarona} 
+                onPress={()=>navigateToPage('PublicarCarona')}>
                     <Text style={styles.textCaronas}>Oferecer</Text>
                     <Text style={styles.textCaronas}>Carona</Text>
                 </TouchableOpacity> {/* Botão "Oferecer Carona" */}

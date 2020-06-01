@@ -70,9 +70,10 @@ export default function Cadastro() {
                     <View style={styles.userFoto}></View>
                     <Text style={styles.userName}> {dadosAnt.email}</Text>
                 </View> {/* Foto de perfil + nome do usuário */}
-
+            
+                {/* Caixas de texto para alteração de dados (Começo) */}
                 <View style={styles.inputs}>
-                    {/* Caixas de texto para alteração de dados (Começo) */}
+
                     <Text>Nome:</Text>
                     <TextInput
                         style={styles.inputText}
@@ -142,7 +143,6 @@ export default function Cadastro() {
                     onChangeText={setMusica}  
                     autoCapitalize='words'
                     />
-                    
                     {/* Caixas de texpo para alteração de dados (Final) */}
                 </View>
 

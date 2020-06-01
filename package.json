@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "react-native-simple-time-picker": "^0.2.0"
+  }
+}

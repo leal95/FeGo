@@ -98,7 +98,7 @@ export default function Cadastro() {
                 <Text style={styles.headerText}>Crie sua conta</Text> {/* Texto do cabeçalho */}
             </View>
 
-            
+        
             <View style={styles.inputs}>
                 <ScrollView showsVerticalScrollIndicator={false}>
 
