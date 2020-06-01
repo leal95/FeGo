@@ -93,9 +93,9 @@ export default function Cadastro() {
 
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin}/> {/* Seta para voltar */}
+            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin}/> 
             <View style={styles.header}>
-                <Text style={styles.headerText}>Crie sua conta</Text> {/* Texto do cabeçalho */}
+                <Text style={styles.headerText}>Crie sua conta</Text> 
             </View>
 
         
@@ -107,11 +107,10 @@ export default function Cadastro() {
                             <Text style={styles.tosText}>
                                 Ao cadastrar você admite  que está ciente e aceita os Termos e Condições de Serviço do FeGoApp
                                 (clique para ler)
-                            </Text> {/* Aceitação de Termos e Condições */}
+                            </Text> 
                         </TouchableOpacity>
 
 
-                    {/* Caixas para entrada das informações (Começo) */}
                     <Text style={styles.inputTextHeader}></Text>
                     <TextInput
                         style={styles.inputText}
@@ -183,7 +182,6 @@ export default function Cadastro() {
                         />
                 </ScrollView>
             </View>
-            {/* Caixas para entrada das informações (Final) */}
 
 
             <View style={styles.botoes}>
@@ -192,7 +190,6 @@ export default function Cadastro() {
                 onPress={() => cadastrarUsuario()}>
                     <Text style={styles.botaoCadastrarText}>Concluir Cadastro</Text>
                 </TouchableOpacity>
-                {/* Botão para concluir cadastro */}
             </View>
 
             <View style={styles.textosfinais}>
@@ -204,7 +201,6 @@ export default function Cadastro() {
                 onPress={navigateToLogin}>
                     <Text style={styles.botaoLoginText}>Login</Text>
                 </TouchableOpacity>
-                {/* Voltar para a tela de Login, se a pessoa já possuir conta */}
             </View>
         </View>
     )

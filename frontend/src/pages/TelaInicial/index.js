@@ -26,12 +26,12 @@ export default function Cadastro() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Tela Inicial</Text>
-            </View> {/* Texto do cabeçalho */}
+            </View> 
 
             <View style={styles.user}>
                 <View style={styles.userFoto}></View>
                 <Text style={styles.userName}> {dados.nome} {dados.sobrenome}</Text>
-            </View>  {/* Foto de perfil + Nome do usuário */}
+            </View>  
 
             <View style={styles.botoesIniciais}>
                 <TouchableOpacity style={styles.botaoInicial}>
@@ -39,13 +39,13 @@ export default function Cadastro() {
                     name="car-hatchback"
                     size={60}
                     color="#F2CA04"/> 
-                </TouchableOpacity> {/* Botão do carrinho */}
+                </TouchableOpacity> 
                 <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="history"
                     size={55}
                     color="#F2CA04"/>  
-                </TouchableOpacity> {/* botão de histórico */}
+                </TouchableOpacity>
             </View>
 
             <View style={styles.botoesIniciais}>
@@ -56,7 +56,7 @@ export default function Cadastro() {
                     name="settings"
                     size={55}
                     color="#F2CA04"/>
-                </TouchableOpacity> {/* botão da engrenagem */}
+                </TouchableOpacity> 
 
 
                 <TouchableOpacity style={styles.botaoInicial}>
@@ -64,7 +64,7 @@ export default function Cadastro() {
                     name="message-text-outline"
                     size={55}
                     color="#F2CA04"/>
-                </TouchableOpacity> {/* botão de mensagem */}
+                </TouchableOpacity> 
             </View>
 
             <View style={styles.botoesCaronas}>
@@ -72,13 +72,13 @@ export default function Cadastro() {
                 onPress ={()=>navigateToPage('Caronas')}>
                     <Text style={styles.textCaronas}>Procurar</Text>
                     <Text style={styles.textCaronas}>Carona</Text>
-                </TouchableOpacity> {/* Botão "Procurar Carona" */}
+                </TouchableOpacity> 
 
                 <TouchableOpacity style={styles.botaoCarona} 
                 onPress={()=>navigateToPage('PublicarCarona')}>
                     <Text style={styles.textCaronas}>Oferecer</Text>
                     <Text style={styles.textCaronas}>Carona</Text>
-                </TouchableOpacity> {/* Botão "Oferecer Carona" */}
+                </TouchableOpacity> 
             </View>
         </View>
         </>

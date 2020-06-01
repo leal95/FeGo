@@ -59,10 +59,10 @@ export default function Login() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Faça seu login para continuar</Text>
-            </View> {/* Texto do cabeçalho */}
+            </View> 
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
-             {/* Caixas de Inputs do email e da senha do usuário */}   
+               
                 <TextInput
                     style={styles.inputText}
                     placeholder="Email"
@@ -84,7 +84,7 @@ export default function Login() {
                     />
             </KeyboardAvoidingView>
 
-            <View style={styles.botoes}> {/* Botão de Login */}
+            <View style={styles.botoes}> 
                 <TouchableOpacity 
                 style={styles.botaoLogin} 
                 onPress={() => handleLogin()}>
@@ -93,7 +93,7 @@ export default function Login() {
 
             </View >
 
-            <View style={styles.textosfinais}> {/* Textos no final da página */}
+            <View style={styles.textosfinais}> 
                 <TouchableOpacity>
                     <Text style={styles.textoCadastrese}> Não possui conta? </Text>  
                 </TouchableOpacity>
@@ -102,13 +102,13 @@ export default function Login() {
                 style={styles.botaoCadastrar} 
                 onPress={navigateToCadastro}>
                     <Text style={styles.botaoCadastrarText}>Cadastre-se</Text>
-                </TouchableOpacity> {/* botão para cadastro, caso a pessoa não tenha uma conta */}
+                </TouchableOpacity> 
 
                 <TouchableOpacity 
                 style={styles.botaoCadastrar} 
                 onPress={navigateToTelaInicial}>
                     <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL</Text>
-                </TouchableOpacity> {/* Botão para navegar para a Tela Inicial (Para facilitar os testes) */}
+                </TouchableOpacity> 
             </View>
 
             

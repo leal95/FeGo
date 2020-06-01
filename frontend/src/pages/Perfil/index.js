@@ -59,13 +59,13 @@ export default function Cadastro() {
     return(
         <>
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} /> {/* Botão de voltar */}
+            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} /> 
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Perfil</Text>
-                </View> {/* Texto do cabeçalho */}
+                </View> 
 
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
@@ -147,7 +147,7 @@ export default function Cadastro() {
                     style={styles.botaoLogin} 
                     onPress={() => salvarDados()}>
                         <Text style={styles.botaoLoginText}>Salvar</Text>
-                    </TouchableOpacity> {/* Botão "Salvar" para salvar dados modificados */}
+                    </TouchableOpacity> 
 
                 </View >
             </ScrollView>

@@ -5,7 +5,8 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 import api from '../../services/api'; 
-export default function Login() { 
+
+export default function Caronas() { 
     const navigation = useNavigation();
 
     function navigateToTelaInicial() {
