@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView,Image } from 'react-native';
 
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
+//Importando estilos no arquivo styles.js, caixas de input de texto e api, do arquivo api.js na pasta services
 
 export default function Login() {
     const [email, setEmail] = useState();
@@ -14,7 +15,7 @@ export default function Login() {
 
     function navigateToCadastro() {
         navigation.navigate('Cadastro');
-    };
+    }; //função para navegar para a tela de Cadastro
 
     function navigateToTelaInicial() {
         const dados = {
@@ -30,9 +31,10 @@ export default function Login() {
             musica: null
           }
         navigation.navigate('TelaInicial', {dados});
-    };
+    }; //função para navegar para a tela inicial, passando os dados do Sequela (para os testes)
 
-    async function handleLogin() {
+    async function handleLogin() {  
+    //função que lida com as cláusulas relacionadas com os dados necessários para Login
         try{
             await api.get(`/sessions/?email=${email}`)
             .then(response => {
@@ -57,10 +59,10 @@ export default function Login() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerText}>Faça seu login para continuar</Text>
-            </View>
+            </View> {/* Texto do cabeçalho */}
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
-                
+             {/* Caixas de Inputs do email e da senha do usuário */}   
                 <TextInput
                     style={styles.inputText}
                     placeholder="Email"
@@ -82,7 +84,7 @@ export default function Login() {
                     />
             </KeyboardAvoidingView>
 
-            <View style={styles.botoes}>
+            <View style={styles.botoes}> {/* Botão de Login */}
                 <TouchableOpacity 
                 style={styles.botaoLogin} 
                 onPress={() => handleLogin()}>
@@ -91,7 +93,7 @@ export default function Login() {
 
             </View >
 
-            <View style={styles.textosfinais}>
+            <View style={styles.textosfinais}> {/* Textos no final da página */}
                 <TouchableOpacity>
                     <Text style={styles.textoCadastrese}> Não possui conta? </Text>  
                 </TouchableOpacity>
@@ -100,14 +102,16 @@ export default function Login() {
                 style={styles.botaoCadastrar} 
                 onPress={navigateToCadastro}>
                     <Text style={styles.botaoCadastrarText}>Cadastre-se</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> {/* botão para cadastro, caso a pessoa não tenha uma conta */}
 
                 <TouchableOpacity 
                 style={styles.botaoCadastrar} 
                 onPress={navigateToTelaInicial}>
                     <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> {/* Botão para navegar para a Tela Inicial (Para facilitar os testes) */}
             </View>
+
+            
         </View>
     )
 }

@@ -9,39 +9,39 @@ export default StyleSheet.create({
         width: 175,
         alignItems: 'center',
         justifyContent: 'center',
-        
-    },
+        marginTop: 10,
+    }, //Estilos dos botão "Salvar"
 
     botaoLoginText: {
         color: '#fff',
         fontSize: 24,
         letterSpacing: 3,
-    },
+    }, //Estilos do texto do botão "Salvar"
 
     botoes: {
         alignItems: 'center'
-    },
+    }, //Alinhamento dos botões no centro
 
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 35,
-    },
+    paddingTop: Constants.statusBarHeight - 7,
+    }, //Estilos do Container
 
     header: {
         alignItems: 'center'
-    },
-
+    }, //Estilos do cabeçalho
+ 
     headerText: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: '#818181',
-    },
+        color: '#818181'
+    }, // Estilos do texto do cabeçalho
 
     inputs: {
         alignItems: 'center',
         justifyContent: 'center'
-    },
+    }, //Posião das caixas de input de texto
 
     inputText: {
         backgroundColor: '#fff',
@@ -51,18 +51,18 @@ export default StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
-    },
+    }, //Estilo das caixas de input de Texto
 
     inputTextHeader: {
         fontSize: 19,
         color: '#A2A2A2',
-    },
+    }, //Estilo do texto das caixas de input
 
     user: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-    },
+    }, //Posição do nome e da foto de perfil
 
     userFoto: {
         borderColor: '#F2CA04',
@@ -73,12 +73,12 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
-        marginRight: 5,
-    },
+    marginRight: 5,
+    }, //Estilos da foto de Perfil
 
     userName: {
         fontSize: 19,
         fontWeight: 'bold',
         color: '#999',
-    }
+    } //Estilos da fonte para o nome do usuário
 });

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+//Importando, react, useState, ícones, Navigation e componentes do react native necessários
 
 import styles from './styles';
 import api from '../../services/api';
+//Importando os estilos do arquivo styles.js e api do arquivo api.js na pasta services
 
 export default function Cadastro() {
     const [email, setEmail] = useState('');
@@ -19,7 +21,7 @@ export default function Cadastro() {
 
     function navigateToLogin() {
         navigation.navigate('Login');
-    };
+    }; //função para navegar para a tela de Login
 
     function displayTOS () {
         Alert.alert(`Bem Vindo ao FeGo`, ` 
@@ -56,7 +58,8 @@ export default function Cadastro() {
         
         Podemos modificar estes termos ou quaisquer termos adicionais que sejam aplicáveis a um Serviço para, por exemplo, refletir alterações da lei ou mudanças em nossos Serviços. Alterações a respeito de novas funcionalidades de um Serviço ou alterações feitas por razões legais entrarão em vigor imediatamente. Se você não concordar com os termos alterados de um Serviço, deve descontinuar o uso desse Serviço.
         `)
-    }
+    } //Função para mostrar Termos e Condições
+
 
     async function cadastrarUsuario() {
         
@@ -67,7 +70,8 @@ export default function Cadastro() {
             nome, 
             sobrenome,
             numTelefone,
-        });
+        });  //Definição dos nomes dos dados informados no cadastro
+
 
         if(confirmacao === senha){
             try{
@@ -85,16 +89,16 @@ export default function Cadastro() {
         else{
             alert("As senhas digitadas não são correspondentes");
         }
-    };
+    }; //Cláusula referente à senha e a confirmação da senha
 
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin} />
+            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin}/> {/* Seta para voltar */}
             <View style={styles.header}>
-                <Text style={styles.headerText}>Crie sua conta</Text>
+                <Text style={styles.headerText}>Crie sua conta</Text> {/* Texto do cabeçalho */}
             </View>
 
-            
+        
             <View style={styles.inputs}>
                 <ScrollView showsVerticalScrollIndicator={false}>
 
@@ -103,9 +107,11 @@ export default function Cadastro() {
                             <Text style={styles.tosText}>
                                 Ao cadastrar você admite  que está ciente e aceita os Termos e Condições de Serviço do FeGoApp
                                 (clique para ler)
-                            </Text>
+                            </Text> {/* Aceitação de Termos e Condições */}
                         </TouchableOpacity>
 
+
+                    {/* Caixas para entrada das informações (Começo) */}
                     <Text style={styles.inputTextHeader}></Text>
                     <TextInput
                         style={styles.inputText}
@@ -177,6 +183,8 @@ export default function Cadastro() {
                         />
                 </ScrollView>
             </View>
+            {/* Caixas para entrada das informações (Final) */}
+
 
             <View style={styles.botoes}>
                 <TouchableOpacity 
@@ -184,19 +192,19 @@ export default function Cadastro() {
                 onPress={() => cadastrarUsuario()}>
                     <Text style={styles.botaoCadastrarText}>Concluir Cadastro</Text>
                 </TouchableOpacity>
-                
+                {/* Botão para concluir cadastro */}
             </View>
 
             <View style={styles.textosfinais}>
 
-                <Text style={styles.textoLogin}> Já possui conta?  </Text>
+                <Text style={styles.textoLogin}> Já possui conta?  </Text> 
 
                 <TouchableOpacity 
                 style={styles.botaoLogin}
                 onPress={navigateToLogin}>
                     <Text style={styles.botaoLoginText}>Login</Text>
                 </TouchableOpacity>
-
+                {/* Voltar para a tela de Login, se a pessoa já possuir conta */}
             </View>
         </View>
     )

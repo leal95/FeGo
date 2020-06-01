@@ -7,7 +7,7 @@ Este aplicativo foi desenvolvido com as seguintes ferramentas:
 - React Native
 
 # Autores
-## IEEE Computer Society Guaratinuetá
+## IEEE Computer Society Guaratinguetá
 - [Fernando Zagatto Penha](https://github.com/FZPenha)
 - Gabriel Leal
 - Gabriel Knopp
