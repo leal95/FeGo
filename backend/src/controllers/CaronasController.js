@@ -8,9 +8,8 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, hora, minuto, dia, mes, ano } = request.body;
-        const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers
-
+        const { origem, destino, hora, minuto, dia, mes, ano, usuario_email } = request.body;
+        //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers
 
         try{
             await connection('caronas').insert({ 

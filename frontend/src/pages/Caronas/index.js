@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
@@ -7,10 +7,13 @@ import { TextInput, FlatList } from 'react-native-gesture-handler';
 import api from '../../services/api'; 
 
 export default function Caronas() { 
+    const route = useRoute();
     const navigation = useNavigation();
 
+    const dados = route.params.dados;
+
     function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial');
+        navigation.navigate('TelaInicial', {dados});
     };
 
     
@@ -34,6 +37,7 @@ export default function Caronas() {
             
             <FlatList style={styles.CaronasList}
             data = {[1,2,3,4,5,6,7,8]}
+            keyExtractor={incident => String(incident)}
             renderItem = {()=>(
                 <TouchableOpacity style={styles.Caronas}>
                 <View style={styles.userFoto}></View>

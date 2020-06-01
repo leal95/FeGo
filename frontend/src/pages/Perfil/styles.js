@@ -25,7 +25,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-    paddingTop: Constants.statusBarHeight - 7,
+        paddingTop: Constants.statusBarHeight + 15,
     }, //Estilos do Container
 
     header: {

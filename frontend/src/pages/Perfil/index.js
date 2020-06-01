@@ -47,8 +47,6 @@ export default function Cadastro() {
 
             const dados = response.data[0];
     
-            alert('Alterações feitas com sucesso');
-    
             navigation.navigate('TelaInicial', {dados} );
         }
         catch(err){

@@ -28,11 +28,11 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 35,
+        paddingTop: Constants.statusBarHeight + 15,
     },
 
     header: {
-        paddingLeft: 32,
+        alignItems:'center',
     },
 
     headerText: {
@@ -43,8 +43,9 @@ export default StyleSheet.create({
 
     inputs: {
         alignItems: 'center',
-        height: 375,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 25,
+        marginBottom: 25,
     },
 
     inputText: {
@@ -60,5 +61,10 @@ export default StyleSheet.create({
     inputTextHeader: {
         fontSize: 19,
         color: '#A2A2A2',
+    },
+
+    subtitleText: {
+        fontSize: 20,
+        color: '#818181',
     }
 });
