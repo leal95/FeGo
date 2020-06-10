@@ -41,6 +41,8 @@ module.exports = {
                        .first();
             
             await connection ('/caronas').where('id', id).delete;
+
+            
         }
         catch(err){ 
             return response.json({message:err});
