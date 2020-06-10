@@ -28,5 +28,9 @@ module.exports = {
         catch(err){ 
             return response.json({message:err});
         }
+    },
+
+    async delete (request, response) { //método delete
+        
     }
 }
