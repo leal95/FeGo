@@ -18,8 +18,9 @@ export default function PublicarCarona() {
     const [origem, setOrigem] = useState();
     const [destino, setDestino] = useState();
     const [horario, setHorario] = useState();
-    const [dia, setDia] = useState();
-    const [mes, setMes] = useState();
+    const [data, setData] = useState();
+    const [preco, setPreco] = useState();
+    const [paradas, setParadas] = useState([]);
     const ano = 2020;
 
     function navigateToTelaInicial() {
@@ -29,23 +30,27 @@ export default function PublicarCarona() {
     async function publicarCarona() {
         const info = ({
             origem, 
-            destino, 
+            destino,
+            paradas,
             hora: horario.split(':')[0],  
             minuto: horario.split(':')[1], 
-            dia, 
-            mes, 
-            ano, 
+            dia: data.split('/')[0],
+            mes: data.split('/')[1], 
+            ano,
+            preco,
             usuario_email: dados.email,
         });
 
-        try{
+        console.log(info);
+
+        /*try{
             await api.post('/caronas', info);
 
             navigateToTelaInicial();
         }
         catch(err){
             alert('Erro ao publicar carona!');
-        };
+        };*/
     }
     
     return(
@@ -76,17 +81,17 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Dia" 
+                    placeholder="Para em alguma cidade?"
                     autoCorrect={false}
-                    onChangeText={setDia}
+                    onChangeText={setParadas}
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Mes" 
+                    placeholder="Data (Use o formato DD/MM)" 
                     autoCorrect={false}
-                    onChangeText={setMes}
+                    onChangeText={setData}
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -96,16 +101,24 @@ export default function PublicarCarona() {
                     autoCorrect={false}
                     onChangeText={setHorario}
                     />
+
+                <Text style={styles.inputTextHeader}></Text>
+                <TextInput
+                    style={styles.inputText} 
+                    placeholder="Preço por pessoa, em reais" 
+                    autoCorrect={false}
+                    onChangeText={setPreco}
+                    />
+
+                    <View style={styles.botoes}>
+                        <TouchableOpacity 
+                        style={styles.botaoLogin}
+                        onPress={() => publicarCarona()}>
+                            <Text style={styles.botaoLoginText}>Publicar</Text>
+                        </TouchableOpacity>
+
+                    </View >
             </KeyboardAvoidingView>
-
-            <View style={styles.botoes}>
-                <TouchableOpacity 
-                style={styles.botaoLogin}
-                onPress={() => publicarCarona()}>
-                    <Text style={styles.botaoLoginText}>Publicar</Text>
-                </TouchableOpacity>
-
-            </View >
            
         </View>
     )
