@@ -5,7 +5,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 35,
+        paddingTop: Constants.statusBarHeight + 15,
     },
 
     header: {
@@ -18,13 +18,6 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         color: '#818181'
     },
-
-    Buscar:{
-        alignSelf:"center",
-        alignItems:"center",
-        flexDirection:"row",
-        marginTop:30
-    },//Estilo do Buscar
 
     CaronasList:{
         alignSelf:"center",
@@ -46,7 +39,7 @@ export default StyleSheet.create({
 
     Caronas: {
         backgroundColor:"#347EBF",
-        width: 300,
+        width: 315,
         height:150,
         marginBottom:20,
         borderRadius:30,
@@ -55,13 +48,20 @@ export default StyleSheet.create({
 
     CaronasText:{
         alignSelf:"flex-end",
-        marginTop:20,
-        marginRight:20,
+        marginTop: 10,
+        maxWidth: 150,
+        marginLeft: 55,
         fontWeight: 'bold',
         color: '#ddd',
+        fontSize: 14,
     },//Estilo dos Textos das Informações das caronas
-    
-    CaronasInfo:{
-        marginLeft:40
-    },//Posicionamento dos Textos
+
+    CaronasTextPreco:{
+        alignSelf:"flex-end",
+        marginTop: 10,
+        marginLeft: 55,
+        fontWeight: 'bold',
+        fontSize: 24,
+        color: '#ddd',
+    },
 });
