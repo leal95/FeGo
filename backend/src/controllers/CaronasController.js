@@ -35,12 +35,12 @@ module.exports = {
         const { usuario_email } = request.body; //ideal seria usar o authorization, mas para fins de teste, request body também funciona
         
         try{
-        const carona = await connection('/caronas')
+        const carona = await connection('caronas')
                        .where('id, id')
                        .select('usuario_email')
                        .first();
             
-            await connection ('/caronas').where('id', id).delete;
+            await connection ('caronas').where('id', id).delete;
 
             
         }

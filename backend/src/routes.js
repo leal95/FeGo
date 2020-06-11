@@ -15,6 +15,6 @@ routes.post('/usuarios', UsuariosController.create); //cadastro de usuários
 
 routes.post('/caronas', CaronasController.create); //postar caronas
 routes.get('/caronas', CaronasController.index); //listar caronas
-routes.delete('/incidents/:id', CaronasController.delete); //deletar caronas
+routes.delete('/caronas/:id', CaronasController.delete); //deletar caronas
 
 module.exports = routes;
