@@ -10,7 +10,8 @@ import TelaInicial from './pages/TelaInicial';
 import Perfil from './pages/Perfil';
 import PublicarCarona from './pages/PublicarCarona'
 import ListarCaronas from './pages/ListarCaronas'
-//importando as pastas de cada página
+import DetalheCarona from './pages/DetalheCarona'
+//importando cada uma das telas
 
 export default function Routes() {
     return(
@@ -22,6 +23,7 @@ export default function Routes() {
                 <AppStack.Screen name="Perfil" component={Perfil} />
                 <AppStack.Screen name="PublicarCarona" component={PublicarCarona} />
                 <AppStack.Screen name="ListarCaronas" component={ListarCaronas} />
+                <AppStack.Screen name="DetalheCarona" component={DetalheCarona} />
             </AppStack.Navigator>
         </NavigationContainer>
     );
