@@ -10,10 +10,11 @@ routes.put('/profile', ProfileController.edit); //editar perfil
 
 routes.get('/sessions', SessionController.login); //login 
 
-routes.get('/usuarios', UsuariosController.index); //listagem
-routes.post('/usuarios', UsuariosController.create); //cadastro
+routes.get('/usuarios', UsuariosController.index); //listagem de usuários
+routes.post('/usuarios', UsuariosController.create); //cadastro de usuários
 
-routes.post('/caronas', CaronasController.create); //caronas
-routes.get('/caronas', CaronasController.index); //caronas
+routes.post('/caronas', CaronasController.create); //postar caronas
+routes.get('/caronas', CaronasController.index); //listar caronas
+routes.delete('/incidents/:id', CaronasController.delete); //deletar caronas
 
 module.exports = routes;
