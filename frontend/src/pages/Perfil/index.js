@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
+import {Picker} from '@react-native-community/picker';
 import { TextInput } from 'react-native-gesture-handler';
 //Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
 
@@ -94,15 +95,15 @@ export default function Cadastro() {
                         onChangeText={setApelido}
                         />
                         
-                        <Text>Telefone:</Text>
-                        <TextInput
-                        style={styles.inputText} 
-                        placeholder={dadosAnt.numTelefone}
-                        autoCorrect={false}
-                        onChangeText={setNumTelefone}  
-                        autoCapitalize='none'
-                        keyboardType="numeric"
-                        />
+                    <Text>Telefone:</Text>
+                    <TextInput
+                    style={styles.inputText} 
+                    placeholder={dadosAnt.numTelefone}
+                    autoCorrect={false}
+                    onChangeText={setNumTelefone}  
+                    autoCapitalize='none'
+                    keyboardType="numeric"
+                    />
 
                     <Text>RA:</Text>
                     <TextInput
@@ -114,13 +115,7 @@ export default function Cadastro() {
                         keyboardType="numeric"
                         />
 
-                    <Text>Fumante?:</Text>
-                    <TextInput
-                    style={styles.inputText} 
-                    placeholder={dadosAnt.fumante}
-                    autoCorrect={false}
-                    onChangeText={setFumante}
-                    />
+                    <Text>Fumante:</Text>
                     
                     <Text>Curso:</Text>
                     <TextInput
