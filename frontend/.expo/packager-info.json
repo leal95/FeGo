@@ -1,17 +1,9 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-<<<<<<< HEAD
-  "packagerPid": 1556,
-  "expoServerNgrokUrl": "https://gd-bpu.anonymous.frontend.exp.direct",
-  "packagerNgrokUrl": "https://packager.gd-bpu.anonymous.frontend.exp.direct",
-  "ngrokPid": 25996,
-  "devToolsPort": 19002
-=======
   "packagerPid": 9728,
   "expoServerNgrokUrl": "https://pg-6nq.lukas-itiro.frontend.exp.direct",
   "packagerNgrokUrl": "https://packager.pg-6nq.lukas-itiro.frontend.exp.direct",
   "ngrokPid": 10128,
   "webpackServerPort": null
->>>>>>> 95b6676b80049fe480fed5c58ecc00c5e67c35b2
 }
