@@ -38,7 +38,7 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={24} color="#858585" onPress = {navigateToTelaInicial}/>
+                <Feather name="arrow-left" size={30} color="#858585" onPress = {navigateToTelaInicial}/>
             <View style={styles.header}></View>
 
             <KeyboardAvoidingView behavior="padding" style={styles.buscar}>

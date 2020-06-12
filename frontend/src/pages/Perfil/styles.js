@@ -59,7 +59,6 @@ export default StyleSheet.create({
     }, //Estilo do texto das caixas de input
 
     user: {
-        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
     }, //Posição do nome e da foto de perfil
@@ -80,5 +79,10 @@ export default StyleSheet.create({
         fontSize: 19,
         fontWeight: 'bold',
         color: '#999',
-    } //Estilos da fonte para o nome do usuário
+    }, //Estilos da fonte para o nome do usuário
+
+    userEmail: {
+        alignSelf: 'center',
+        fontSize: 14,
+    }
 });

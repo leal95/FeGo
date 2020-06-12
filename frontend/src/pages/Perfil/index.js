@@ -58,7 +58,7 @@ export default function Cadastro() {
     return(
         <>
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToInicio} /> 
+            <Feather name="arrow-left" size={30} color="#999" onPress={navigateToInicio} /> 
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,7 +68,8 @@ export default function Cadastro() {
 
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
-                    <Text style={styles.userName}> {dadosAnt.email}</Text>
+                    <Text style={styles.userName}> {dadosAnt.nome} </Text>
+                    <Text style={styles.userEmail}> {dadosAnt.email} </Text>
                 </View>
                     
                     <Text>Nome:</Text>
@@ -144,15 +145,12 @@ export default function Cadastro() {
                     />
 
                     <Text>Musicas:</Text>
-                    <RNPickerSelect
-                        style={pickerSelectStyles}
-                        placeholder={{label: 'Fumante?', value: null}}
-                        onValueChange={(value) => console.log(value)}
-                        items={[
-                            { label: 'Sim', value: 'Sim' },
-                            { label: 'Nao', value: 'Nao' },
-                        ]}
-                    />
+                    <TextInput
+                        style={styles.inputText} 
+                        placeholder={dadosAnt.musica}
+                        autoCorrect={false}
+                        onChangeText={setMusica}
+                        />
 
                 <View style={styles.botoes}>
                     <TouchableOpacity 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, KeyboardAvoidingView } from 'react-native';
 //Importando, react, useState, ícones, Navigation e componentes do react native necessários
 
 import styles from './styles';
@@ -93,13 +93,14 @@ export default function Cadastro() {
 
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#999" onPress={navigateToLogin}/> 
+            <Feather name="arrow-left" size={30} color="#999" onPress={navigateToLogin}/> 
             <View style={styles.header}>
                 <Text style={styles.headerText}>Crie sua conta</Text> 
             </View>
 
         
             <View style={styles.inputs}>
+            <KeyboardAvoidingView behavior="padding">
                 <ScrollView showsVerticalScrollIndicator={false}>
 
                 <TouchableOpacity 
@@ -180,27 +181,27 @@ export default function Cadastro() {
                         onChangeText={setConfirmacao}
                         autoCapitalize='none'
                         />
+
+                        <View style={styles.botoes}>
+                            <TouchableOpacity 
+                            style={styles.botaoCadastrar} 
+                            onPress={() => cadastrarUsuario()}>
+                                <Text style={styles.botaoCadastrarText}>Concluir Cadastro</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.textosfinais}>
+
+                            <Text style={styles.textoLogin}> Já possui conta?  </Text> 
+
+                            <TouchableOpacity 
+                            style={styles.botaoLogin}
+                            onPress={navigateToLogin}>
+                                <Text style={styles.botaoLoginText}>Login</Text>
+                            </TouchableOpacity>
+                        </View>
                 </ScrollView>
-            </View>
-
-
-            <View style={styles.botoes}>
-                <TouchableOpacity 
-                style={styles.botaoCadastrar} 
-                onPress={() => cadastrarUsuario()}>
-                    <Text style={styles.botaoCadastrarText}>Concluir Cadastro</Text>
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.textosfinais}>
-
-                <Text style={styles.textoLogin}> Já possui conta?  </Text> 
-
-                <TouchableOpacity 
-                style={styles.botaoLogin}
-                onPress={navigateToLogin}>
-                    <Text style={styles.botaoLoginText}>Login</Text>
-                </TouchableOpacity>
+                </KeyboardAvoidingView>
             </View>
         </View>
     )

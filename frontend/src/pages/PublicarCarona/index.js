@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, Button, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, Button, KeyboardAvoidingView, ScrollView } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
@@ -42,6 +42,17 @@ export default function PublicarCarona() {
         setDatePickerVisibility(false);
       };
 
+    function mostrarData(){
+        if(data){
+            return(
+                <Text>{data[2]} {data[1]} {data[3]} {data[4].split(":")[0]}:{data[4].split(":")[1]} </Text>
+            )
+        }
+        else{
+            return
+        }
+    }
+
     async function publicarCarona() {
 
         const info = ({
@@ -57,8 +68,6 @@ export default function PublicarCarona() {
             usuario_email: dados.email,
         });
 
-        console.log(info);
-
         /*try{
             await api.post('/caronas', info);
 
@@ -71,14 +80,14 @@ export default function PublicarCarona() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={24} color="#999" onPress={navigateToTelaInicial} /> 
+                <Feather name="arrow-left" size={30} color="#999" onPress={navigateToTelaInicial} /> 
             <View style={styles.header}>
                 <Text style={styles.headerText}>Publicar Carona</Text>
                 <Text style={styles.subtitleText}>(Preencha todos os dados)</Text>
             </View>
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
-                
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <TextInput
                     style={styles.inputText}
                     placeholder="De onde?"
@@ -110,6 +119,7 @@ export default function PublicarCarona() {
                         onConfirm={handleConfirm}
                         onCancel={hideDatePicker}
                     />
+                {mostrarData()}
 
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
@@ -128,6 +138,7 @@ export default function PublicarCarona() {
                         </TouchableOpacity>
 
                     </View >
+                    </ScrollView>
             </KeyboardAvoidingView>
            
         </View>

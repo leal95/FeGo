@@ -64,7 +64,7 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={24} color="#858585" onPress = {navigateBack}/>
+            <Feather name="arrow-left" size={30} color="#858585" onPress = {navigateBack}/>
             <View style={styles.header}></View>
             
             <View style={styles.Caronas} >
