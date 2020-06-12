@@ -2,6 +2,12 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
+    buscar:{
+        alignSelf:"center",
+        alignItems:"center",
+        flexDirection:"row",
+    },//Estilo do Buscar
+
     container: {
         flex: 1,
         backgroundColor: 'white',
@@ -21,6 +27,7 @@ export default StyleSheet.create({
 
     CaronasList:{
         alignSelf:"center",
+        marginTop: 20,
     },//Estilo da FlatList
 
     userFoto: {
@@ -63,5 +70,15 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 24,
         color: '#ddd',
+    },
+
+    inputText: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 260,
+        padding: 10,
     },
 });

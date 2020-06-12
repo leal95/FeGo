@@ -28,6 +28,10 @@ export default function Caronas() {
         setCaronas(response.data);
     }
 
+    async function buscarCaronas() {
+
+    }
+
     useEffect(() => {
         loadCaronas();
     }, []) 
@@ -36,6 +40,15 @@ export default function Caronas() {
         <View style={styles.container}>
                 <Feather name="arrow-left" size={24} color="#858585" onPress = {navigateToTelaInicial}/>
             <View style={styles.header}></View>
+
+            <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
+            <TextInput
+                style={styles.inputText}
+                placeholder="Buscar Carona por Cidade"
+                autoCorrect={false}
+            />
+            <Feather name="search" size={40} onPress={buscarCaronas} />
+            </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}
             data = {caronas}
