@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { TextInput } from 'react-native-gesture-handler';
 //Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
@@ -117,31 +117,41 @@ export default function Cadastro() {
 
                     <Text>Fumante:</Text>
                     <RNPickerSelect
-                        style={styles.inputText}
+                        style={pickerSelectStyles}
+                        placeholder={{label: 'Fumante?', value: null}}
                         onValueChange={(value) => console.log(value)}
                         items={[
-                            { label: 'Football', value: 'football' },
-                            { label: 'Baseball', value: 'baseball' },
-                            { label: 'Hockey', value: 'hockey' },
+                            { label: 'Sim', value: 'Sim' },
+                            { label: 'Nao', value: 'Nao' },
                         ]}
                     />
                     
                     <Text>Curso:</Text>
-                    <TextInput
-                    style={styles.inputText} 
-                    placeholder={dadosAnt.curso}
-                    autoCorrect={false}
-                    onChangeText={setCurso}  
-                    autoCapitalize='words'
+                    <RNPickerSelect
+                        style={pickerSelectStyles}
+                        placeholder={{label: 'Curso', value: null}}
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Engenharia Civil', value: 'Engenharia Civil' },
+                            { label: 'Engenharia Elétrica', value: 'Engenharia Elétrica' },
+                            { label: 'Engenharia de Materiais', value: 'Engenharia de Materiais' },
+                            { label: 'Engenharia de Produção', value: 'Engenharia de Produção' },
+                            { label: 'Engenharia Mecânica', value: 'Engenharia Mecânica' },
+                            { label: 'Física', value: 'Física' },
+                            { label: 'Matemática', value: 'Matemática' },
+                            { label: 'Pós-Graduação', value: 'Pós-Graduação' },
+                        ]}
                     />
 
                     <Text>Musicas:</Text>
-                    <TextInput
-                    style={styles.inputText} 
-                    placeholder={dadosAnt.musica}
-                    autoCorrect={false}
-                    onChangeText={setMusica}  
-                    autoCapitalize='words'
+                    <RNPickerSelect
+                        style={pickerSelectStyles}
+                        placeholder={{label: 'Fumante?', value: null}}
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'Sim', value: 'Sim' },
+                            { label: 'Nao', value: 'Nao' },
+                        ]}
                     />
 
                 <View style={styles.botoes}>
@@ -158,3 +168,24 @@ export default function Cadastro() {
         </>
     )
 }
+
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 300,
+        padding: 10,
+    },
+    inputAndroid: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 300,
+        padding: 10,
+    },
+  });
