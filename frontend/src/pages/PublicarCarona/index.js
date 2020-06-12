@@ -23,7 +23,7 @@ export default function PublicarCarona() {
     const [data, setData] = useState();
     const [preco, setPreco] = useState();
     const [paradas, setParadas] = useState([]);
-    const ano = 2020;
+    const [busca, setBusca] = useState();
 
     function navigateToTelaInicial() {
         navigation.navigate('TelaInicial', {dados});
@@ -38,27 +38,21 @@ export default function PublicarCarona() {
     };
 
     const handleConfirm = (date) => {
-        console.log("nova data");
-        console.log(date.getDate());
-        console.log(date.getDay());
-        console.log(date.getMonth());
-        console.log(date.getYear());
-        console.log(date.toString()[0]);
-        console.log(date.getHours());
-        console.log(date.getMinutes());
+        setData(date.toString().split(" "));
         setDatePickerVisibility(false);
       };
 
     async function publicarCarona() {
+
         const info = ({
             origem, 
             destino,
             paradas,
-            hora: horario.split(':')[0],  
-            minuto: horario.split(':')[1], 
-            dia: data.split('/')[0],
-            mes: data.split('/')[1], 
-            ano,
+            hora: data[4].split(":")[0], 
+            minuto: data[4].split(":")[1],
+            dia: data[2],
+            mes: data[1],
+            ano: data[3],
             preco,
             usuario_email: dados.email,
         });
@@ -109,7 +103,7 @@ export default function PublicarCarona() {
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
-                <Button title="Selecione a data e horário" onPress={showDatePicker} />
+                <Button title="Selecione a data e horário de saída" onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
                         mode="datetime"
