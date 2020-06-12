@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaterialCommunityIcons, SimpleLineIcons, } from '@expo/vector-icons'
+import { MaterialCommunityIcons, SimpleLineIcons, MaterialIcons } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity } from 'react-native';
 //importando react, ícones, useNavigation, useRoute e componentes do react native necessários
@@ -52,8 +52,8 @@ export default function Cadastro() {
                 <TouchableOpacity 
                 style={styles.botaoInicial}
                 onPress={() => navigateToPage('Perfil')}>
-                    <SimpleLineIcons
-                    name="settings"
+                    <MaterialIcons
+                    name="person-outline"
                     size={55}
                     color="#F2CA04"/>
                 </TouchableOpacity> 
