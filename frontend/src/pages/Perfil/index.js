@@ -117,6 +117,7 @@ export default function Cadastro() {
 
                     <Text>Fumante:</Text>
                     <RNPickerSelect
+                        style={styles.inputText}
                         onValueChange={(value) => console.log(value)}
                         items={[
                             { label: 'Football', value: 'football' },
