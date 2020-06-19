@@ -62,13 +62,10 @@ export default function Cadastro() {
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
             <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={styles.header}>
-                    <Text style={styles.headerText}>Perfil</Text>
-                </View> 
 
                 <View style={styles.user}>
                     <View style={styles.userFoto}></View>
-                    <Text style={styles.userName}> {dadosAnt.nome} </Text>
+                    <Text style={styles.userName}> {dadosAnt.nome} {dadosAnt.sobrenome} </Text>
                     <Text style={styles.userEmail}> {dadosAnt.email} </Text>
                 </View>
                     

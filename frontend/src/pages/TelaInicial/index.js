@@ -24,13 +24,12 @@ export default function Cadastro() {
     return(
         <>
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.headerText}>Tela Inicial</Text>
-            </View> 
 
             <View style={styles.user}>
-                <View style={styles.userFoto}></View>
-                <Text style={styles.userName}> {dados.nome} {dados.sobrenome}</Text>
+                <TouchableOpacity style={styles.userFoto} onPress={() => navigateToPage('Perfil')}></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigateToPage('Perfil')}>
+                    <Text style={styles.userName}> {dados.nome} {dados.sobrenome}</Text>
+                </TouchableOpacity>
             </View>  
 
             <View style={styles.botoesIniciais}>
@@ -50,14 +49,6 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.botoesIniciais}>
-                <TouchableOpacity 
-                style={styles.botaoInicial}
-                onPress={() => navigateToPage('Perfil')}>
-                    <MaterialIcons
-                    name="person-outline"
-                    size={55}
-                    color="#F2CA04"/>
-                </TouchableOpacity> 
 
 
                 <TouchableOpacity style={styles.botaoInicial}>

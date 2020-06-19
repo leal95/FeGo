@@ -28,19 +28,10 @@ export default StyleSheet.create({
         paddingTop: Constants.statusBarHeight + 15,
     }, //Estilos do Container
 
-    header: {
-        alignItems: 'center'
-    }, //Estilos do cabeçalho
- 
-    headerText: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#818181'
-    }, // Estilos do texto do cabeçalho
-
     inputs: {
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        height: 500,
     }, //Posião das caixas de input de texto
 
     inputText: {
@@ -72,7 +63,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
-    marginRight: 5,
     }, //Estilos da foto de Perfil
 
     userName: {

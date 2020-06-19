@@ -23,16 +23,16 @@ export default function Mensagens() {
             
             <FlatList 
             style={styles.MensagensList}
-            keyExtractor={item => item}
+            keyExtractor={item => String(item)}
             data = {[1,2,3,4]}
             renderItem ={ () => (
                 <View style={styles.Mensagens}>
                 <TouchableOpacity style={styles.userFoto} 
-                onPress={() => alert("Não sei se seria legal se o perfil da pessoa aparecesse quado clicado")}>
+                onPress={() => alert("Seria legal aparecer o perfil da pessoa, quando clicado")}>
                 </TouchableOpacity>
                 <View style={styles.Conteudo}>
                 <Text style = {styles.Conteudo}>Nome</Text>
-                <Text style = {styles.Conteudo}>Mensagem Aqui</Text>
+                <Text style = {styles.Conteudo}>Mensagem Aqui AAAAA</Text>
                 </View>
                 <View> 
                 <MaterialCommunityIcons  

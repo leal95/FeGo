@@ -40,7 +40,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
-        marginTop: 30,
+        marginTop: 25,
         marginLeft: 10,
     }, //Estilos da foto de Perfil
 
@@ -58,6 +58,7 @@ export default StyleSheet.create({
         marginTop: 10,
         maxWidth: 150,
         marginLeft: 10,
+        marginRight: 10,
         fontWeight: 'bold',
         color: '#ddd',
         fontSize: 14,

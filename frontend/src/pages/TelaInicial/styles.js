@@ -26,7 +26,7 @@ export default StyleSheet.create({
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: 30,
     }, //Estilos dos botões redondos
 
     botoesIniciais: {
@@ -40,16 +40,6 @@ export default StyleSheet.create({
         paddingTop: Constants.statusBarHeight + 5,
     }, //Estilo do Container
 
-    header: {
-        alignItems: 'center'
-    }, //Estilo do cabeçalho
-
-    headerText: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#999',
-    }, //Estilo do texto do cabelçalho
-
     textCaronas: {
         color: '#fff',
         fontSize: 22,
@@ -57,24 +47,24 @@ export default StyleSheet.create({
     }, //estilo dos textos dos dois botões do final da página
 
     user: {
-        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 15,
     }, //posição dos elementos para a foto de perfil e nome de usuário
 
     userFoto: {
         borderColor: '#F2CA04',
         borderWidth: 3,
-        borderRadius: 50,
-        width: 100,
-        height: 100,
+        borderRadius: 40,
+        width: 80,
+        height: 80,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#aaa',
-        marginRight: 15,    
+        backgroundColor: '#aaa',  
     }, //estilo da foto de perfil
 
     userName: {
+        marginTop: 10,
         fontSize: 22,
         fontWeight: 'bold',
         color: '#999',
