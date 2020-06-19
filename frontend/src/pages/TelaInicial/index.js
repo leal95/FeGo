@@ -44,7 +44,8 @@ export default function Cadastro() {
                     <MaterialCommunityIcons
                     name="history"
                     size={55}
-                    color="#F2CA04"/>  
+                    color="#F2CA04"
+                    onPress={() => navigateToPage('Historico')}/> 
                 </TouchableOpacity>
             </View>
 
@@ -63,7 +64,8 @@ export default function Cadastro() {
                     <MaterialCommunityIcons
                     name="message-text-outline"
                     size={55}
-                    color="#F2CA04"/>
+                    color="#F2CA04"
+                    onPress={() => navigateToPage('Mesagens')}/>
                 </TouchableOpacity> 
             </View>
 
