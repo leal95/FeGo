@@ -21,41 +21,43 @@ export default function Mensagens() {
                 <Feather name="arrow-left" size={24} color="#858585" onPress = {navigateToTelaInicial}/>
             <View style={styles.header}><Text style= {styles.headerText}>Mensagens</Text></View>
             
-            <FlatList style={styles.MensagensList}
+            <FlatList 
+            style={styles.MensagensList}
+            keyExtractor={item => item}
             data = {[1,2,3,4]}
             renderItem ={ () => (
-            <View style={styles.Mensagens}>
-            <TouchableOpacity style={styles.userFoto} 
-            onPress={() => alert("Não sei se seria legal se o perfil da pessoa aparecesse quado clicado")}>
-            </TouchableOpacity>
-            <View style={styles.Conteudo}>
-            <Text style = {styles.Conteudo}>Nome</Text>
-            <Text style = {styles.Conteudo}>Mensagem Aqui</Text>
-            </View>
-            <View> 
-            <MaterialCommunityIcons  
-            style = {styles.Icons} 
-            name = "message-reply-text"  
-            size={30} 
-            color="white"
-            onPress={() => alert("Isso Está funcionando!")}/>
+                <View style={styles.Mensagens}>
+                <TouchableOpacity style={styles.userFoto} 
+                onPress={() => alert("Não sei se seria legal se o perfil da pessoa aparecesse quado clicado")}>
+                </TouchableOpacity>
+                <View style={styles.Conteudo}>
+                <Text style = {styles.Conteudo}>Nome</Text>
+                <Text style = {styles.Conteudo}>Mensagem Aqui</Text>
+                </View>
+                <View> 
+                <MaterialCommunityIcons  
+                style = {styles.Icons} 
+                name = "message-reply-text"  
+                size={30} 
+                color="white"
+                onPress={() => alert("Isso Está funcionando!")}/>
 
-            <MaterialCommunityIcons 
-            style = {styles.Icons} 
-            name = "check" 
-            size={30} 
-            color="white"
-            onPress={() => alert("Isso Está funcionando!")}/>
+                <MaterialCommunityIcons 
+                style = {styles.Icons} 
+                name = "check" 
+                size={30} 
+                color="white"
+                onPress={() => alert("Isso Está funcionando!")}/>
 
-            <MaterialCommunityIcons 
-            style = {styles.Icons} 
-            name = "close" 
-            size={30} 
-            color="white"
-            onPress={() => alert("Isso Está funcionando!")}/>
+                <MaterialCommunityIcons 
+                style = {styles.Icons} 
+                name = "close" 
+                size={30} 
+                color="white"
+                onPress={() => alert("Isso Está funcionando!")}/>
 
-            </View>
-            </View>)}/>
+                </View>
+                </View>)}/>
         </View>
     )
 }

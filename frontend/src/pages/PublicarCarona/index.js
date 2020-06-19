@@ -109,7 +109,7 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para em alguma cidade? (se não deixe em branco)"
+                    placeholder="Para em alguma cidade?"
                     autoCorrect={false}
                     onChangeText={setParadas}
                     />

@@ -65,7 +65,7 @@ export default function Cadastro() {
                     name="message-text-outline"
                     size={55}
                     color="#F2CA04"
-                    onPress={() => navigateToPage('Mesagens')}/>
+                    onPress={() => navigateToPage('Mensagens')}/>
                 </TouchableOpacity> 
             </View>
 

@@ -103,14 +103,12 @@ export default function Login() {
                 onPress={navigateToCadastro}>
                     <Text style={styles.botaoCadastrarText}>Cadastre-se</Text>
                 </TouchableOpacity> 
-
-                <TouchableOpacity 
-                style={styles.botaoCadastrar} 
-                onPress={navigateToTelaInicial}>
-                    <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL</Text>
-                </TouchableOpacity> 
             </View>
-
+                <TouchableOpacity 
+                style = {{alignSelf: "center"}}
+                onPress={navigateToTelaInicial}>
+                    <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL (bug de login)</Text>
+                </TouchableOpacity> 
             
         </View>
     )

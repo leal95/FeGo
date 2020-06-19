@@ -41,7 +41,6 @@ export default StyleSheet.create({
     }, //Alinhando botões no centro
 
     textosfinais:{
-        flex: 1,
         flexDirection: 'row',
         justifyContent: 'center'
     }, //Posição dos textos no final da página
@@ -64,7 +63,7 @@ export default StyleSheet.create({
 
     inputs: {
         alignItems: 'center',
-        height: 375,
+        height: 360,
         justifyContent: 'center'
     }, //posição e alinhamento das caixas de input
 
