@@ -36,7 +36,8 @@ export default StyleSheet.create({
     }, //Estilo do Texto "Já possui conta?"
 
     botoes: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 10,
     }, //Estilo para alinhar botões no centro
 
     container: {
@@ -58,7 +59,7 @@ export default StyleSheet.create({
 
     inputs: {
         alignItems: 'center',
-        height: 390,
+        height: 450,
         justifyContent: 'center',
         marginBottom: 20
     }, //Estilo das caixas de input

@@ -22,8 +22,9 @@ export default function PublicarCarona() {
     const [destino, setDestino] = useState();
     const [data, setData] = useState();
     const [preco, setPreco] = useState();
+    const [vagas, setVagas] = useState();
+    const [obs, setOBS] = useState();
     const [paradas, setParadas] = useState([]);
-    const [busca, setBusca] = useState();
 
     function navigateToTelaInicial() {
         navigation.navigate('TelaInicial', {dados});
@@ -65,6 +66,8 @@ export default function PublicarCarona() {
             mes: data[1],
             ano: data[3],
             preco,
+            vagas,
+            obs,
             usuario_email: dados.email,
         });
 
@@ -90,7 +93,7 @@ export default function PublicarCarona() {
             <ScrollView showsVerticalScrollIndicator={false}>
                 <TextInput
                     style={styles.inputText}
-                    placeholder="De onde?"
+                    placeholder="De onde? (Cidade)"
                     autoCorrect={false}
                     onChangeText={setOrigem}
                 />
@@ -98,7 +101,7 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para onde?"
+                    placeholder="Para onde? (Cidade)"
                     autoCorrect={false}
                     onChangeText={setDestino}
                     />
@@ -106,13 +109,13 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para em alguma cidade?"
+                    placeholder="Para em alguma cidade? (se não deixe em branco)"
                     autoCorrect={false}
                     onChangeText={setParadas}
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
-                <Button title="Selecione a data e horário de saída" onPress={showDatePicker} />
+                <Button title={`Clique para selecionar data \n e horário de saída`} onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
                         mode="datetime"
@@ -124,22 +127,38 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Preço por pessoa, em reais" 
+                    placeholder="Informe aqui o preço por pessoa em reais" 
                     autoCorrect={false}
                     onChangeText={setPreco}
                     />
 
-                    <Text style={styles.inputTextHeader}></Text>
-                    <View style={styles.botoes}>
-                        <TouchableOpacity 
-                        style={styles.botaoLogin}
-                        onPress={() => publicarCarona()}>
-                            <Text style={styles.botaoLoginText}>Publicar</Text>
-                        </TouchableOpacity>
+                <Text style={styles.inputTextHeader}></Text>
+                <TextInput
+                    style={styles.inputText} 
+                    placeholder="Quantas vagas?" 
+                    autoCorrect={false}
+                    onChangeText={setVagas}
+                    />
 
-                    </View >
-                    </ScrollView>
-            </KeyboardAvoidingView>
+                <Text style={styles.inputTextHeader}></Text>
+                <TextInput
+                    style={styles.inputText} 
+                    placeholder="Espaço para observações ou comentários" 
+                    autoCorrect={false}
+                    onChangeText={setOBS}
+                    />
+
+                <Text style={styles.inputTextHeader}></Text>
+                <View style={styles.botoes}>
+                    <TouchableOpacity 
+                    style={styles.botaoLogin}
+                    onPress={() => publicarCarona()}>
+                        <Text style={styles.botaoLoginText}>Publicar</Text>
+                    </TouchableOpacity>
+
+                </View >
+                </ScrollView>
+        </KeyboardAvoidingView>
            
         </View>
     )

@@ -46,6 +46,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         marginTop: 25,
         marginBottom: 25,
+        height: 420,
     },
 
     inputText: {
