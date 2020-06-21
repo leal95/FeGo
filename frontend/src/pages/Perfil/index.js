@@ -43,6 +43,8 @@ export default function Cadastro() {
             musica,
         }); 
 
+        console.log(info);
+
         try{
             const response = await api.put('/profile', info);
 
@@ -116,8 +118,8 @@ export default function Cadastro() {
                     <Text>Fumante:</Text>
                     <RNPickerSelect
                         style={pickerSelectStyles}
-                        placeholder={{label: 'Fumante?', value: null}}
-                        onValueChange={(value) => console.log(value)}
+                        placeholder={dadosAnt.fumante? {label: dadosAnt.fumante, value: dadosAnt.fumante} : {label: 'Fumante?', value: null}}
+                        onValueChange={(value) => setFumante(value)}
                         items={[
                             { label: 'Sim', value: 'Sim' },
                             { label: 'Nao', value: 'Nao' },
@@ -127,8 +129,8 @@ export default function Cadastro() {
                     <Text>Curso:</Text>
                     <RNPickerSelect
                         style={pickerSelectStyles}
-                        placeholder={{label: 'Curso', value: null}}
-                        onValueChange={(value) => console.log(value)}
+                        placeholder={dadosAnt.curso? {label: dadosAnt.curso, value: dadosAnt.curso} : {label: 'Curso', value: null}}
+                        onValueChange={(value) => setCurso(value)}
                         items={[
                             { label: 'Engenharia Civil', value: 'Engenharia Civil' },
                             { label: 'Engenharia Elétrica', value: 'Engenharia Elétrica' },
