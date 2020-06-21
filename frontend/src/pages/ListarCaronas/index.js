@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import { Feather } from '@expo/vector-icons';
-import styles from './styles';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
+
+import styles from './styles';
 import api from '../../services/api'; 
 
 export default function Caronas() { 
@@ -11,6 +13,8 @@ export default function Caronas() {
     const navigation = useNavigation();
 
     const [caronas, setCaronas] = useState([]);
+    const [parametroPesquisa, setParametroPesquisa] = useState('');
+    const [valuePesquisa, setValuePesquisa] = useState('');
 
     const dados = route.params.dados;
 
@@ -29,7 +33,37 @@ export default function Caronas() {
     }
 
     async function buscarCaronas() {
+        if(parametroPesquisa === "origem"){
+            const info = ({
+                origem: valuePesquisa,
+            }); 
 
+            const response = await api.get('/caronas/origem', info)
+
+            console.log(response.data);
+        }
+        if(parametroPesquisa === "destino"){
+            const info = ({
+                destino: valuePesquisa,
+            }); 
+
+            const response = await api.get('/caronas/destino', info)
+
+            console.log(response.data);
+        }
+        if(parametroPesquisa === "horario"){
+            const info = ({
+                hora: valuePesquisa.split(":")[0],
+                minuto: valuePesquisa.split(":")[1],
+            }); 
+
+            const response = await api.get('/caronas/horario', info)
+
+            console.log(response.data);
+        }
+        else{
+            alert("Parametro de pesquisa inválido");
+        }
     }
 
     useEffect(() => {
@@ -42,12 +76,25 @@ export default function Caronas() {
             <View style={styles.header}></View>
 
             <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
+            <View style={{flexDirection: 'row'}}>
+                <RNPickerSelect
+                    style={pickerSelectStyles}
+                    placeholder={{label: 'Buscar por:', value: null}}
+                    onValueChange={(value) => setParametroPesquisa(value)}
+                    items={[
+                        { label: 'Cidade de Origem', value: 'origem' },
+                        { label: 'Cidade de Destino', value: 'destino' },
+                        { label: 'Horario', value: 'horario' },
+                    ]}
+                />
+                <Feather name="search" size={40} onPress={buscarCaronas} />
+            </View>
             <TextInput
                 style={styles.inputText}
-                placeholder="Buscar Carona por Cidade"
+                placeholder={`Insira aqui o/a ${parametroPesquisa}`}
                 autoCorrect={false}
+                onChangeText={setValuePesquisa}
             />
-            <Feather name="search" size={40} onPress={buscarCaronas} />
             </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}
@@ -70,3 +117,24 @@ export default function Caronas() {
         </View>
     )
 }
+
+const pickerSelectStyles = StyleSheet.create({
+    inputIOS: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 200,
+        padding: 10,
+    },
+    inputAndroid: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 100,
+        padding: 10,
+    },
+  });

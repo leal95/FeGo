@@ -43,8 +43,6 @@ export default function Cadastro() {
             musica,
         }); 
 
-        console.log(info);
-
         try{
             const response = await api.put('/profile', info);
 

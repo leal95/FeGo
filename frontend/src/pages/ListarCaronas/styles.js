@@ -5,7 +5,6 @@ export default StyleSheet.create({
     buscar:{
         alignSelf:"center",
         alignItems:"center",
-        flexDirection:"row",
     },//Estilo do Buscar
 
     container: {
@@ -78,7 +77,7 @@ export default StyleSheet.create({
         borderWidth: 2,
         borderRadius: 10,  
         height: 50,
-        width: 260,
+        width: 250,
         padding: 10,
     },
 });

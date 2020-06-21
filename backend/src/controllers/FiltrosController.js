@@ -2,7 +2,7 @@ const connection = require('../database/connection')
 
 module.exports = {
     async indexCidadeOrigem (request, response){
-        const origem = request.body;
+        const {origem} = request.body;
 
         try{
           const caronas = await connection ('caronas')
@@ -18,7 +18,7 @@ module.exports = {
     },
 
     async indexCidadeDestino (request, response){
-        const destino = request.body;
+        const {destino} = request.body;
 
         try{
           const caronas = await connection ('caronas')
