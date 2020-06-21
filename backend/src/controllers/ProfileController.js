@@ -3,7 +3,7 @@ const connection = require ('../database/connection'); //importando conexão com
 module.exports={
     async edit (request, response){
        
-        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica} = request.body
+        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica} = request.body;
         //Entrada de dados pelo usuário
 
         try{
