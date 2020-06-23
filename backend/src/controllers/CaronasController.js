@@ -8,22 +8,27 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, hora, minuto, dia, mes, ano, usuario_email } = request.body;
+        console.log(request.body);
+        const { origem, destino, paradas, hora, minuto, dia, mes, ano, preco, vagas, obs, usuario_email } = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
             await connection('caronas').insert({ 
                 origem, 
                 destino, 
+                paradas,
                 hora, 
                 minuto, 
-                dia, 
-                mes, 
+                dia,
+                mes,
                 ano,
+                preco,
+                vagas,
+                obs,
                 usuario_email
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano}); //inserindo carona no banco de dados
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, obs}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});

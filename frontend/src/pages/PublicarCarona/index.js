@@ -71,14 +71,14 @@ export default function PublicarCarona() {
             usuario_email: dados.email,
         });
 
-        /*try{
+        try{
             await api.post('/caronas', info);
 
             navigateToTelaInicial();
         }
         catch(err){
             alert('Erro ao publicar carona!');
-        };*/
+        };
     }
     
     return(
@@ -109,7 +109,7 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para em alguma cidade?"
+                    placeholder="Para em quais cidades?"
                     autoCorrect={false}
                     onChangeText={setParadas}
                     />
@@ -130,6 +130,7 @@ export default function PublicarCarona() {
                     placeholder="Informe aqui o preço por pessoa em reais" 
                     autoCorrect={false}
                     onChangeText={setPreco}
+                    keyboardType='numeric'
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
@@ -138,6 +139,7 @@ export default function PublicarCarona() {
                     placeholder="Quantas vagas?" 
                     autoCorrect={false}
                     onChangeText={setVagas}
+                    keyboardType='numeric'
                     />
 
                 <Text style={styles.inputTextHeader}></Text>
