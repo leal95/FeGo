@@ -18,8 +18,6 @@ routes.post('/caronas', CaronasController.create); //postar caronas
 routes.get('/caronas', CaronasController.index); //listar caronas
 routes.delete('/caronas/:id', CaronasController.delete); //deletar caronas
 
-routes.get('/caronas/origem', FiltrosController.indexCidadeOrigem);
-routes.get('/caronas/destino', FiltrosController.indexCidadeDestino);
-routes.get('/caronas/horario', FiltrosController.indexHorario);
+routes.get('/caronas/filtros', FiltrosController.filtrarCaronas);
 
 module.exports = routes;

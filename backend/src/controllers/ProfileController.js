@@ -3,7 +3,7 @@ const connection = require ('../database/connection'); //importando conexão com
 module.exports={
     async edit (request, response){
        
-        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica} = request.body;
+        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, mensagem} = request.body;
         //Entrada de dados pelo usuário
 
         try{
@@ -18,7 +18,8 @@ module.exports={
                 apelido: apelido,
                 fumante: fumante,
                 curso: curso,
-                musica: musica
+                musica: musica,
+                mensagem: mensagem,
             }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
 
             const usuarioAtualizado = await connection('usuarios').select('*').where('email', email); //buscar tabela de usuários

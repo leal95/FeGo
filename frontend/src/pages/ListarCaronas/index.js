@@ -34,35 +34,19 @@ export default function Caronas() {
 
     async function buscarCaronas() {
         if(parametroPesquisa === "origem"){
-            const info = ({
-                origem: valuePesquisa,
-            }); 
-
-            const response = await api.get('/caronas/origem', info)
-
-            console.log(response.data);
+            await api.get(`/caronas/filtros/?origem=${valuePesquisa}`)
+            .then(response => {
+                setCaronas(response.data);
+            })
         }
         if(parametroPesquisa === "destino"){
-            const info = ({
-                destino: valuePesquisa,
-            }); 
-
-            const response = await api.get('/caronas/destino', info)
-
-            console.log(response.data);
+            await api.get(`/caronas/filtros/?destino=${valuePesquisa}`)
+            .then(response => {
+                setCaronas(response.data);
+            })
         }
-        if(parametroPesquisa === "horario"){
-            const info = ({
-                hora: valuePesquisa.split(":")[0],
-                minuto: valuePesquisa.split(":")[1],
-            }); 
-
-            const response = await api.get('/caronas/horario', info)
-
-            console.log(response.data);
-        }
-        else{
-            alert("Parametro de pesquisa inválido");
+        if(!parametroPesquisa || !valuePesquisa){
+            alert("Pesquisa Inválida, favor informar parametro e valor da pesquisa")
         }
     }
 
