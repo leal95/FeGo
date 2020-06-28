@@ -8,7 +8,6 @@ const FiltrosController = require ('./controllers/FiltrosController');
 const routes = express.Router(); //desacoplando Router do express e alocando na nova variável
 
 routes.put('/profile', ProfileController.edit); //editar perfil
-routes.get('/profile', ProfileController.historico) //mostra o histórico de caronas
 
 routes.get('/sessions', SessionController.login); //login 
 

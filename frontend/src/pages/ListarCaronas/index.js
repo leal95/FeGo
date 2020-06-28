@@ -42,22 +42,7 @@ export default function Caronas() {
                 setCaronas(response.data);
             })
         }
-        if(parametroPesquisa === "destino"){
-            await api.get(`/caronas/filtros/?destino=${valuePesquisa}`)
-            .then(response => {
-                setCaronas(response.data);
-            })
-        }
-        if(parametroPesquisa === "parada"){
-            /*await api.get(`/caronas/filtros/?parada=${valuePesquisa}`)
-            .then(response => {
-                setCaronas(response.data);
-            })*/
-            alert("Rota ainda não feita");
-        }
-        if(!parametroPesquisa || !valuePesquisa){
-            alert("Pesquisa Inválida, favor informar parametro e valor da pesquisa")
-        }
+        
     }
 
     const showDatePicker = () => {

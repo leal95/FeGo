@@ -23,6 +23,7 @@ export default function Historico () {
             
             <FlatList style={styles.CaronasList}
             data = {[1,2,3,4]}
+            keyExtractor={item => String(item)}
             renderItem = { () => (
                 <TouchableOpacity style={styles.Caronas}>
                 <View style={styles.userFoto}></View>

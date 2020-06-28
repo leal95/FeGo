@@ -49,8 +49,6 @@ export default function Cadastro() {
             </View>
 
             <View style={styles.botoesIniciais}>
-
-
                 <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
                     name="message-text-outline"

@@ -30,21 +30,5 @@ module.exports={
             response.json({message:err});
         }
 
-    },
-
-    async historico (request, response){
-
-        try{
-            const {email} = request.body;
-            
-            const caronas = await connection('usuarios') 
-            .where('email', email)
-            .select('*');
-
-            return response.json(caronas);
-        }
-        catch(err){ 
-            response.json({message:err});
-        }
     }
 }
