@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
-import { TextInput, FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import api from '../../services/api'; 
  
 export default function Historico () { 
     const route = useRoute();
     const navigation = useNavigation();
 
+    const [caronas, setCaronas] = useState([]);
+
     const dados = route.params.dados;
 
     function navigateToTelaInicial() {
         navigation.navigate('TelaInicial', {dados});
     };
+
+    function detalheCarona (infosCarona) {
+        navigation.navigate('DetalheCarona', {dados, infosCarona});
+    };
+
+    useEffect(() => {
+        api.get(`/caronas/filtros/?usuario_email=${dados.email}`)
+        .then(response => {
+            setCaronas(response.data);
+        })
+    }, []) 
     
     return(
         <View style={styles.container}>
@@ -22,19 +35,22 @@ export default function Historico () {
             <View style={styles.header}></View>
             
             <FlatList style={styles.CaronasList}
-            data = {[1,2,3,4]}
-            keyExtractor={item => String(item)}
-            renderItem = { () => (
-                <TouchableOpacity style={styles.Caronas}>
+            data = {caronas}
+            keyExtractor={carona => String(carona.id)}
+            showsVerticalScrollIndicator = {false}
+            renderItem = {({item: carona})=>(
+                <TouchableOpacity style={styles.Caronas}
+                onPress={() => detalheCarona(carona)}>
                 <View style={styles.userFoto}></View>
                 <View style={styles.CaronasInfo}>
-                <Text style={styles.CaronasText}> Origem {'->'} Destino </Text>
-                <Text style={styles.CaronasText}> Horário:  </Text>
-                <Text style={styles.CaronasText}> Data: </Text>
-                <Text style={styles.CaronasText}> Preço: </Text>
+                <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino} </Text>
+                <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
+                <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
+                <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>
                 </View>
                 </TouchableOpacity>
-                )}/>
+            )}
+            />
         </View> 
     )
 }

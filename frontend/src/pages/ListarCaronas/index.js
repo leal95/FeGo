@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet, Button } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 
@@ -12,8 +10,6 @@ import api from '../../services/api';
 export default function Caronas() { 
     const route = useRoute();
     const navigation = useNavigation();
-
-    const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const [caronas, setCaronas] = useState([]);
     const [origem, setOrigem] = useState('');
