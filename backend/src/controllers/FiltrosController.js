@@ -21,7 +21,7 @@ module.exports = {
         }
 
         else{
-            if(request.query.email){
+            if(request.query.usuario_email){
                 const usuario_email = request.query;
                 console.log(usuario_email);
                 try{

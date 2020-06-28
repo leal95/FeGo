@@ -16,8 +16,8 @@ export default function Caronas() {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const [caronas, setCaronas] = useState([]);
-    const [parametroPesquisa, setParametroPesquisa] = useState('');
-    const [valuePesquisa, setValuePesquisa] = useState('');
+    const [origem, setOrigem] = useState('');
+    const [destino, setDestino] = useState('');
 
     const dados = route.params.dados;
 
@@ -37,29 +37,13 @@ export default function Caronas() {
 
     async function buscarCaronas() {
         if(parametroPesquisa === "origem"){
-            await api.get(`/caronas/filtros/?origem=${valuePesquisa}`)
+            await api.get(`/caronas/filtros/?origem=${origem}`)
             .then(response => {
                 setCaronas(response.data);
             })
         }
-        
+
     }
-
-    const showDatePicker = () => {
-        setDatePickerVisibility(true);
-      };
-    
-    const hideDatePicker = () => {
-        setDatePickerVisibility(false);
-    };
-
-    async function handleConfirm(date) {
-        await api.get(`/caronas/filtros/?date=${date.toString().split(" ")[2]}+${date.toString().split(" ")[1]}+${date.toString().split(" ")[4].split(":")[0]}+${date.toString().split(" ")[4].split(":")[1]}`)
-            .then(response => {
-                console.log(response.data);
-            })
-        setDatePickerVisibility(false);
-      };
 
     useEffect(() => {
         loadCaronas();
@@ -72,30 +56,17 @@ export default function Caronas() {
 
             <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
             <View style={{flexDirection: 'row'}}>
-                <RNPickerSelect
-                    style={pickerSelectStyles}
-                    placeholder={{label: 'Buscar por:', value: null}}
-                    onValueChange={(value) => setParametroPesquisa(value)}
-                    items={[
-                        { label: 'Cidade de Origem', value: 'origem' },
-                        { label: 'Cidade de Destino', value: 'destino' },
-                        { label: 'Cidade por onde passa', value: 'parada'}
-                    ]}
-                />
-                <Button title={`Pesquisa \n por data`} onPress={showDatePicker} />
-                    <DateTimePickerModal
-                        isVisible={isDatePickerVisible}
-                        mode="datetime"
-                        onConfirm={handleConfirm}
-                        onCancel={hideDatePicker}
-                    />
-            </View>
-            <View style={{flexDirection: 'row'}}>
                 <TextInput
                     style={styles.inputText}
-                    placeholder={`Insira aqui o/a ${parametroPesquisa}`}
+                    placeholder={`Origem`}
                     autoCorrect={false}
-                    onChangeText={setValuePesquisa}
+                    onChangeText={setOrigem}
+                />
+                <TextInput
+                    style={styles.inputText}
+                    placeholder={`Destino`}
+                    autoCorrect={false}
+                    onChangeText={setDestino}
                 />
                 <Feather name="search" size={40} onPress={buscarCaronas} />
             </View>
