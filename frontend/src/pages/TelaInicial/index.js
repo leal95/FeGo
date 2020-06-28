@@ -1,5 +1,5 @@
 import React from 'react';
-import { MaterialCommunityIcons, SimpleLineIcons, MaterialIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity } from 'react-native';
 //importando react, ícones, useNavigation, useRoute e componentes do react native necessários
@@ -12,10 +12,6 @@ export default function Cadastro() {
     const navigation = useNavigation();
 
     const dados = route.params.dados;
-
-    function navigateToLogin() {
-        navigation.navigate('Login');
-    };//função para navegar para a página de Login
   
     function navigateToPage(page) {
         navigation.navigate(page, { dados });
@@ -41,21 +37,15 @@ export default function Cadastro() {
                 </TouchableOpacity> 
                 <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
-                    name="history"
-                    size={55}
-                    color="#F2CA04"
-                    onPress={() => navigateToPage('Historico')}/> 
-                </TouchableOpacity>
-            </View>
-
-            <View style={styles.botoesIniciais}>
-                <TouchableOpacity style={styles.botaoInicial}>
-                    <MaterialCommunityIcons
                     name="message-text-outline"
                     size={55}
                     color="#F2CA04"
                     onPress={() => navigateToPage('Mensagens')}/>
                 </TouchableOpacity> 
+            </View>
+
+            <View style={styles.botoesIniciais}>
+                
             </View>
 
             <View style={styles.botoesCaronas}>

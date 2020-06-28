@@ -68,6 +68,13 @@ export default function Cadastro() {
                     <Text style={styles.userName}> {dadosAnt.nome} {dadosAnt.sobrenome} </Text>
                     <Text style={styles.userEmail}> {dadosAnt.email} </Text>
                 </View>
+                <View style={styles.botoes}>
+                    <TouchableOpacity 
+                    style={styles.botaoLogin} 
+                    onPress={() => navigation.navigate('Historico', {dadosAnt})}>
+                        <Text style={styles.botaoLoginText}>Histórico</Text>
+                    </TouchableOpacity> 
+                </View>
                     
                     <Text>Nome:</Text>
                     <TextInput
@@ -155,7 +162,6 @@ export default function Cadastro() {
                     onPress={() => salvarDados()}>
                         <Text style={styles.botaoLoginText}>Salvar</Text>
                     </TouchableOpacity> 
-
                 </View >
             </ScrollView>
             </KeyboardAvoidingView>

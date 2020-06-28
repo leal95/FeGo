@@ -12,7 +12,17 @@ export default function Historico () {
 
     const [caronas, setCaronas] = useState([]);
 
-    const dados = route.params.dados;
+    let dados = {};
+
+    if(route.params.dados){
+        dados = route.params.dados;
+    }
+    else{
+        if(route.params.dadosAnt){
+            dados = route.params.dadosAnt;
+        }
+    }
+    
 
     function navigateToTelaInicial() {
         navigation.navigate('TelaInicial', {dados});
