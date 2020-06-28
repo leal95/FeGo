@@ -5,7 +5,6 @@ module.exports = {
         if(request.query.origem && request.query.destino){
             const origem = request.query;
             const destino = request.query;
-            console.log(origem, destino)
             try{
                 const caronas = await connection ('caronas')
                 .where(origem)
@@ -23,7 +22,6 @@ module.exports = {
         else{
             if(request.query.usuario_email){
                 const usuario_email = request.query;
-                console.log(usuario_email);
                 try{
                     const caronas = await connection ('caronas')
                     .where(usuario_email)

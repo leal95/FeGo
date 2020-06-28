@@ -36,13 +36,15 @@ export default function Caronas() {
     }
 
     async function buscarCaronas() {
-        if(parametroPesquisa === "origem"){
-            await api.get(`/caronas/filtros/?origem=${origem}`)
+        try{
+            await api.get(`/caronas/filtros/?origem=${origem}&destino=${destino}`)
             .then(response => {
                 setCaronas(response.data);
             })
         }
-
+        catch(err){
+            alert('Erro ao pesquisar caronas!');
+        };
     }
 
     useEffect(() => {
@@ -83,8 +85,8 @@ export default function Caronas() {
                 <View style={styles.CaronasInfo}>
                 <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino} </Text>
                 <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
-                <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes}/{carona.ano} </Text>
-                <Text style={styles.CaronasTextPreco}> 50 reais  </Text>
+                <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
+                <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>
                 </View>
                 </TouchableOpacity>
             )}

@@ -1,10 +1,10 @@
 {
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 17104,
+  "packagerPid": 20032,
   "expoServerNgrokUrl": "https://gd-bpu.anonymous.frontend.exp.direct",
   "packagerNgrokUrl": "https://packager.gd-bpu.anonymous.frontend.exp.direct",
-  "ngrokPid": 31280,
+  "ngrokPid": 4948,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }
