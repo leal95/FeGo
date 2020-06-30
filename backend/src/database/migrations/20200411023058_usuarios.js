@@ -11,7 +11,8 @@ exports.up = function(knex) {
       table.string('fumante').nullable();
       table.string('curso').nullable();
       table.string('musica').nullable();
-      table.string('mensagem').nullable();
+      table.string('modeloCarro').nullable();
+      table.string('placaCarro').nullable();
   }); //criando a tabela de Usuários
 };
 

@@ -21,15 +21,13 @@ module.exports = {
                 dia,
                 mes,
                 ano,
-                modeloCarro,
-                placaCarro,
                 preco,
                 vagas,
                 obs,
                 usuario_email
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, vagas, obs}); //inserindo carona no banco de dados
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, obs}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});

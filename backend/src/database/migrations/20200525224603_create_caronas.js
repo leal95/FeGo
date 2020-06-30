@@ -11,8 +11,6 @@ exports.up = function(knex) {
         table.integer('dia').notNullable();
         table.integer('mes').notNullable();
         table.integer('ano').notNullable();
-        table.string('modeloCarro').notNullable();
-        table.string('placaCarro').notNullable();
         table.integer('preco').notNullable();
         table.integer('vagas').notNullable();
         table.string('obs').notNullable();//estruturando os dados de caronas
