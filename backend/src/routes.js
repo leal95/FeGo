@@ -1,13 +1,12 @@
 const express = require ('express');
 const UsuariosController = require ('./controllers/UsuariosController');
-const ProfileController = require ('./controllers/ProfileController');
 const SessionController = require ('./controllers/SessionController');
 const CaronasController = require ('./controllers/CaronasController'); //importando express e controllers
 const FiltrosController = require ('./controllers/FiltrosController');
 
 const routes = express.Router(); //desacoplando Router do express e alocando na nova variável
 
-routes.put('/profile', ProfileController.edit); //editar perfil
+routes.put('/profile', UsuariosController.edit); //editar perfil
 
 routes.get('/sessions', SessionController.login); //login 
 
