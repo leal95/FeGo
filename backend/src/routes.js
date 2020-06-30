@@ -6,7 +6,7 @@ const FiltrosController = require ('./controllers/FiltrosController');
 
 const routes = express.Router(); //desacoplando Router do express e alocando na nova variável
 
-routes.put('/profile', UsuariosController.edit); //editar perfil
+routes.put('/profile', UsuariosController.edit); //antes estava no ProfileController, mas como era o único método lá presente, ele foi migrado para o UsuariosController
 
 routes.get('/sessions', SessionController.login); //login 
 
