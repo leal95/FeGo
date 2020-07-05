@@ -6,6 +6,39 @@ module.exports = {
 
         return response.json(usuarios); //retornar tabela
     },
+
+    async edit (request, response){
+       
+        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica,  modeloCarro, placaCarro} = request.body;
+        //Entrada de dados pelo usuário
+
+        try{
+            const dados = await connection('usuarios')
+            .where('email', email)
+            .update({
+                senha: senha,
+                ra: ra,
+                nome: nome,
+                sobrenome: sobrenome,
+                numTelefone: numTelefone,
+                apelido: apelido,
+                fumante: fumante,
+                curso: curso,
+                musica: musica,
+                mensagem: mensagem,
+                modeloCarro: modeloCarro,
+                placaCarro: placaCarro
+            }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
+
+            const usuarioAtualizado = await connection('usuarios').select('*').where('email', email); //buscar tabela de usuários
+
+            return response.json(usuarioAtualizado); //retornar usuário atualizado
+        }
+        catch(err){ 
+            response.json({message:err});
+        }
+
+    },
     
     async create(request, response) { //método post
         const { email, senha, ra, nome, sobrenome, numTelefone } = request.body; //requisitando informações de cadastro

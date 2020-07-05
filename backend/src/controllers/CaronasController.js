@@ -8,7 +8,7 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, paradas, hora, minuto, dia, mes, ano, preco, vagas, obs, usuario_email } = request.body;
+        const { origem, destino, paradas, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, vagas, obs, usuario_email } = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
