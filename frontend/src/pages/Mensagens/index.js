@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
-import { TextInput, FlatList } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import api from '../../services/api'; 
 
 export default function Mensagens() { 
@@ -12,13 +12,9 @@ export default function Mensagens() {
 
     const dados = route.params.dados;
 
-    function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial', {dados});
-    };
-
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={24} color="#858585" onPress = {navigateToTelaInicial}/>
+                <Feather name="arrow-left" size={24} color="#858585" onPress = {navigation.goBack}/>
             <View style={styles.header}><Text style= {styles.headerText}>Mensagens</Text></View>
             
             <FlatList 

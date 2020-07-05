@@ -26,10 +26,6 @@ export default function PublicarCarona() {
     const [obs, setOBS] = useState();
     const [paradas, setParadas] = useState([]);
 
-    function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial', {dados});
-    };
-
     const showDatePicker = () => {
         setDatePickerVisibility(true);
       };
@@ -83,7 +79,7 @@ export default function PublicarCarona() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={30} color="#999" onPress={navigateToTelaInicial} /> 
+                <Feather name="arrow-left" size={30} color="#999" onPress={navigation.goBack} /> 
             <View style={styles.header}>
                 <Text style={styles.headerText}>Publicar Carona</Text>
                 <Text style={styles.subtitleText}>(Preencha todos os dados)</Text>

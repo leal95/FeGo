@@ -12,28 +12,8 @@ export default function Historico () {
 
     const [caronas, setCaronas] = useState([]);
 
-    let dados = {};
-
-    if(route.params.dados){
-        dados = route.params.dados;
-    }
-    else{
-        if(route.params.dadosAnt){
-            dados = route.params.dadosAnt;
-        }
-    }
-    
-
-    function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial', {dados});
-    };
-
-    function detalheCarona (infosCarona) {
-        navigation.navigate('DetalheCarona', {dados, infosCarona});
-    };
-
     useEffect(() => {
-        api.get(`/caronas/filtros/?usuario_email=${dados.email}`)
+        api.get(`/caronas/filtros/?usuario_email=${dadosAnt.email}`)
         .then(response => {
             setCaronas(response.data);
         })
@@ -41,16 +21,16 @@ export default function Historico () {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={24} color="#858585" onPress = {navigateToTelaInicial}/>
+                <Feather name="arrow-left" size={24} color="#858585" onPress = {navigation.goBack}/>
             <View style={styles.header}></View>
             
             <FlatList style={styles.CaronasList}
-            data = {caronas}
-            keyExtractor={carona => String(carona.id)}
+            data = {[1,2,3,4,5]}
+            keyExtractor={carona => String(carona)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
                 <TouchableOpacity style={styles.Caronas}
-                onPress={() => detalheCarona(carona)}>
+                onPress={() => navigation.navigate('DetalheCarona', {dados, carona})}>
                 <View style={styles.userFoto}></View>
                 <View style={styles.CaronasInfo}>
                 <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino} </Text>

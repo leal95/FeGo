@@ -6,16 +6,12 @@ export default StyleSheet.create({
         backgroundColor: '#347EBF',
         borderRadius: 10,
         height: 70,
-        width: 135,
+        width: 250,
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         marginTop: 40,
     }, //Estilos dos dois botões do fim da página ("Oferecer carona" e "Procurar Carona")
-
-    botoesCaronas: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-    },  //posição dos botões do fim da página
 
     botaoInicial: {
         borderColor: '#347EBF',
@@ -37,7 +33,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 5,
+        paddingTop: Constants.statusBarHeight + 50,
     }, //Estilo do Container
 
     textCaronas: {

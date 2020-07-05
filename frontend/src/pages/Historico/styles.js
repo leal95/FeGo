@@ -31,11 +31,8 @@ export default StyleSheet.create({
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#aaa',
-        marginTop: 30,
-        marginLeft: 10,
+        backgroundColor: '#aaa'
     }, //Estilos da foto de Perfil
-
 
     Caronas: {
         backgroundColor:"#347EBF",
