@@ -74,6 +74,11 @@ export default function Cadastro() {
                     onPress={() => navigation.navigate('Historico', {dadosAnt})}>
                         <Text style={styles.botaoLoginText}>Histórico</Text>
                     </TouchableOpacity> 
+                    <TouchableOpacity 
+                    style={styles.botaoLogin} 
+                    onPress={() => navigation.navigate('Historico', {dadosAnt})}>
+                        <Text style={styles.botaoLoginText}>Histórico</Text>
+                    </TouchableOpacity> 
                 </View>
                     
                     <Text>Nome:</Text>

@@ -31,12 +31,6 @@ export default function Cadastro() {
             <View style={styles.botoesIniciais}>
                 <TouchableOpacity style={styles.botaoInicial}>
                     <MaterialCommunityIcons
-                    name="car-hatchback"
-                    size={60}
-                    color="#F2CA04"/> 
-                </TouchableOpacity> 
-                <TouchableOpacity style={styles.botaoInicial}>
-                    <MaterialCommunityIcons
                     name="message-text-outline"
                     size={55}
                     color="#F2CA04"
