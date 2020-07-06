@@ -2,15 +2,30 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
+    botaoPedirCarona: {
+        backgroundColor: '#347EBF',
+        height: 50,
+        width: 140,
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+    },
+
+    botaoEsperaCarona: {
+        backgroundColor: '#F2CA04',
+        height: 50,
+        width: 140,
+        alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+    },
+
     container: {
         flex: 1,
         backgroundColor: 'white',
         paddingTop: Constants.statusBarHeight + 15,
-    },
-
-    header: {
-        alignItems: 'center',
-        marginBottom: 20,
     },
 
     Caronas: {
@@ -53,6 +68,18 @@ export default StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 16,
+    },
+
+    textPedirCarona: {
+        color: '#F2CA04',
+        fontWeight: 'bold',
+        fontSize: 16
+    },
+
+    textEsperaCarona: {
+        color: '#347EBF',
+        fontWeight: 'bold',
+        fontSize: 16
     },
 
     motoDescri: {
