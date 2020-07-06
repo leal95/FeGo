@@ -54,8 +54,7 @@ export default function PublicarCarona() {
 
         const info = ({
             origem, 
-            destino,
-            paradas,
+            destino: [destino, paradas].join(),
             hora: data[4].split(":")[0], 
             minuto: data[4].split(":")[1],
             dia: data[2],
@@ -107,7 +106,7 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para em quais cidades?"
+                    placeholder="Paradas? (separe cidades por virgulas)"
                     autoCorrect={false}
                     onChangeText={setParadas}
                     />

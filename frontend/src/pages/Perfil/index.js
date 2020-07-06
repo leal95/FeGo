@@ -53,10 +53,15 @@ export default function Cadastro() {
 
         try{
             const response = await api.put('/profile', info);
-
+            
             const dados = response.data[0];
-    
-            navigation.navigate('TelaInicial', {dados} );
+
+            if(dados){
+                navigation.navigate('TelaInicial', {dados} );
+            }
+            else{
+                alert("Não foi possível salvar os dados, tente novamente mais tarde")
+            }
         }
         catch(err){
             alert('Erro ao fazer alteração das informações!');
@@ -188,7 +193,7 @@ export default function Cadastro() {
                     </KeyboardAvoidingView>
                     </>
                 }
-                data = {caronas}
+                data = {[1,2,3]}
                 keyExtractor={carona => String(carona)}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: carona})=>(

@@ -67,8 +67,8 @@ export default function Caronas() {
             </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}
-            data = {caronas}
-            keyExtractor={carona => String(carona.id)}
+            data = {[1,2,3]}
+            keyExtractor={carona => String(carona)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
                 <TouchableOpacity style={styles.Caronas}

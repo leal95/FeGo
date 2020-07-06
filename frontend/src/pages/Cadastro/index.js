@@ -140,6 +140,7 @@ export default function Cadastro() {
                         value={email}
                         onChangeText={setEmail}
                         autoCapitalize='none'
+                        keyboardType='email-address'
                         />
 
                     <Text style={styles.inputTextHeader}></Text>
