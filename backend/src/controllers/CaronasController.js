@@ -8,14 +8,14 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, paradas, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, vagas, obs, usuario_email } = request.body;
+        const { origem, destino, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, 
+            vagas, obs, usuario_email } = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
             await connection('caronas').insert({ 
                 origem, 
-                destino, 
-                paradas,
+                destino,
                 hora, 
                 minuto, 
                 dia,
