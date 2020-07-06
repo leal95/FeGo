@@ -5,7 +5,6 @@ exports.up = function(knex) {
 
         table.string('origem').notNullable();
         table.string('destino').notNullable();
-        table.string('paradas').notNullable();
         table.integer('hora').notNullable();
         table.integer('minuto').notNullable();
         table.integer('dia').notNullable();
@@ -13,7 +12,10 @@ exports.up = function(knex) {
         table.integer('ano').notNullable();
         table.integer('preco').notNullable();
         table.integer('vagas').notNullable();
-        table.string('obs').notNullable();//estruturando os dados de caronas
+        table.string('placaCarro').notNullable();
+        table.string('modeloCarro').notNullable();
+        table.json('passageiros').notNullable();
+        //estruturando os dados de caronas
         //deixando cada componente do horário e da data separados, para facilitar a inserção de dados no front end
 
         table.string('usuario_email').notNullable();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 //Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
@@ -24,6 +24,8 @@ export default function Cadastro() {
     const [fumante, setFumante] = useState(dadosAnt.fumante);
     const [curso, setCurso] = useState(dadosAnt.curso);
     const [musica, setMusica] = useState(dadosAnt.musica);
+    const [modeloCarro, setModeloCarro] = useState(dadosAnt.modeloCarro);
+    const [placaCarro, setPlacaCarro] = useState(dadosAnt.placaCarro);
     const [caronas, setCaronas] = useState([]);
 
     useEffect(() => {
@@ -45,6 +47,8 @@ export default function Cadastro() {
             fumante,
             curso,
             musica,
+            placaCarro,
+            modeloCarro,
         }); 
 
         try{
@@ -74,20 +78,13 @@ export default function Cadastro() {
                             <Text style={styles.userName}> {dadosAnt.nome} {dadosAnt.sobrenome} </Text>
                             <Text style={styles.userEmail}> {dadosAnt.email} </Text>
                         </View>
-                        <View style={styles.botoes}>
-                            <TouchableOpacity 
-                            style={styles.botaoPerfil} 
-                            onPress={() => navigation.navigate('Historico', {dadosAnt})}>
-                                <Text style={styles.botaoLoginText}>Histórico</Text>
-                            </TouchableOpacity> 
-                            <TouchableOpacity 
-                            style={styles.botaoPerfil} 
-                            onPress={() => navigation.navigate('Mensagens', {dadosAnt})}>
-                                <Text style={styles.botaoLoginText}>Mensagens</Text>
-                            </TouchableOpacity> 
-                        </View>
+                        <TouchableOpacity 
+                        style={styles.botaoMensagens} 
+                        onPress={() => navigation.navigate('Mensagens', {dadosAnt})}>
+                            <Text style={styles.botaoLoginText}>Mensagens</Text>
+                        </TouchableOpacity> 
                             
-                            <Text>Nome:</Text>
+                            <Text style={{marginLeft: 10}}>Nome:</Text>
                             <TextInput
                                 style={styles.inputText}
                                 placeholder={dadosAnt.nome}
@@ -95,7 +92,7 @@ export default function Cadastro() {
                                 onChangeText={setNome}
                             />
 
-                            <Text>Sobrenome:</Text>
+                            <Text style={{marginLeft: 10}}>Sobrenome:</Text>
                             <TextInput
                                 style={styles.inputText}
                                 placeholder={dadosAnt.sobrenome}
@@ -103,7 +100,7 @@ export default function Cadastro() {
                                 onChangeText={setSobrenome}
                             />
 
-                            <Text>Apelido:</Text>  
+                            <Text style={{marginLeft: 10}}>Apelido:</Text>  
                             <TextInput
                                 style={styles.inputText} 
                                 placeholder={dadosAnt.apelido}
@@ -111,7 +108,7 @@ export default function Cadastro() {
                                 onChangeText={setApelido}
                                 />
                                 
-                            <Text>Telefone:</Text>
+                            <Text style={{marginLeft: 10}}>Telefone:</Text>
                             <TextInput
                             style={styles.inputText} 
                             placeholder={dadosAnt.numTelefone}
@@ -121,7 +118,23 @@ export default function Cadastro() {
                             keyboardType="numeric"
                             />
 
-                            <Text>RA:</Text>
+                            <Text style={{marginLeft: 10}}>Placa do Carro:</Text>  
+                            <TextInput
+                                style={styles.inputText} 
+                                placeholder={dadosAnt.placaCarro}
+                                autoCorrect={false}
+                                onChangeText={setPlacaCarro}
+                                />
+
+                            <Text style={{marginLeft: 10}}>Modelo do Carro:</Text>  
+                            <TextInput
+                                style={styles.inputText} 
+                                placeholder={dadosAnt.modeloCarro}
+                                autoCorrect={false}
+                                onChangeText={setModeloCarro}
+                                />
+
+                            <Text style={{marginLeft: 10}}>RA:</Text>
                             <TextInput
                                 style={styles.inputText} 
                                 placeholder={dadosAnt.ra}
@@ -131,7 +144,7 @@ export default function Cadastro() {
                                 keyboardType="numeric"
                                 />
 
-                            <Text>Fumante:</Text>
+                            <Text style={{marginLeft: 10}}>Fumante:</Text>
                             <RNPickerSelect
                                 style={pickerSelectStyles}
                                 placeholder={dadosAnt.fumante? {label: dadosAnt.fumante, value: dadosAnt.fumante} : {label: 'Fumante?', value: null}}
@@ -142,7 +155,7 @@ export default function Cadastro() {
                                 ]}
                             />
                             
-                            <Text>Curso:</Text>
+                            <Text style={{marginLeft: 10}}>Curso:</Text>
                             <RNPickerSelect
                                 style={pickerSelectStyles}
                                 placeholder={dadosAnt.curso? {label: dadosAnt.curso, value: dadosAnt.curso} : {label: 'Curso', value: null}}
@@ -159,7 +172,7 @@ export default function Cadastro() {
                                 ]}
                             />
 
-                            <Text>Musicas:</Text>
+                            <Text style={{marginLeft: 10}}>Musicas:</Text>
                             <TextInput
                                 style={styles.inputText} 
                                 placeholder={dadosAnt.musica}
@@ -175,12 +188,12 @@ export default function Cadastro() {
                     </KeyboardAvoidingView>
                     </>
                 }
-                data = {[1,2,3,4,5]}
+                data = {caronas}
                 keyExtractor={carona => String(carona)}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: carona})=>(
                     <TouchableOpacity style={styles.Caronas}
-                    onPress={() => navigation.navigate('DetalheCarona', {dados, carona})}>
+                    onPress={() => navigation.navigate('DetalheCarona', {dadosAnt, carona})}>
                     <View style={styles.CaronasInfo}>
                         <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino} </Text>
                         <Text style={styles.CaronasText}> R${carona.preco} </Text>
@@ -206,6 +219,7 @@ const pickerSelectStyles = StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
+        marginLeft: 5,
     },
     inputAndroid: {
         backgroundColor: '#fff',
@@ -215,5 +229,6 @@ const pickerSelectStyles = StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
+        marginLeft: 5,
     },
   });

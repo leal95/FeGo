@@ -14,12 +14,13 @@ export default StyleSheet.create({
         marginBottom: 10,
     }, //Estilos dos botão "Salvar"
     
-    botaoPerfil: {
+    botaoMensagens: {
         backgroundColor: '#347EBF',
         margin: 5,
         height: 50,
         width: 140,
         alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         marginTop: 10,
     }, //Estilos dos botão "Salvar"
@@ -29,11 +30,6 @@ export default StyleSheet.create({
         fontSize: 24,
         letterSpacing: 1,
     }, //Estilos do texto do botão "Salvar"
-
-    botoes: {
-        alignItems: 'center',
-        flexDirection: 'row'
-    }, //Alinhamento dos botões no centro
 
     Caronas: {
         backgroundColor:"#347EBF",
@@ -86,6 +82,7 @@ export default StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
+        marginLeft: 5,
     }, //Estilo das caixas de input de Texto
 
     inputTextHeader: {

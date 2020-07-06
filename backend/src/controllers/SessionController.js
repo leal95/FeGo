@@ -1,7 +1,7 @@
 const connection = require ('../database/connection'); //importando conexão com o banco
 
 module.exports = {
-    async login (request, response) { //método get
+    async index (request, response) { //método get
         const email = request.query;
 
         try{

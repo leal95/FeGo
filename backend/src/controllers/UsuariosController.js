@@ -9,14 +9,13 @@ module.exports = {
 
     async edit (request, response){
        
-        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica,  modeloCarro, placaCarro} = request.body;
+        const {email, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica,  modeloCarro, placaCarro} = request.body;
         //Entrada de dados pelo usuário
 
         try{
             const dados = await connection('usuarios')
             .where('email', email)
             .update({
-                senha: senha,
                 ra: ra,
                 nome: nome,
                 sobrenome: sobrenome,
@@ -25,9 +24,8 @@ module.exports = {
                 fumante: fumante,
                 curso: curso,
                 musica: musica,
-                mensagem: mensagem,
                 modeloCarro: modeloCarro,
-                placaCarro: placaCarro
+                placaCarro: placaCarro,
             }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
 
             const usuarioAtualizado = await connection('usuarios').select('*').where('email', email); //buscar tabela de usuários
