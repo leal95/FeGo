@@ -9,7 +9,7 @@ module.exports = {
 
     async edit (request, response){
        
-        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica,  modeloCarro, placaCarro} = request.body;
+        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro} = request.body;
         //Entrada de dados pelo usuário
 
         try{
@@ -25,7 +25,6 @@ module.exports = {
                 fumante: fumante,
                 curso: curso,
                 musica: musica,
-                mensagem: mensagem,
                 modeloCarro: modeloCarro,
                 placaCarro: placaCarro
             }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
@@ -42,7 +41,7 @@ module.exports = {
     
     async create(request, response) { //método post
         const { email, senha, ra, nome, sobrenome, numTelefone } = request.body; //requisitando informações de cadastro
-        const { apelido, fumante, curso, musica } = []
+        const { apelido, fumante, curso, musica, modeloCarro, placaCarro } = []
 
 
         try{
@@ -56,10 +55,12 @@ module.exports = {
                 apelido,
                 fumante,
                 curso,
-                musica
+                musica,
+                modeloCarro,
+                placaCarro
                 })
 
-                response.json({ email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica }); //retornar resultado com os dados
+                response.json({ email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro }); //retornar resultado com os dados
         }
         catch(err){ //mensagem de erro
             response.json({message:err});
