@@ -26,10 +26,6 @@ export default function PublicarCarona() {
     const [obs, setOBS] = useState();
     const [paradas, setParadas] = useState([]);
 
-    function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial', {dados});
-    };
-
     const showDatePicker = () => {
         setDatePickerVisibility(true);
       };
@@ -58,8 +54,7 @@ export default function PublicarCarona() {
 
         const info = ({
             origem, 
-            destino,
-            paradas,
+            destino: [destino, paradas].join(),
             hora: data[4].split(":")[0], 
             minuto: data[4].split(":")[1],
             dia: data[2],
@@ -69,6 +64,8 @@ export default function PublicarCarona() {
             vagas,
             obs,
             usuario_email: dados.email,
+            placaCarro: dados.placaCarro,
+            modeloCarro: dados.modeloCarro,
         });
 
         try{
@@ -83,7 +80,7 @@ export default function PublicarCarona() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={30} color="#999" onPress={navigateToTelaInicial} /> 
+                <Feather name="arrow-left" size={30} color="#999" onPress={navigation.goBack} /> 
             <View style={styles.header}>
                 <Text style={styles.headerText}>Publicar Carona</Text>
                 <Text style={styles.subtitleText}>(Preencha todos os dados)</Text>
@@ -109,7 +106,7 @@ export default function PublicarCarona() {
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para em quais cidades?"
+                    placeholder="Paradas? (separe cidades por virgulas)"
                     autoCorrect={false}
                     onChangeText={setParadas}
                     />

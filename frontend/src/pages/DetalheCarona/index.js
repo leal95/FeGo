@@ -6,87 +6,116 @@ import styles from './styles';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 import api from '../../services/api'; 
 
-export default function Caronas() { 
+export default function detalheCaronas() { 
     const route = useRoute();
     const navigation = useNavigation();
 
-    //const [carona, setCarona] = useState([]);
+    //const [infosMotorista, setInfosMotorista] = useState('');
 
-    const dados = route.params.dados;
-    const infosCarona = route.params.infosCarona;
+    let dados = {};
 
-    function navigateBack() {
-        navigation.navigate('ListarCaronas', {dados});
-    };
-
-    async function loadCaronas() {
-        //const response = await api.get('/caronas');
-
-        //setCarona(response.data);
+    if(route.params.dados){
+        dados = route.params.dados;
+    }
+    else{
+        if(route.params.dadosAnt){
+            dados = route.params.dadosAnt;
+        }
     }
 
-    function description() {
-        if(dados.fumante === "Sim"){
-            return (
-                <View>
-                    <Text style={styles.description}> Fumante </Text>
-                    <Text style={styles.description}> Avaliação: 0.0/0.0 </Text>
-                    <Text style={styles.description}> Curso: {dados.curso} </Text>
-                    <Text style={styles.description}> Musicas: {dados.musica} </Text>
-                </View>
-            );
-        }
-        else{
-            return (
-                <View>
-                    <Text style={styles.description}> Avaliação: 0.0/0.0 </Text>
-                    <Text style={styles.description}> Curso: {dados.curso} </Text>
-                    <Text style={styles.description}> Musicas: {dados.musica} </Text>
-                </View>
-            );
-        }
+    const infosCarona = route.params.infosCarona;
+
+    async function dadosDoMotorista() {
+        //const response = await api.get(`/sessions/?email=${emailDaCarona}`);
+
+        //setInfosMotorista(response.data);
     }
 
     useEffect(() => {
-        loadCaronas();
+        dadosDoMotorista();
     }, []) 
 
-    /*<FlatList style={styles.passaDescri}
-            data = {carona}
-            keyExtractor={pessoa => String(pessoa.email)}
-            showsVerticalScrollIndicator = {false}
-            renderItem = {({item: pessoa})=>(
-                <Text style={styles.text}> {pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
-                <Text style={styles.text}> {pessoa.curso} </Text>
-                <Text style={styles.text}> Avaliação: 0.0/0.0 </Text>
-            )}
-            />*/
+    function botoesSolicitarCarona() {
+        //if(vagasDisponiveis > 0){
+            return (
+                <>
+                    <TouchableOpacity 
+                    style={styles.botaoPedirCarona} 
+                    onPress={() => solicitarCarona()}>
+                        <Text style={styles.textPedirCarona}>Pedir Carona</Text>
+                    </TouchableOpacity> 
+                    <TouchableOpacity 
+                    style={styles.botaoEsperaCarona} 
+                    onPress={() => colocarEmEspera()}>
+                        <Text style={styles.textEsperaCarona}>Entrar na Lista de Espera</Text>
+                    </TouchableOpacity> 
+                </>
+            );
+        //}
+        /*else{
+            return (
+                <TouchableOpacity 
+                style={styles.botaoEsperaCarona} 
+                onPress={() => alert("Colocar na lista de espera!")}>
+                    <Text style={styles.textEsperaCarona}>Pedir Carona</Text>
+                </TouchableOpacity> 
+            );
+        }*/
+    }
+
+    async function solicitarCarona() {
+        //enviar mensagem ao motorista, solicitando
+        alert("Colocar na carona")
+    }
+
+    async function colocarEmEspera() {
+        alert("Colocar em Espera")
+    }
     
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={30} color="#858585" onPress = {navigateBack}/>
+            <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
             <View style={styles.header}></View>
-            
-            <View style={styles.Caronas} >
-                <View style={styles.CaronasInfo}>
-                    <Text style={styles.CaronasTextMid}> {infosCarona.dia}/{infosCarona.mes}/{infosCarona.ano} </Text>
-                    <Text style={styles.CaronasText}> {infosCarona.origem} 
-                    <Text style={styles.Linhas}>----------</Text>
-                    {infosCarona.destino} </Text>
-                    <Text style={styles.CaronasTextMid}> {infosCarona.hora}:{infosCarona.minuto} </Text>
-                    <Text style={styles.CaronasTextPreco}> 50 reais  </Text>
-                </View>
-            </View>
-            
-            <Text style={styles.motoDescri} >Motorista:</Text>
-            <Text style={styles.text} > {dados.nome} {dados.sobrenome} ({dados.apelido}) </Text>
-            {description()}
 
-            {/*inserir flatlist*/}
-            <Text style={styles.passaDescri}>Passageiro(s):</Text>
-            <Text style={styles.description}> {dados.nome} {dados.sobrenome} ({dados.apelido}) </Text>
-            <Text style={styles.description}> Curso: {dados.curso} </Text>
-            <Text style={styles.description}> Avaliação: 0.0/0.0 </Text>
+            <FlatList style={styles.passaDescri}
+                ListHeaderComponent={
+                    <>
+                        <View style={styles.Caronas} >
+                            <View style={styles.CaronasInfo}>
+                                <Text style={styles.CaronasTextMid}> dia/mes/ano </Text>
+                                <Text style={styles.CaronasText}> origem 
+                                <Text style={styles.Linhas}>----------</Text>
+                                destino </Text>
+                                <Text style={styles.CaronasTextMid}> hora:minuto </Text>
+                                <Text style={styles.CaronasTextPreco}> 50 reais  </Text>
+                            </View>
+                        </View>
+                        
+                        <Text style={styles.motoDescri} >Motorista:</Text>
+                        <Text style={styles.text} > Nome Mt Sobrenome Mt (apelido) </Text>
+                        <Text style={styles.description}> Fumante: sim/nao </Text>
+                        <Text style={styles.description}> Avaliação: 0.0/0.0 </Text>
+                        <Text style={styles.description}> Curso: curso </Text>
+                        <Text style={styles.description}> Musicas: musica </Text>
+
+
+                        <Text style={styles.passaDescri}>Passageiro(s):</Text>
+                    </>
+                }
+                data = {[1,2,3]}
+                keyExtractor={pessoa => String(pessoa)}
+                showsVerticalScrollIndicator = {false}
+                renderItem = {({item: pessoa})=>(
+                    <View style={{marginBottom: 20}}>
+                        <Text style={styles.text}> Nome Sobrenome (apelido) </Text>
+                        <Text style={styles.description}> Curso: Curso </Text>
+                        <Text style={styles.description}> Avaliação: 0.0/0.0 </Text>
+                    </View>
+                )}
+                ListFooterComponent={
+                    botoesSolicitarCarona()
+                }
+                />
         </View>
     )
 }

@@ -10,13 +10,13 @@ module.exports = {
     async edit (request, response){
        
         const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro} = request.body;
+        const {email, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica,  modeloCarro, placaCarro} = request.body;
         //Entrada de dados pelo usuário
 
         try{
             const dados = await connection('usuarios')
             .where('email', email)
             .update({
-                senha: senha,
                 ra: ra,
                 nome: nome,
                 sobrenome: sobrenome,
@@ -26,7 +26,7 @@ module.exports = {
                 curso: curso,
                 musica: musica,
                 modeloCarro: modeloCarro,
-                placaCarro: placaCarro
+                placaCarro: placaCarro,
             }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
 
             const usuarioAtualizado = await connection('usuarios').select('*').where('email', email); //buscar tabela de usuários
@@ -41,7 +41,6 @@ module.exports = {
     
     async create(request, response) { //método post
         const { email, senha, ra, nome, sobrenome, numTelefone } = request.body; //requisitando informações de cadastro
-        const { apelido, fumante, curso, musica, modeloCarro, placaCarro } = []
 
 
         try{
@@ -51,16 +50,10 @@ module.exports = {
                 ra,
                 nome,
                 sobrenome,
-                numTelefone,
-                apelido,
-                fumante,
-                curso,
-                musica,
-                modeloCarro,
-                placaCarro
+                numTelefone
                 })
 
-                response.json({ email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro }); //retornar resultado com os dados
+                response.json({ email, senha, ra, nome, sobrenome, numTelefone }); //retornar resultado com os dados
         }
         catch(err){ //mensagem de erro
             response.json({message:err});

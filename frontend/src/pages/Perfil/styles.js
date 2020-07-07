@@ -8,6 +8,19 @@ export default StyleSheet.create({
         height: 50,
         width: 175,
         alignItems: 'center',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10,
+    }, //Estilos dos botão "Salvar"
+    
+    botaoMensagens: {
+        backgroundColor: '#347EBF',
+        margin: 5,
+        height: 50,
+        width: 140,
+        alignItems: 'center',
+        alignSelf: 'center',
         justifyContent: 'center',
         marginTop: 10,
     }, //Estilos dos botão "Salvar"
@@ -15,18 +28,45 @@ export default StyleSheet.create({
     botaoLoginText: {
         color: '#fff',
         fontSize: 24,
-        letterSpacing: 3,
+        letterSpacing: 1,
     }, //Estilos do texto do botão "Salvar"
 
-    botoes: {
-        alignItems: 'center'
-    }, //Alinhamento dos botões no centro
+    Caronas: {
+        backgroundColor:"#347EBF",
+        width: 315,
+        height: 75,
+        marginBottom:15,
+        borderRadius:30,
+    }, //Botões quadrados das caronas
+
+    CaronasInfo: {
+        flexDirection:"row",
+        justifyContent: 'space-evenly',
+    },
+
+    CaronasText:{
+        marginTop: 10,
+        fontWeight: 'bold',
+        color: '#ddd',
+        fontSize: 14,
+    },//Estilo dos Textos das Informações das caronas
 
     container: {
         flex: 1,
         backgroundColor: 'white',
         paddingTop: Constants.statusBarHeight + 15,
     }, //Estilos do Container
+
+    header: {
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+
+    headerText: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#818181'
+    },
 
     inputs: {
         alignItems: 'center',
@@ -42,6 +82,7 @@ export default StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
+        marginLeft: 5,
     }, //Estilo das caixas de input de Texto
 
     inputTextHeader: {

@@ -8,14 +8,14 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, paradas, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, vagas, obs, usuario_email } = request.body;
+        const { origem, destino, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, 
+            vagas, obs, usuario_email } = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
             await connection('caronas').insert({ 
                 origem, 
-                destino, 
-                paradas,
+                destino,
                 hora, 
                 minuto, 
                 dia,
@@ -24,10 +24,40 @@ module.exports = {
                 preco,
                 vagas,
                 obs,
-                usuario_email
+                usuario_email,
+                placaCarro,
+                modeloCarro,
                 })
 
                return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, obs}); //inserindo carona no banco de dados
+        }
+        catch(err){ 
+            return response.json({message:err});
+        }
+    },
+
+    async edit (request, response){
+        const { id } = request.params;
+        const { destinos, hora, minuto, dia, mes, ano, vagas, obs, passageiros, usuario_email, placaCarro, modeloCarro } = request.body;
+        //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
+
+        try{
+            await connection('caronas')
+            .where(id)
+            .update({
+                destinos,
+                hora, 
+                minuto, 
+                dia,
+                mes,
+                ano,
+                vagas,
+                obs,
+                usuario_email,
+                passageiros,
+                })
+
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, obs, placaCarro, modeloCarro}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
@@ -41,7 +71,7 @@ module.exports = {
         try{
         const carona = await connection('caronas')
                        .where('id, id')
-                       .select('usuario_email')
+                       .select(usuario_email)
                        .first();
             
             await connection ('caronas').where('id', id).delete;

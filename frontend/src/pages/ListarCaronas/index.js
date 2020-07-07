@@ -17,10 +17,6 @@ export default function Caronas() {
 
     const dados = route.params.dados;
 
-    function navigateToTelaInicial() {
-        navigation.navigate('TelaInicial', {dados});
-    };
-
     function detalheCarona (infosCarona) {
         navigation.navigate('DetalheCarona', {dados, infosCarona});
     };
@@ -49,7 +45,7 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={30} color="#858585" onPress = {navigateToTelaInicial}/>
+                <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
             <View style={styles.header}></View>
 
             <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
@@ -71,8 +67,8 @@ export default function Caronas() {
             </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}
-            data = {caronas}
-            keyExtractor={carona => String(carona.id)}
+            data = {[1,2,3]}
+            keyExtractor={carona => String(carona)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
                 <TouchableOpacity style={styles.Caronas}

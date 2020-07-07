@@ -11,7 +11,6 @@ import Perfil from './pages/Perfil';
 import PublicarCarona from './pages/PublicarCarona'
 import ListarCaronas from './pages/ListarCaronas'
 import DetalheCarona from './pages/DetalheCarona'
-import Historico from './pages/Historico'
 import Mensagens from './pages/Mensagens'
 //importando cada uma das telas
 
@@ -26,7 +25,6 @@ export default function Routes() {
                 <AppStack.Screen name="PublicarCarona" component={PublicarCarona} />
                 <AppStack.Screen name="ListarCaronas" component={ListarCaronas} />
                 <AppStack.Screen name="DetalheCarona" component={DetalheCarona} />
-                <AppStack.Screen name="Historico" component={Historico}/>
                 <AppStack.Screen name="Mensagens" component={Mensagens}/>
             </AppStack.Navigator>
         </NavigationContainer>

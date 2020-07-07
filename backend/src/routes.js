@@ -7,13 +7,14 @@ const MensagensController = require ('./controllers/MensagensController'); //imp
 
 const routes = express.Router(); //desacoplando Router do express e alocando na nova variável
 
-routes.get('/sessions', SessionController.login); //login 
+routes.get('/sessions', SessionController.index); //login 
 
 routes.put('/profile', UsuariosController.edit); //antes estava no ProfileController, mas como era o único método lá presente, ele foi migrado para o UsuariosController
 routes.get('/usuarios', UsuariosController.index); //listagem de usuários
 routes.post('/usuarios', UsuariosController.create); //cadastro de usuários
 
 routes.post('/caronas', CaronasController.create); //postar caronas
+routes.put('/caronas/:id', CaronasController.edit);
 routes.get('/caronas', CaronasController.index); //listar caronas
 routes.delete('/caronas/:id', CaronasController.delete); //deletar caronas
 

@@ -5,6 +5,9 @@ exports.up = function(knex) {
 
         table.string('mensagem').notNullable();
         table.string('destinatario').notNullable();
+        table.string('emissario').notNullable();
+
+        table.foreign('emissario').references('email').inTable('usuarios');
         table.foreign('destinatario').references('email').inTable('usuarios'); //relacionando com a chave primária do usuário
     });
 };

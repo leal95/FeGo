@@ -2,25 +2,26 @@ const connection = require ('../database/connection');
 
 module.exports = {
     async mostrarMensagensPorUsuario (request, response) { //mostrar mensagens por usuario
-        const { destinatario } = request.body;
+        const { destinatario } = request.params; //destinatario = email
         
         const mensagens = await connection('mensagens')
-        .where('destinatario', destinatario)
+        .where(destinatario)
         .select('mensagem'); 
 
         return response.json(mensagens); 
     },
     
     async create(request, response) { 
-        const {mensagem, destinatario } = request.body;
+        const {mensagem, destinatario, emissario } = request.body;
         
         try{
             await connection('mensagens').insert({ 
                 mensagem,
-                destinatario
+                destinatario,
+                emissario
                 })
 
-               return response.json({ mensagem, destinatario}); //inserindo carona no banco de dados
+               return response.json({ mensagem, destinatario}); //inserindo mensagens no banco de dados
         }
         catch(err){ 
             return response.json({message:err});

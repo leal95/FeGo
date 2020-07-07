@@ -28,37 +28,15 @@ export default function Cadastro() {
                 </TouchableOpacity>
             </View>  
 
-            <View style={styles.botoesIniciais}>
-                <TouchableOpacity style={styles.botaoInicial}>
-                    <MaterialCommunityIcons
-                    name="car-hatchback"
-                    size={60}
-                    color="#F2CA04"/> 
-                </TouchableOpacity> 
-                <TouchableOpacity style={styles.botaoInicial}>
-                    <MaterialCommunityIcons
-                    name="message-text-outline"
-                    size={55}
-                    color="#F2CA04"
-                    onPress={() => navigateToPage('Mensagens')}/>
-                </TouchableOpacity> 
-            </View>
-
-            <View style={styles.botoesIniciais}>
-                
-            </View>
-
             <View style={styles.botoesCaronas}>
                 <TouchableOpacity style={styles.botaoCarona} 
                 onPress={()=>navigateToPage('PublicarCarona')}>
-                    <Text style={styles.textCaronas}>Oferecer</Text>
-                    <Text style={styles.textCaronas}>Carona</Text>
+                    <Text style={styles.textCaronas}>Oferecer Carona</Text>
                 </TouchableOpacity> 
                 
                 <TouchableOpacity style={styles.botaoCarona}
                 onPress ={()=>navigateToPage('ListarCaronas')}>
-                    <Text style={styles.textCaronas}>Procurar</Text>
-                    <Text style={styles.textCaronas}>Carona</Text>
+                    <Text style={styles.textCaronas}>Procurar Carona</Text>
                 </TouchableOpacity> 
             </View>
         </View>
