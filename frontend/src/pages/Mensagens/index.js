@@ -15,28 +15,41 @@ export default function Mensagens() {
     const [mensagens, setMensagens] = useState([]);
 
     async function carregarMensagens() {
-        //const response = await api.get('/usuarios/mensagens/?destinatario=${emailDaCarona}');
+        const response = await api.get(`/usuarios/mensagens/?destinatarioEmail=${dados.email}`);
 
-        //setMensagens(response.data);
+        setMensagens(response.data);
     }
 
     useEffect(() => {
         carregarMensagens();
     }, []) 
 
-    function responderMensagem() {
-        //abrir textinput, enviar mensagem
-        alert("Responder Mensagem")
+    async function aceitarMensagem(infosMensagem) {
+        const resposta = ({
+            desinatarioEmail: infosMensagem.emissarioEmail,
+            desinatarioNome: infosMensagem.emissarioNome,
+            emissarioEmail: infosMensagem.desinatarioEmail,
+            emissarioNome: infosMensagem.desinatarioNome,
+            mensagem: `Olá, eu gostaria de avisar aceitei sua solicitação de carona! Agradeço o seu pedido e nos vemos em breve!`
+        }); 
+
+        const response = await api.post(`/usuarios/mensagens`, {resposta});
+
+        console.log(response.data);
     }
 
-    function aceitarMensagem() {
-        //colocar a pessoa na carona desejada e atualizar
-        alert("Mensagem Aprovada")
-    }
+    async function rejeitarMensagem(infosMensagem) {
+        const resposta = ({
+            desinatarioEmail: infosMensagem.emissarioEmail,
+            desinatarioNome: infosMensagem.emissarioNome,
+            emissarioEmail: infosMensagem.desinatarioEmail,
+            emissarioNome: infosMensagem.desinatarioNome,
+            mensagem: `Olá, eu gostaria de avisar que não pude aceitar sua solicitação de carona! Agradeço o pedido e te desejo tudo de bom!`
+        }); 
 
-    function rejeitarMensagem() {
-        //enviar mensagem à pessoa informando que foi rejeitada e remover ela da lista de espera
-        alert("Mensagem Rejeitada")
+        await api.post(`/usuarios/mensagens`, {resposta});
+
+        console.log(response.data);
     }
 
     return(
@@ -46,29 +59,25 @@ export default function Mensagens() {
             
             <FlatList 
             style={styles.MensagensList}
-            keyExtractor={item => String(item)}
-            data = {[1,2,3,4]}
-            renderItem ={ () => (
+            keyExtractor={item => String(item.id)}
+            data = {mensagens}
+            renderItem ={ ({item: mensagem}) => (
                 <View style={styles.Mensagens}>
                 <TouchableOpacity style={styles.userFoto} 
                 onPress={() => alert("Seria legal aparecer o perfil da pessoa, quando clicado")}>
                 </TouchableOpacity>
                 <View style={styles.Conteudo}>
-                <Text style = {styles.Conteudo}>Nome</Text>
-                <Text style = {styles.Conteudo}>Mensagem Aqui AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</Text>
+                <Text style = {styles.Conteudo}>{mensagem.emissarioNome} </Text>
+                <Text style = {styles.Conteudo}>{mensagem.mensagem} </Text>
                 </View>
-                <View> 
-                <MaterialCommunityIcons style = {styles.Icons} 
-                name = "message-reply-text" size={30} color="white"
-                onPress={() => responderMensagem()}/>
-
+                <View style={{justifyContent: 'space-evenly'}}>
                 <MaterialCommunityIcons style = {styles.Icons} 
                 name = "check" size={30} color="white"
-                onPress={() => aceitarMensagem()}/>
+                onPress={() => aceitarMensagem(mensagem)}/>
 
                 <MaterialCommunityIcons style = {styles.Icons} 
                 name = "close" size={30} color="white"
-                onPress={() => rejeitarMensagem()}/>
+                onPress={() => rejeitarMensagem(mensagem)}/>
 
                 </View>
                 </View>)}/>

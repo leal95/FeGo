@@ -76,7 +76,7 @@ export default function Cadastro() {
             <FlatList
                 ListHeaderComponent={
                     <>
-                        <KeyboardAvoidingView behavior="padding">
+                        <View>
 
                         <View style={styles.user}>
                             <View style={styles.userFoto}></View>
@@ -190,7 +190,7 @@ export default function Cadastro() {
                             onPress={() => salvarDados()}>
                                 <Text style={styles.botaoLoginText}>Salvar</Text>
                             </TouchableOpacity>
-                    </KeyboardAvoidingView>
+                    </View>
                     </>
                 }
                 data = {[1,2,3]}

@@ -9,7 +9,7 @@ const routes = express.Router(); //desacoplando Router do express e alocando na 
 
 routes.get('/sessions', SessionController.index); //login 
 
-routes.put('/profile', UsuariosController.edit); //antes estava no ProfileController, mas como era o único método lá presente, ele foi migrado para o UsuariosController
+routes.put('/usuarios', UsuariosController.edit); //antes estava no ProfileController, mas como era o único método lá presente, ele foi migrado para o UsuariosController
 routes.get('/usuarios', UsuariosController.index); //listagem de usuários
 routes.post('/usuarios', UsuariosController.create); //cadastro de usuários
 

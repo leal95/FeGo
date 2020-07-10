@@ -64,8 +64,8 @@ export default function PublicarCarona() {
             vagas,
             obs,
             usuario_email: dados.email,
-            placaCarro: dados.placaCarro,
-            modeloCarro: dados.modeloCarro,
+            //placaCarro: dados.placaCarro,
+            //modeloCarro: dados.modeloCarro,
         });
 
         try{

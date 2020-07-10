@@ -22,7 +22,7 @@ export default StyleSheet.create({
     Icons: 
     {
         marginTop:15,
-        alignSelf:"flex-end",
+        alignSelf: 'flex-end',
         marginRight:1,
     }, //estilo dos icones
 

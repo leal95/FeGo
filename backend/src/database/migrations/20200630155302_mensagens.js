@@ -4,11 +4,15 @@ exports.up = function(knex) {
         table.increments();
 
         table.string('mensagem').notNullable();
-        table.string('destinatario').notNullable();
-        table.string('emissario').notNullable();
+        
+        table.string('destinatarioEmail').notNullable();
+        table.string('destinatarioNome').notNullable();
 
-        table.foreign('emissario').references('email').inTable('usuarios');
-        table.foreign('destinatario').references('email').inTable('usuarios'); //relacionando com a chave primária do usuário
+        table.string('emissarioEmail').notNullable();
+        table.string('emissarioNome').notNullable();
+
+        table.foreign('emissarioEmail').references('email').inTable('usuarios');
+        table.foreign('destinatarioEmail').references('email').inTable('usuarios'); //relacionando com a chave primária do usuário
     });
 };
 
