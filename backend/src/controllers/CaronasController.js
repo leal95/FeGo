@@ -8,8 +8,8 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, hora, minuto, dia, mes, ano, modeloCarro, placaCarro, preco, 
-            vagas, obs, usuario_email } = request.body;
+        const { origem, destino, hora, minuto, dia, mes, ano, preco, 
+            vagas, passageiros, obs, usuario_email} = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
@@ -23,13 +23,12 @@ module.exports = {
                 ano,
                 preco,
                 vagas,
+                passageiros,
                 obs,
                 usuario_email,
-                placaCarro,
-                modeloCarro,
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, obs}); //inserindo carona no banco de dados
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, passageiros, obs, usuario_email}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
@@ -38,7 +37,7 @@ module.exports = {
 
     async edit (request, response){
         const { id } = request.params;
-        const { destinos, hora, minuto, dia, mes, ano, vagas, obs, passageiros, usuario_email, placaCarro, modeloCarro } = request.body;
+        const { destinos, hora, minuto, dia, mes, ano, vagas, passageiros, obs, usuario_email } = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
@@ -52,12 +51,12 @@ module.exports = {
                 mes,
                 ano,
                 vagas,
-                obs,
-                usuario_email,
                 passageiros,
+                obs,
+                usuario_email
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, obs, placaCarro, modeloCarro}); //inserindo carona no banco de dados
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, passageiros, obs, usuario_email}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
@@ -66,7 +65,7 @@ module.exports = {
 
     async delete (request, response) { //método delete
         const { id } = request.params;
-        const { usuario_email } = request.body; //ideal seria usar o authorization, mas para fins de teste, request body também funciona
+        const { usuario_email } = request.headers.authorization; //ideal seria usar o authorization, mas para fins de teste, request body também funciona
         
         try{
         const carona = await connection('caronas')

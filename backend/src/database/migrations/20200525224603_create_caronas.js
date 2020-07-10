@@ -12,9 +12,8 @@ exports.up = function(knex) {
         table.integer('ano').notNullable();
         table.integer('preco').notNullable();
         table.integer('vagas').notNullable();
-        table.string('placaCarro').notNullable();
-        table.string('modeloCarro').notNullable();
-        table.json('passageiros').notNullable();
+        table.integer('passageiros').notNullable();
+        table.string('obs').notNullable();
         //estruturando os dados de caronas
         //deixando cada componente do horário e da data separados, para facilitar a inserção de dados no front end
 

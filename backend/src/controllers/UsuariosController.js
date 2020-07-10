@@ -9,8 +9,7 @@ module.exports = {
 
     async edit (request, response){
        
-        const {email, senha, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro} = request.body;
-        const {email, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica,  modeloCarro, placaCarro} = request.body;
+        const {ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro} = request.body;
         //Entrada de dados pelo usuário
 
         try{

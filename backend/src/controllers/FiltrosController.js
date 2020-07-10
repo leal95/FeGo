@@ -7,8 +7,8 @@ module.exports = {
             const destino = request.query;
             try{
                 const caronas = await connection ('caronas')
-                .where(origem)
-                .where(destino)
+                .where('origem', origem)
+                .where('destino', destino)
                 .select('*');
       
                 return response.json (caronas);
@@ -24,7 +24,7 @@ module.exports = {
                 const usuario_email = request.query;
                 try{
                     const caronas = await connection ('caronas')
-                    .where(usuario_email)
+                    .where('usuario_email', usuario_email)
                     .select('*');
           
                     return response.json (caronas);

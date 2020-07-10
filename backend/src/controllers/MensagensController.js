@@ -2,10 +2,10 @@ const connection = require ('../database/connection');
 
 module.exports = {
     async mostrarMensagensPorUsuario (request, response) { //mostrar mensagens por usuario
-        const { destinatario } = request.params; //destinatario = email
+        const { destinatario } = request.body; //destinatario = email
         
         const mensagens = await connection('mensagens')
-        .where(destinatario)
+        .where('destinatario', destinatario)
         .select('mensagem'); 
 
         return response.json(mensagens); 
