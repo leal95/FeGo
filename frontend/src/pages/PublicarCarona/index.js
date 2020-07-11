@@ -63,7 +63,7 @@ export default function PublicarCarona() {
             preco,
             vagas,
             obs,
-            usuario_email: dados.email,
+            email: dados.email,
             placa: dados.placaCarro,
             carro: dados.modeloCarro,
         });

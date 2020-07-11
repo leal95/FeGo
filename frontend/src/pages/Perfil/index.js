@@ -29,7 +29,7 @@ export default function Cadastro() {
     const [caronas, setCaronas] = useState([]);
 
     useEffect(() => {
-        api.get(`/caronas/filtros/?usuario_email=${dadosAnt.email}`)
+        api.get(`/caronas/filtros/?email=${dadosAnt.email}`)
         .then(response => {
             setCaronas(response.data);
         })
@@ -52,7 +52,7 @@ export default function Cadastro() {
         }); 
 
         try{
-            const response = await api.put('/profile', info);
+            const response = await api.put('/usuarios', info);
             
             const dados = response.data[0];
 

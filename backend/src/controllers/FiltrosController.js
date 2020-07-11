@@ -3,15 +3,21 @@ const connection = require('../database/connection')
 module.exports = {
     async filtrarCaronas (request, response){
         if(request.query.origem && request.query.destino){
-            const origem = request.query;
-            const destino = request.query;
+            const {origem, destino} = request.query;
             try{
                 const caronas = await connection ('caronas')
                 .where('origem', origem)
-                .where('destino', destino)
                 .select('*');
+                
+                var caronasFiltradas = [];
+
+                caronas.map((element) => {
+                    if(element.destino.split(",")[0] == destino){
+                        caronasFiltradas.push(element);
+                    }
+                })
       
-                return response.json (caronas);
+                return response.json (caronasFiltradas);
               }
               catch(err){ 
                   response.json({message:err});
@@ -20,11 +26,11 @@ module.exports = {
         }
 
         else{
-            if(request.query.usuario_email){
-                const usuario_email = request.query;
+            if(request.query.email){
+                const email = request.query;
                 try{
                     const caronas = await connection ('caronas')
-                    .where('usuario_email', usuario_email)
+                    .where('email', email)
                     .select('*');
           
                     return response.json (caronas);
