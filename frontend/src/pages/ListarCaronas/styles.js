@@ -78,6 +78,8 @@ export default StyleSheet.create({
         borderRadius: 10,  
         height: 50,
         width: 125,
-        padding: 10,
+        marginRight: 5,
+        padding: 5,
+
     },
 });

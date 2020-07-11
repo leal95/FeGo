@@ -27,7 +27,7 @@ module.exports = {
 
         else{
             if(request.query.email){
-                const email = request.query;
+                const {email} = request.query;
                 try{
                     const caronas = await connection ('caronas')
                     .where('email', email)

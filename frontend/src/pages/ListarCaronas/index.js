@@ -67,15 +67,15 @@ export default function Caronas() {
             </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}
-            data = {[1,2,3]}
-            keyExtractor={carona => String(carona)}
+            data = {caronas}
+            keyExtractor={carona => String(carona.id)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
                 <TouchableOpacity style={styles.Caronas}
                 onPress={() => detalheCarona(carona)}>
                 <View style={styles.userFoto}></View>
                 <View style={styles.CaronasInfo}>
-                <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino} </Text>
+                <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
                 <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
                 <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
                 <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>

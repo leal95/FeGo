@@ -193,14 +193,14 @@ export default function Cadastro() {
                     </View>
                     </>
                 }
-                data = {[1,2,3]}
-                keyExtractor={carona => String(carona)}
+                data = {caronas}
+                keyExtractor={carona => String(carona.id)}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: carona})=>(
                     <TouchableOpacity style={styles.Caronas}
                     onPress={() => navigation.navigate('DetalheCarona', {dadosAnt, carona})}>
                     <View style={styles.CaronasInfo}>
-                        <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino} </Text>
+                        <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
                         <Text style={styles.CaronasText}> R${carona.preco} </Text>
                     </View>
                     <View style={styles.CaronasInfo}>
