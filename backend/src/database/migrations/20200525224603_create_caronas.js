@@ -19,7 +19,15 @@ exports.up = function(knex) {
 
         table.string('usuario_email').notNullable();
 
-        table.foreign('usuario_email').references('email').inTable('usuarios'); //relacionando com a chave primária do usuário
+        table.foreign('usuario_email').references('email').inTable('usuarios'); 
+        
+        table.string('carro').notNullable();
+
+        table.foreign('carro').references('modeloCarro').inTable('usuarios');
+        
+        table.string('placa').notNullable();
+
+        table.foreign('placa').references('placaCarro').inTable('usuarios');//relacionando com a chave primária do usuário
     });
 };
 

@@ -9,7 +9,7 @@ module.exports = {
     
     async create(request, response) { 
         const { origem, destino, hora, minuto, dia, mes, ano, preco, 
-            vagas, passageiros, obs, usuario_email} = request.body;
+            vagas, passageiros, obs, usuario_email, carro, placa} = request.body;
         //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
@@ -26,9 +26,11 @@ module.exports = {
                 passageiros,
                 obs,
                 usuario_email,
+                carro,
+                placa
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, passageiros, obs, usuario_email}); //inserindo carona no banco de dados
+               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, passageiros, obs, usuario_email, carrro, placa}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
