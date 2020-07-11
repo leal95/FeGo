@@ -5,29 +5,21 @@ exports.up = function(knex) {
 
         table.string('origem').notNullable();
         table.string('destino').notNullable();
-        table.integer('hora').notNullable();
-        table.integer('minuto').notNullable();
-        table.integer('dia').notNullable();
-        table.integer('mes').notNullable();
-        table.integer('ano').notNullable();
-        table.integer('preco').notNullable();
-        table.integer('vagas').notNullable();
-        table.integer('passageiros').notNullable();
-        table.string('obs').notNullable();
+        table.string('hora').notNullable();
+        table.string('minuto').notNullable();
+        table.string('dia').notNullable();
+        table.string('mes').notNullable();
+        table.string('ano').notNullable();
+        table.string('preco').notNullable();
+        table.string('vagas').notNullable();
+        table.integer('passageiros').nullable();
+        table.string('obs').nullable();
         //estruturando os dados de caronas
         //deixando cada componente do horário e da data separados, para facilitar a inserção de dados no front end
 
-        table.string('usuario_email').notNullable();
-
-        table.foreign('usuario_email').references('email').inTable('usuarios'); 
-        
-        table.string('carro').notNullable();
-
-        table.foreign('carro').references('modeloCarro').inTable('usuarios');
-        
-        table.string('placa').notNullable();
-
-        table.foreign('placa').references('placaCarro').inTable('usuarios');//relacionando com a chave primária do usuário
+        table.string('email').notNullable();
+        table.string('modeloCarro').notNullable();
+        table.string('placaCarro').notNullable();
     });
 };
 
