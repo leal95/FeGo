@@ -64,14 +64,14 @@ export default function PublicarCarona() {
             vagas,
             obs,
             email: dados.email,
-            placa: dados.placaCarro,
-            carro: dados.modeloCarro,
+            modeloCarro: dados.placaCarro,
+            placaCarro: dados.modeloCarro,
         });
 
         try{
             await api.post('/caronas', info);
 
-            navigateToTelaInicial();
+            navigation.navigate('TelaInicial', {dados});
         }
         catch(err){
             alert('Erro ao publicar carona!');

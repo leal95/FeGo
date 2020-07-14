@@ -39,14 +39,12 @@ module.exports = {
 
     async edit (request, response){
         const { id } = request.params;
-        const { destinos, hora, minuto, dia, mes, ano, vagas, passageiros, obs, usuario_email } = request.body;
-        //const usuario_email = request.headers.authorization; //A chave que liga ao usuário será puxada pelo headers (método ideal)
+        const { hora, minuto, dia, mes, ano, vagas, passageiros, obs } = request.body;
 
         try{
             await connection('caronas')
-            .where(id)
+            .where('id', id)
             .update({
-                destinos,
                 hora, 
                 minuto, 
                 dia,
@@ -54,11 +52,10 @@ module.exports = {
                 ano,
                 vagas,
                 passageiros,
-                obs,
-                usuario_email
+                obs
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, passageiros, obs, usuario_email}); //inserindo carona no banco de dados
+               return response.json({message: "Carona Alterada"}); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
