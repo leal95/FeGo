@@ -1,5 +1,4 @@
 import React from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Text, TouchableOpacity } from 'react-native';
 //importando react, ícones, useNavigation, useRoute e componentes do react native necessários
