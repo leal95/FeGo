@@ -39,7 +39,7 @@ export default function Cadastro() {
     //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
         const info = ({
             email: dadosAnt.email,
-            nome, 
+            nome,
             sobrenome,
             apelido,
             numTelefone,

@@ -35,14 +35,18 @@ export default function detalheCaronas() {
 
     async function getDadosDosPassageiros() {
         if(infosCarona.passageiros){
+            var vetorDePassageiros = [];
             const emailPassageiros = infosCarona.passageiros.split(",");
         
             if(emailPassageiros){
                 for(var i = 0; i<emailPassageiros.length;i++){
                     const response = await api.get(`/sessions/?email=${emailPassageiros[i]}`);
 
-                    console.log(response.data[0]);
+                    console.log(response.data[0])
+
+                    vetorDePassageiros.push(response.data[0]);
                 }
+                setInfosPassageiros(vetorDePassageiros);
             }
         }
         else return
@@ -77,9 +81,23 @@ export default function detalheCaronas() {
     }
 
     async function solicitarCarona() {
-        //enviar mensagem ao motorista, solicitando
-        console.log(infosPassageiros)
-        //console.log('aaaaaaaaaaaaaaaaaa')
+        var vagasAtt = infosCarona.vagas - 1;
+
+        const info = ({
+            passageiros: [infosCarona.passageiros, dados.email].join(),
+            vagas: vagasAtt
+        });
+
+        try{
+            const response = await api.put(`/caronas/${infosCarona.id}`, info);
+
+            alert("Você foi inserido na carona");
+
+            navigation.navigate('TelaInicial');
+        }
+        catch(err){
+            alert('Erro ao fazer alteração das informações!');
+        };
     }
 
     async function colocarEmEspera() {
@@ -109,9 +127,9 @@ export default function detalheCaronas() {
         return(
             <>
                 <View style={{marginBottom: 20}}>
-                        <Text style={styles.text}> Nome Sobrenome (apelido) </Text>
-                        <Text style={styles.description}> Curso: Curso </Text>
-                        <Text style={styles.description}> Musica: Musica </Text>
+                        <Text style={styles.text}> {passageiro.nome} {passageiro.sobrenome} ({passageiro.apelido}) </Text>
+                        <Text style={styles.description}> Curso: {passageiro.curso} </Text>
+                        <Text style={styles.description}> Musica: {passageiro.musica} </Text>
                     </View>
             </>
         )
@@ -142,8 +160,8 @@ export default function detalheCaronas() {
                         <Text style={styles.passaDescri}>Passageiro(s):</Text>
                     </>
                 }
-                data = {[1,2,3]}
-                keyExtractor={pessoa => String(pessoa)}
+                data = {infosPassageiros}
+                keyExtractor={pessoa => String(pessoa.email)}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: pessoa})=>(
                     mostrarPassageiro(pessoa)
