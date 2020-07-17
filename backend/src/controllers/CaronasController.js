@@ -39,7 +39,7 @@ module.exports = {
 
     async edit (request, response){
         const { id } = request.params;
-        const { hora, minuto, dia, mes, ano, vagas, passageiros, obs } = request.body;
+        const { hora, minuto, dia, mes, ano, vagas, passageiros, listaEspera, obs } = request.body;
 
         try{
             await connection('caronas')
@@ -52,6 +52,7 @@ module.exports = {
                 ano,
                 vagas,
                 passageiros,
+                listaEspera,
                 obs
                 })
 

@@ -71,6 +71,8 @@ export default function PublicarCarona() {
         try{
             await api.post('/caronas', info);
 
+            alert("Sua Carona foi publicada com sucesso")
+
             navigation.navigate('TelaInicial', {dados});
         }
         catch(err){
@@ -93,7 +95,9 @@ export default function PublicarCarona() {
                     placeholder="De onde? (Cidade)"
                     autoCorrect={false}
                     onChangeText={setOrigem}
+                    autoCapitalize="words"
                 />
+                <Text>(Digite o nome da cidade por extenso)</Text>
 
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
@@ -102,17 +106,19 @@ export default function PublicarCarona() {
                     autoCorrect={false}
                     onChangeText={setDestino}
                     />
+                <Text>(Digite o nome da cidade por extenso)</Text>
 
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Paradas? (separe cidades por virgulas)"
+                    placeholder="Paradas?"
                     autoCorrect={false}
                     onChangeText={setParadas}
                     />
+                <Text>(separe cidades por virgulas e sem espaço)</Text>
 
                 <Text style={styles.inputTextHeader}></Text>
-                <Button title={`Clique para selecionar data \n e horário de saída`} onPress={showDatePicker} />
+                <Button title={`Clique aqui para selecionar data \n e horário de saída`} onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
                         mode="datetime"

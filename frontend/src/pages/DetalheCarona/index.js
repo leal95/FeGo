@@ -42,8 +42,6 @@ export default function detalheCaronas() {
                 for(var i = 0; i<emailPassageiros.length;i++){
                     const response = await api.get(`/sessions/?email=${emailPassageiros[i]}`);
 
-                    console.log(response.data[0])
-
                     vetorDePassageiros.push(response.data[0]);
                 }
                 setInfosPassageiros(vetorDePassageiros);
@@ -89,9 +87,9 @@ export default function detalheCaronas() {
         });
 
         try{
-            const response = await api.put(`/caronas/${infosCarona.id}`, info);
+            await api.put(`/caronas/${infosCarona.id}`, info);
 
-            alert("Você foi inserido na carona");
+            alert("Você foi inserido(a) na carona");
 
             navigation.navigate('TelaInicial');
         }
@@ -101,14 +99,49 @@ export default function detalheCaronas() {
     }
 
     async function colocarEmEspera() {
-        alert("Colocar em Espera")
+        const info = ({
+            listaEspera: [infosCarona.listaEspera, dados.email].join(),
+        });
+
+        try{
+            await api.put(`/caronas/${infosCarona.id}`, info);
+
+            alert("Você foi inserido(a) na lista de espera");
+
+            navigation.navigate('TelaInicial');
+        }
+        catch(err){
+            alert('Erro ao fazer alteração das informações!');
+        };
+    }
+
+    function mostrarDetalhesCarona(){
+        return(
+            <>
+                <View style={styles.Caronas} >
+                    <View style={styles.CaronasInfo}>
+                        <Text style={styles.CaronasTextMid}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
+                        <Text style={styles.CaronasText}> {infosCarona.origem}
+                        <Text style={styles.Linhas}> {'-->'} </Text>
+                        {infosCarona.destino.split(",")[0]}</Text>
+                        <Text style={styles.CaronasTextMid}> {infosCarona.hora}:{infosCarona.minuto} </Text>
+                        <View style={styles.CaronasViewVP}>
+                            <Text style={styles.CaronasTextVP}> Vagas: {infosCarona.vagas} </Text>
+                            <Text style={styles.CaronasTextVP}> Preco: {infosCarona.preco} reais </Text>
+                        </View>
+                        <Text style={styles.CaronasTextMid}>OBS: {infosCarona.obs}</Text>
+                    </View>
+                </View>
+            </>
+        )
     }
 
     function mostrarMotorista() {
         if(infosMotorista){
             return(
                 <>
-                    <Text style={styles.motoDescri} >Motorista:</Text>
+                    <View style={styles.espacamento}></View>
+                    <Text style={styles.description} >Motorista:</Text>
                     <Text style={styles.text}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
                     <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
                     <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
@@ -143,16 +176,7 @@ export default function detalheCaronas() {
             <FlatList style={styles.passaDescri}
                 ListHeaderComponent={
                     <>
-                        <View style={styles.Caronas} >
-                            <View style={styles.CaronasInfo}>
-                                <Text style={styles.CaronasTextMid}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
-                                <Text style={styles.CaronasText}> {infosCarona.origem}
-                                <Text style={styles.Linhas}> {'-->'} </Text>
-                                {infosCarona.destino.split(",")[0]}</Text>
-                                <Text style={styles.CaronasTextMid}> {infosCarona.hora}:{infosCarona.minuto} </Text>
-                                <Text style={styles.CaronasTextPreco}> {infosCarona.preco} reais </Text>
-                            </View>
-                        </View>
+                        {mostrarDetalhesCarona()}
                         
                         {mostrarMotorista()}
 

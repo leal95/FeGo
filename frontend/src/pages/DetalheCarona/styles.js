@@ -31,8 +31,9 @@ export default StyleSheet.create({
     Caronas: {
         backgroundColor:"#347EBF",
         width: 300,
-        height: 90,
-        marginBottom:20,
+        height: 'auto',
+        marginBottom: 7,
+        padding: 10,
         borderRadius: 15,
         alignSelf: 'center',
         justifyContent: 'center',
@@ -50,14 +51,27 @@ export default StyleSheet.create({
         fontSize: 18,
     },//Estilo dos Textos das Informações das caronas
 
-    CaronasTextPreco:{
+    CaronasTextVP:{
         color: '#ddd',
-        alignSelf: 'flex-end',
+        fontWeight: 'bold',
+    },
+
+    CaronasViewVP:{
+        flexDirection: 'row',
+        color: '#ddd',
+        justifyContent: 'space-around',
+        marginBottom: 10,
+        marginTop: 5,
     },
 
     description: {
         alignSelf: 'center',
-        marginBottom: 3,
+        marginBottom: 5,
+        fontSize: 16,
+    },
+
+    espacamento: {
+        marginBottom: 15,
     },
 
     Linhas: {
@@ -67,7 +81,7 @@ export default StyleSheet.create({
     text: {
         alignSelf: 'center',
         fontWeight: 'bold',
-        fontSize: 16,
+        marginBottom: 5,
     },
 
     textPedirCarona: {
@@ -80,12 +94,6 @@ export default StyleSheet.create({
         color: '#347EBF',
         fontWeight: 'bold',
         fontSize: 16
-    },
-
-    motoDescri: {
-        alignSelf: 'center',
-        fontSize: 16,
-        marginBottom: 10,
     },
 
     passaDescri: {
