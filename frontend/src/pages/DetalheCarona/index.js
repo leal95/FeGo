@@ -16,7 +16,19 @@ export default function detalheCaronas() {
 
     let dados = route.params.dados;
 
+    let keyExtractorCounter = 0;
+
     const infosCarona = route.params.infosCarona;
+
+    function verifKeyExtractor(pessoa){
+        if(pessoa){
+            return pessoa
+        }
+        else{
+            keyExtractorCounter++;
+            return `${keyExtractorCounter}`
+        }
+    }
 
     async function getDadosDoMotorista() {
         const response = await api.get(`/sessions/?email=${infosCarona.email}`);
@@ -148,15 +160,20 @@ export default function detalheCaronas() {
     }
 
     function mostrarPassageiro(passageiro){
-        return(
-            <>
-                <View style={{marginBottom: 20}}>
-                        <Text style={styles.text}> {passageiro.nome} {passageiro.sobrenome} ({passageiro.apelido}) </Text>
-                        <Text style={styles.description}> Curso: {passageiro.curso} </Text>
-                        <Text style={styles.description}> Musica: {passageiro.musica} </Text>
-                    </View>
-            </>
-        )
+        if(passageiro){
+            return(
+                <>
+                    <View style={{marginBottom: 20}}>
+                            <Text style={styles.text}> {passageiro.nome} {passageiro.sobrenome} ({passageiro.apelido}) </Text>
+                            <Text style={styles.description}> Curso: {passageiro.curso} </Text>
+                            <Text style={styles.description}> Musica: {passageiro.musica} </Text>
+                        </View>
+                </>
+            )
+        }
+        else{
+            return
+        }
     }
     
     return(
@@ -176,7 +193,7 @@ export default function detalheCaronas() {
                     </>
                 }
                 data = {infosPassageiros}
-                keyExtractor={pessoa => String(pessoa.email)}
+                keyExtractor={pessoa => verifKeyExtractor(pessoa)}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: pessoa})=>(
                     mostrarPassageiro(pessoa)
