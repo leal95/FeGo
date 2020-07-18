@@ -10,7 +10,7 @@ export default function Mensagens() {
     const route = useRoute();
     const navigation = useNavigation();
 
-    const dados = route.params.dadosAnt;
+    const dados = route.params.dados;
 
     const [mensagens, setMensagens] = useState([]);
 
