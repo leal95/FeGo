@@ -14,16 +14,7 @@ export default function detalheCaronas() {
 
     const [infosPassageiros, setInfosPassageiros] = useState([]);
 
-    let dados = {};
-
-    if(route.params.dados){
-        dados = route.params.dados;
-    }
-    else{
-        if(route.params.dadosAnt){
-            dados = route.params.dadosAnt;
-        }
-    }
+    let dados = route.params.dados;
 
     const infosCarona = route.params.infosCarona;
 

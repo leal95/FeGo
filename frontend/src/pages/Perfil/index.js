@@ -14,31 +14,35 @@ export default function Cadastro() {
     const route = useRoute();
     const navigation = useNavigation();
 
-    const dadosAnt = route.params.dados;
+    const dados = route.params.dados;
 
-    const [nome, setNome] = useState(dadosAnt.nome);
-    const [sobrenome, setSobrenome] = useState(dadosAnt.sobrenome);
-    const [apelido, setApelido] = useState(dadosAnt.apelido);
-    const [numTelefone, setNumTelefone] = useState(dadosAnt.NumTelefone);
-    const [ra, setRA] = useState(dadosAnt.ra);
-    const [fumante, setFumante] = useState(dadosAnt.fumante);
-    const [curso, setCurso] = useState(dadosAnt.curso);
-    const [musica, setMusica] = useState(dadosAnt.musica);
-    const [modeloCarro, setModeloCarro] = useState(dadosAnt.modeloCarro);
-    const [placaCarro, setPlacaCarro] = useState(dadosAnt.placaCarro);
+    const [nome, setNome] = useState(dados.nome);
+    const [sobrenome, setSobrenome] = useState(dados.sobrenome);
+    const [apelido, setApelido] = useState(dados.apelido);
+    const [numTelefone, setNumTelefone] = useState(dados.NumTelefone);
+    const [ra, setRA] = useState(dados.ra);
+    const [fumante, setFumante] = useState(dados.fumante);
+    const [curso, setCurso] = useState(dados.curso);
+    const [musica, setMusica] = useState(dados.musica);
+    const [modeloCarro, setModeloCarro] = useState(dados.modeloCarro);
+    const [placaCarro, setPlacaCarro] = useState(dados.placaCarro);
     const [caronas, setCaronas] = useState([]);
 
     useEffect(() => {
-        api.get(`/caronas/filtros/?email=${dadosAnt.email}`)
+        api.get(`/caronas/filtros/?email=${dados.email}`)
         .then(response => {
             setCaronas(response.data);
         })
     }, []) 
 
+    function detalheCarona (infosCarona) {
+        navigation.navigate('DetalheCarona', {dados, infosCarona});
+    };
+
     async function salvarDados() {
     //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
         const info = ({
-            email: dadosAnt.email,
+            email: dados.email,
             nome,
             sobrenome,
             apelido,
@@ -80,19 +84,19 @@ export default function Cadastro() {
 
                         <View style={styles.user}>
                             <View style={styles.userFoto}></View>
-                            <Text style={styles.userName}> {dadosAnt.nome} {dadosAnt.sobrenome} </Text>
-                            <Text style={styles.userEmail}> {dadosAnt.email} </Text>
+                            <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
+                            <Text style={styles.userEmail}> {dados.email} </Text>
                         </View>
                         <TouchableOpacity 
                         style={styles.botaoMensagens} 
-                        onPress={() => navigation.navigate('Mensagens', {dadosAnt})}>
+                        onPress={() => navigation.navigate('Mensagens', {dados})}>
                             <Text style={styles.botaoLoginText}>Mensagens</Text>
                         </TouchableOpacity> 
                             
                             <Text style={{marginLeft: 10}}>Nome:</Text>
                             <TextInput
                                 style={styles.inputText}
-                                placeholder={dadosAnt.nome}
+                                placeholder={dados.nome}
                                 autoCorrect={false}
                                 onChangeText={setNome}
                             />
@@ -100,7 +104,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Sobrenome:</Text>
                             <TextInput
                                 style={styles.inputText}
-                                placeholder={dadosAnt.sobrenome}
+                                placeholder={dados.sobrenome}
                                 autoCorrect={false}
                                 onChangeText={setSobrenome}
                             />
@@ -108,7 +112,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Apelido:</Text>  
                             <TextInput
                                 style={styles.inputText} 
-                                placeholder={dadosAnt.apelido}
+                                placeholder={dados.apelido}
                                 autoCorrect={false}
                                 onChangeText={setApelido}
                                 />
@@ -116,7 +120,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Telefone:</Text>
                             <TextInput
                             style={styles.inputText} 
-                            placeholder={dadosAnt.numTelefone}
+                            placeholder={dados.numTelefone}
                             autoCorrect={false}
                             onChangeText={setNumTelefone}  
                             autoCapitalize='none'
@@ -126,7 +130,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Placa do Carro:</Text>  
                             <TextInput
                                 style={styles.inputText} 
-                                placeholder={dadosAnt.placaCarro}
+                                placeholder={dados.placaCarro}
                                 autoCorrect={false}
                                 onChangeText={setPlacaCarro}
                                 />
@@ -134,7 +138,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Modelo do Carro:</Text>  
                             <TextInput
                                 style={styles.inputText} 
-                                placeholder={dadosAnt.modeloCarro}
+                                placeholder={dados.modeloCarro}
                                 autoCorrect={false}
                                 onChangeText={setModeloCarro}
                                 />
@@ -142,7 +146,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>RA:</Text>
                             <TextInput
                                 style={styles.inputText} 
-                                placeholder={dadosAnt.ra}
+                                placeholder={dados.ra}
                                 autoCorrect={false}
                                 onChangeText={setRA}  
                                 autoCapitalize='none'
@@ -152,7 +156,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Fumante:</Text>
                             <RNPickerSelect
                                 style={pickerSelectStyles}
-                                placeholder={dadosAnt.fumante? {label: dadosAnt.fumante, value: dadosAnt.fumante} : {label: 'Fumante?', value: null}}
+                                placeholder={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Fumante?', value: null}}
                                 onValueChange={(value) => setFumante(value)}
                                 items={[
                                     { label: 'Sim', value: 'Sim' },
@@ -163,7 +167,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Curso:</Text>
                             <RNPickerSelect
                                 style={pickerSelectStyles}
-                                placeholder={dadosAnt.curso? {label: dadosAnt.curso, value: dadosAnt.curso} : {label: 'Curso', value: null}}
+                                placeholder={dados.curso? {label: dados.curso, value: dados.curso} : {label: 'Curso', value: null}}
                                 onValueChange={(value) => setCurso(value)}
                                 items={[
                                     { label: 'Engenharia Civil', value: 'Engenharia Civil' },
@@ -180,7 +184,7 @@ export default function Cadastro() {
                             <Text style={{marginLeft: 10}}>Musicas:</Text>
                             <TextInput
                                 style={styles.inputText} 
-                                placeholder={dadosAnt.musica}
+                                placeholder={dados.musica}
                                 autoCorrect={false}
                                 onChangeText={setMusica}
                                 /> 
@@ -198,7 +202,7 @@ export default function Cadastro() {
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: carona})=>(
                     <TouchableOpacity style={styles.Caronas}
-                    onPress={() => navigation.navigate('DetalheCarona', {dadosAnt, carona})}>
+                    onPress={() => detalheCarona(carona)}>
                     <View style={styles.CaronasInfo}>
                         <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
                         <Text style={styles.CaronasText}> R${carona.preco} </Text>
