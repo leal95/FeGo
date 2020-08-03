@@ -26,6 +26,7 @@ export default function Cadastro() {
     const [musica, setMusica] = useState(dados.musica);
     const [modeloCarro, setModeloCarro] = useState(dados.modeloCarro);
     const [placaCarro, setPlacaCarro] = useState(dados.placaCarro);
+    const [corCarro, setCorCarro] = useState(dados.corCarro);
     const [caronas, setCaronas] = useState([]);
 
     useEffect(() => {
@@ -53,6 +54,7 @@ export default function Cadastro() {
             musica,
             placaCarro,
             modeloCarro,
+            corCarro,
         }); 
 
         try{
@@ -143,6 +145,14 @@ export default function Cadastro() {
                                 onChangeText={setModeloCarro}
                                 />
 
+                            <Text style={{marginLeft: 10}}>Cor do Carro:</Text>  
+                            <TextInput
+                                style={styles.inputText} 
+                                placeholder={dados.corCarro}
+                                autoCorrect={false}
+                                onChangeText={setCorCarro}
+                                />
+
                             <Text style={{marginLeft: 10}}>RA:</Text>
                             <TextInput
                                 style={styles.inputText} 
@@ -153,10 +163,10 @@ export default function Cadastro() {
                                 keyboardType="numeric"
                                 />
 
-                            <Text style={{marginLeft: 10}}>Fumante:</Text>
+                            <Text style={{marginLeft: 10}}>Permite fumar no carro?:</Text>
                             <RNPickerSelect
                                 style={pickerSelectStyles}
-                                placeholder={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Fumante?', value: null}}
+                                placeholder={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Permite fumar no carro?', value: null}}
                                 onValueChange={(value) => setFumante(value)}
                                 items={[
                                     { label: 'Sim', value: 'Sim' },

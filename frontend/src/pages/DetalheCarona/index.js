@@ -148,7 +148,8 @@ export default function detalheCaronas() {
                     <Text style={styles.text}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
                     <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
                     <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
-                    <Text style={styles.description}> Fumante: {infosMotorista[0].fumante} </Text>
+                    <Text style={styles.description}> Cor do Carro: {infosMotorista[0].corCarro}</Text>
+                    <Text style={styles.description}> Permite fumar no carro?: {infosMotorista[0].fumante} </Text>
                     <Text style={styles.description}> Curso: {infosMotorista[0].curso} </Text>
                     <Text style={styles.description}> Musicas: {infosMotorista[0].musica} </Text>
                 </>
@@ -166,7 +167,7 @@ export default function detalheCaronas() {
                     <View style={{marginBottom: 20}}>
                             <Text style={styles.text}> {passageiro.nome} {passageiro.sobrenome} ({passageiro.apelido}) </Text>
                             <Text style={styles.description}> Curso: {passageiro.curso} </Text>
-                            <Text style={styles.description}> Musica: {passageiro.musica} </Text>
+                            <Text style={styles.description}> Permite fumar no carro?: {passageiro.fumante} </Text>
                         </View>
                 </>
             )

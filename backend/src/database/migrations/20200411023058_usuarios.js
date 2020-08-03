@@ -13,6 +13,7 @@ exports.up = function(knex) {
       table.string('musica').nullable();
       table.string('modeloCarro').nullable();
       table.string('placaCarro').nullable();
+      table.string('corCarro').nullable();
   }); //criando a tabela de Usuários
 };
 
