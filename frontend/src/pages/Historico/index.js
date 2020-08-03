@@ -31,7 +31,7 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
+            <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
             
             <FlatList style={styles.CaronasList}
             data = {caronas}

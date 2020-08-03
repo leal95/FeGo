@@ -113,9 +113,10 @@ export default function PublicarCarona() {
                     style={styles.inputText} 
                     placeholder="Paradas?"
                     autoCorrect={false}
+                    autoCapitalize="words"
                     onChangeText={setParadas}
                     />
-                <Text>(separe cidades por virgulas e sem espaço)</Text>
+                <Text>(separe cidades por virgulas)</Text>
 
                 <Text style={styles.inputTextHeader}></Text>
                 <Button title={`Clique aqui para selecionar data \n e horário de saída`} onPress={showDatePicker} />
@@ -152,6 +153,13 @@ export default function PublicarCarona() {
                     autoCorrect={false}
                     onChangeText={setOBS}
                     />
+                <Text style={styles.inputTextHeader}>Sugestões para as observações: </Text>
+                <Text style={styles.inputTextHeader}>{'- Tem ar condicionado?'} </Text>
+                <Text style={styles.inputTextHeader}>{'- Você permite comer no carro?'} </Text>
+                <Text style={styles.inputTextHeader}>{'- Tem espaço para malas?'} </Text>
+                <Text style={styles.inputTextHeader}>{'- Terão animais?'} </Text>
+                <Text style={styles.inputTextHeader}>{'- Você tem Sem Parar?'} </Text>
+                <Text style={styles.inputTextHeader}>{'- Qual o tempo de tolerância?'} </Text>
 
                 <Text style={styles.inputTextHeader}></Text>
                 <View style={styles.botoes}>
@@ -161,7 +169,7 @@ export default function PublicarCarona() {
                         <Text style={styles.botaoLoginText}>Publicar</Text>
                     </TouchableOpacity>
 
-                </View >
+                </View>
                 </ScrollView>
         </KeyboardAvoidingView>
            

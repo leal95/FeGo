@@ -60,7 +60,7 @@ export default StyleSheet.create({
     },
 
     inputTextHeader: {
-        fontSize: 19,
+        fontSize: 16,
         color: '#A2A2A2',
     },
 

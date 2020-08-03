@@ -128,6 +128,7 @@ export default function detalheCaronas() {
                         <Text style={styles.Linhas}> {'-->'} </Text>
                         {infosCarona.destino.split(",")[0]}</Text>
                         <Text style={styles.CaronasTextMid}> {infosCarona.hora}:{infosCarona.minuto} </Text>
+                        <Text style={styles.CaronasTextVP}> Paradas: {infosCarona.destino} </Text>
                         <View style={styles.CaronasViewVP}>
                             <Text style={styles.CaronasTextVP}> Vagas: {infosCarona.vagas} </Text>
                             <Text style={styles.CaronasTextVP}> Preco: {infosCarona.preco} reais </Text>
