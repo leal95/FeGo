@@ -12,6 +12,7 @@ import PublicarCarona from './pages/PublicarCarona'
 import ListarCaronas from './pages/ListarCaronas'
 import DetalheCarona from './pages/DetalheCarona'
 import Mensagens from './pages/Mensagens'
+import Historico from './pages/Historico'
 //importando cada uma das telas
 
 export default function Routes() {
@@ -26,6 +27,7 @@ export default function Routes() {
                 <AppStack.Screen name="ListarCaronas" component={ListarCaronas} />
                 <AppStack.Screen name="DetalheCarona" component={DetalheCarona} />
                 <AppStack.Screen name="Mensagens" component={Mensagens}/>
+                <AppStack.Screen name="Historico" component={Historico}/>
             </AppStack.Navigator>
         </NavigationContainer>
     );

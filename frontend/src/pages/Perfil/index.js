@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import { TextInput, FlatList } from 'react-native-gesture-handler';
+import { TextInput } from 'react-native-gesture-handler';
 //Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
 
 import styles from './styles';
@@ -27,18 +27,6 @@ export default function Cadastro() {
     const [modeloCarro, setModeloCarro] = useState(dados.modeloCarro);
     const [placaCarro, setPlacaCarro] = useState(dados.placaCarro);
     const [corCarro, setCorCarro] = useState(dados.corCarro);
-    const [caronas, setCaronas] = useState([]);
-
-    useEffect(() => {
-        api.get(`/caronas/filtros/?email=${dados.email}`)
-        .then(response => {
-            setCaronas(response.data);
-        })
-    }, []) 
-
-    function detalheCarona (infosCarona) {
-        navigation.navigate('DetalheCarona', {dados, infosCarona});
-    };
 
     async function salvarDados() {
     //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
@@ -79,151 +67,125 @@ export default function Cadastro() {
         <View style={styles.container}>
             <Feather name="arrow-left" size={30} color="#999" onPress={navigation.goBack} /> 
 
-            <FlatList
-                ListHeaderComponent={
-                    <>
-                        <View>
-
-                        <View style={styles.user}>
-                            <View style={styles.userFoto}></View>
-                            <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
-                            <Text style={styles.userEmail}> {dados.email} </Text>
-                        </View>
-                        <TouchableOpacity 
-                        style={styles.botaoMensagens} 
-                        onPress={() => navigation.navigate('Mensagens', {dados})}>
-                            <Text style={styles.botaoLoginText}>Mensagens</Text>
-                        </TouchableOpacity> 
-                            
-                            <Text style={{marginLeft: 10}}>Nome:</Text>
-                            <TextInput
-                                style={styles.inputText}
-                                placeholder={dados.nome}
-                                autoCorrect={false}
-                                onChangeText={setNome}
-                            />
-
-                            <Text style={{marginLeft: 10}}>Sobrenome:</Text>
-                            <TextInput
-                                style={styles.inputText}
-                                placeholder={dados.sobrenome}
-                                autoCorrect={false}
-                                onChangeText={setSobrenome}
-                            />
-
-                            <Text style={{marginLeft: 10}}>Apelido:</Text>  
-                            <TextInput
-                                style={styles.inputText} 
-                                placeholder={dados.apelido}
-                                autoCorrect={false}
-                                onChangeText={setApelido}
-                                />
-                                
-                            <Text style={{marginLeft: 10}}>Telefone:</Text>
-                            <TextInput
-                            style={styles.inputText} 
-                            placeholder={dados.numTelefone}
+            <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View style={styles.user}>
+                        <View style={styles.userFoto}></View>
+                        <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
+                        <Text style={styles.userEmail}> {dados.email} </Text>
+                    </View>
+                        
+                        <Text style={{marginLeft: 10}}>Nome:</Text>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder={dados.nome}
                             autoCorrect={false}
-                            onChangeText={setNumTelefone}  
+                            onChangeText={setNome}
+                        />
+
+                        <Text style={{marginLeft: 10}}>Sobrenome:</Text>
+                        <TextInput
+                            style={styles.inputText}
+                            placeholder={dados.sobrenome}
+                            autoCorrect={false}
+                            onChangeText={setSobrenome}
+                        />
+
+                        <Text style={{marginLeft: 10}}>Apelido:</Text>  
+                        <TextInput
+                            style={styles.inputText} 
+                            placeholder={dados.apelido}
+                            autoCorrect={false}
+                            onChangeText={setApelido}
+                            />
+                            
+                        <Text style={{marginLeft: 10}}>Telefone:</Text>
+                        <TextInput
+                        style={styles.inputText} 
+                        placeholder={dados.numTelefone}
+                        autoCorrect={false}
+                        onChangeText={setNumTelefone}  
+                        autoCapitalize='none'
+                        keyboardType="numeric"
+                        />
+
+                        <Text style={{marginLeft: 10}}>Placa do Carro:</Text>  
+                        <TextInput
+                            style={styles.inputText} 
+                            placeholder={dados.placaCarro}
+                            autoCorrect={false}
+                            onChangeText={setPlacaCarro}
+                            />
+
+                        <Text style={{marginLeft: 10}}>Modelo do Carro:</Text>  
+                        <TextInput
+                            style={styles.inputText} 
+                            placeholder={dados.modeloCarro}
+                            autoCorrect={false}
+                            onChangeText={setModeloCarro}
+                            />
+
+                        <Text style={{marginLeft: 10}}>Cor do Carro:</Text>  
+                        <TextInput
+                            style={styles.inputText} 
+                            placeholder={dados.corCarro}
+                            autoCorrect={false}
+                            onChangeText={setCorCarro}
+                            />
+
+                        <Text style={{marginLeft: 10}}>RA:</Text>
+                        <TextInput
+                            style={styles.inputText} 
+                            placeholder={dados.ra}
+                            autoCorrect={false}
+                            onChangeText={setRA}  
                             autoCapitalize='none'
                             keyboardType="numeric"
                             />
 
-                            <Text style={{marginLeft: 10}}>Placa do Carro:</Text>  
-                            <TextInput
-                                style={styles.inputText} 
-                                placeholder={dados.placaCarro}
-                                autoCorrect={false}
-                                onChangeText={setPlacaCarro}
-                                />
+                        <Text style={{marginLeft: 10}}>Permite fumar no carro?:</Text>
+                        <RNPickerSelect
+                            style={pickerSelectStyles}
+                            placeholder={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Permite fumar no carro?', value: null}}
+                            onValueChange={(value) => setFumante(value)}
+                            items={[
+                                { label: 'Sim', value: 'Sim' },
+                                { label: 'Nao', value: 'Nao' },
+                            ]}
+                        />
+                        
+                        <Text style={{marginLeft: 10}}>Curso:</Text>
+                        <RNPickerSelect
+                            style={pickerSelectStyles}
+                            placeholder={dados.curso? {label: dados.curso, value: dados.curso} : {label: 'Curso', value: null}}
+                            onValueChange={(value) => setCurso(value)}
+                            items={[
+                                { label: 'Engenharia Civil', value: 'Engenharia Civil' },
+                                { label: 'Engenharia Elétrica', value: 'Engenharia Elétrica' },
+                                { label: 'Engenharia de Materiais', value: 'Engenharia de Materiais' },
+                                { label: 'Engenharia de Produção', value: 'Engenharia de Produção' },
+                                { label: 'Engenharia Mecânica', value: 'Engenharia Mecânica' },
+                                { label: 'Física', value: 'Física' },
+                                { label: 'Matemática', value: 'Matemática' },
+                                { label: 'Pós-Graduação', value: 'Pós-Graduação' },
+                            ]}
+                        />
 
-                            <Text style={{marginLeft: 10}}>Modelo do Carro:</Text>  
-                            <TextInput
-                                style={styles.inputText} 
-                                placeholder={dados.modeloCarro}
-                                autoCorrect={false}
-                                onChangeText={setModeloCarro}
-                                />
+                        <Text style={{marginLeft: 10}}>Musicas:</Text>
+                        <TextInput
+                            style={styles.inputText} 
+                            placeholder={dados.musica}
+                            autoCorrect={false}
+                            onChangeText={setMusica}
+                            /> 
 
-                            <Text style={{marginLeft: 10}}>Cor do Carro:</Text>  
-                            <TextInput
-                                style={styles.inputText} 
-                                placeholder={dados.corCarro}
-                                autoCorrect={false}
-                                onChangeText={setCorCarro}
-                                />
-
-                            <Text style={{marginLeft: 10}}>RA:</Text>
-                            <TextInput
-                                style={styles.inputText} 
-                                placeholder={dados.ra}
-                                autoCorrect={false}
-                                onChangeText={setRA}  
-                                autoCapitalize='none'
-                                keyboardType="numeric"
-                                />
-
-                            <Text style={{marginLeft: 10}}>Permite fumar no carro?:</Text>
-                            <RNPickerSelect
-                                style={pickerSelectStyles}
-                                placeholder={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Permite fumar no carro?', value: null}}
-                                onValueChange={(value) => setFumante(value)}
-                                items={[
-                                    { label: 'Sim', value: 'Sim' },
-                                    { label: 'Nao', value: 'Nao' },
-                                ]}
-                            />
-                            
-                            <Text style={{marginLeft: 10}}>Curso:</Text>
-                            <RNPickerSelect
-                                style={pickerSelectStyles}
-                                placeholder={dados.curso? {label: dados.curso, value: dados.curso} : {label: 'Curso', value: null}}
-                                onValueChange={(value) => setCurso(value)}
-                                items={[
-                                    { label: 'Engenharia Civil', value: 'Engenharia Civil' },
-                                    { label: 'Engenharia Elétrica', value: 'Engenharia Elétrica' },
-                                    { label: 'Engenharia de Materiais', value: 'Engenharia de Materiais' },
-                                    { label: 'Engenharia de Produção', value: 'Engenharia de Produção' },
-                                    { label: 'Engenharia Mecânica', value: 'Engenharia Mecânica' },
-                                    { label: 'Física', value: 'Física' },
-                                    { label: 'Matemática', value: 'Matemática' },
-                                    { label: 'Pós-Graduação', value: 'Pós-Graduação' },
-                                ]}
-                            />
-
-                            <Text style={{marginLeft: 10}}>Musicas:</Text>
-                            <TextInput
-                                style={styles.inputText} 
-                                placeholder={dados.musica}
-                                autoCorrect={false}
-                                onChangeText={setMusica}
-                                /> 
-
-                            <TouchableOpacity 
-                            style={styles.botaoLogin} 
-                            onPress={() => salvarDados()}>
-                                <Text style={styles.botaoLoginText}>Salvar</Text>
-                            </TouchableOpacity>
-                    </View>
-                    </>
-                }
-                data = {caronas}
-                keyExtractor={carona => String(carona.id)}
-                showsVerticalScrollIndicator = {false}
-                renderItem = {({item: carona})=>(
-                    <TouchableOpacity style={styles.Caronas}
-                    onPress={() => detalheCarona(carona)}>
-                    <View style={styles.CaronasInfo}>
-                        <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
-                        <Text style={styles.CaronasText}> R${carona.preco} </Text>
-                    </View>
-                    <View style={styles.CaronasInfo}>
-                        <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
-                        <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
-                    </View>
-                    </TouchableOpacity>
-                )}
-                />
+                        <TouchableOpacity 
+                        style={styles.botaoLogin} 
+                        onPress={() => salvarDados()}>
+                            <Text style={styles.botaoLoginText}>Salvar</Text>
+                        </TouchableOpacity>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </View>
         </>
     )

@@ -37,6 +37,16 @@ export default function Cadastro() {
                 onPress ={()=>navigateToPage('ListarCaronas')}>
                     <Text style={styles.textCaronas}>Procurar Carona</Text>
                 </TouchableOpacity> 
+
+                <TouchableOpacity style={styles.botaoCarona}
+                onPress ={()=>navigateToPage('Mensagens')}>
+                    <Text style={styles.textCaronas}>Mensagens</Text>
+                </TouchableOpacity> 
+
+                <TouchableOpacity style={styles.botaoCarona}
+                onPress ={()=>navigateToPage('Historico')}>
+                    <Text style={styles.textCaronas}>Histórico</Text>
+                </TouchableOpacity> 
             </View>
         </View>
         </>

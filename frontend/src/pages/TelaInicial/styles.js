@@ -10,7 +10,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         justifyContent: 'center',
-        marginTop: 40,
+        marginTop: 20,
     }, //Estilos dos dois botões do fim da página ("Oferecer carona" e "Procurar Carona")
 
     botaoInicial: {
@@ -22,7 +22,7 @@ export default StyleSheet.create({
         height: 100,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30,
+        marginTop: 35,
     }, //Estilos dos botões redondos
 
     botoesIniciais: {
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
-        paddingTop: Constants.statusBarHeight + 50,
+        paddingTop: Constants.statusBarHeight + 15,
     }, //Estilo do Container
 
     textCaronas: {
