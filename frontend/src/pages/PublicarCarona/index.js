@@ -6,11 +6,9 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
-//import TimePicker from 'react-native-simple-time-picker';
+import {listaDeCidades} from '../../functions/cidades';
 
-
-
-export default function PublicarCarona() { 
+export default function PublicarCarona() {
     const route = useRoute();
     const navigation = useNavigation();
 
@@ -165,7 +163,7 @@ export default function PublicarCarona() {
                 <View style={styles.botoes}>
                     <TouchableOpacity 
                     style={styles.botaoLogin}
-                    onPress={() => publicarCarona()}>
+                    onPress={() => visu()}>
                         <Text style={styles.botaoLoginText}>Publicar</Text>
                     </TouchableOpacity>
 

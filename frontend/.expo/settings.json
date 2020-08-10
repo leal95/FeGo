@@ -1,6 +1,6 @@
 {
   "urlRandomness": "gd-bpu",
-  "hostType": "localhost",
+  "hostType": "lan",
   "lanType": "ip",
   "dev": true,
   "minify": false,
