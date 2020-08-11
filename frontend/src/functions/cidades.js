@@ -11,4 +11,5 @@ export const listaDeCidades = [
     'Santos',
     'São Paulo',
     'São José dos Campos',
-    'Taubaté']
+    'Taubaté'
+]

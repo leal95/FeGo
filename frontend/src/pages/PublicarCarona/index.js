@@ -7,6 +7,8 @@ import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
 import {listaDeCidades} from '../../functions/cidades';
+import {Autocomplete} from "react-native-dropdown-autocomplete";
+
 
 export default function PublicarCarona() {
     const route = useRoute();
@@ -17,6 +19,7 @@ export default function PublicarCarona() {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const [origem, setOrigem] = useState();
+    const [origemSugest, setOrigemSugest] = useState();
     const [destino, setDestino] = useState();
     const [data, setData] = useState();
     const [preco, setPreco] = useState();
@@ -67,11 +70,12 @@ export default function PublicarCarona() {
         });
 
         try{
-            await api.post('/caronas', info);
+            console.log(origemSugest);
+            /*await api.post('/caronas', info);
 
             alert("Sua Carona foi publicada com sucesso")
 
-            navigation.navigate('TelaInicial', {dados});
+            navigation.navigate('TelaInicial', {dados});*/
         }
         catch(err){
             alert('Erro ao publicar carona!');
@@ -163,7 +167,7 @@ export default function PublicarCarona() {
                 <View style={styles.botoes}>
                     <TouchableOpacity 
                     style={styles.botaoLogin}
-                    onPress={() => visu()}>
+                    onPress={() => publicarCarona()}>
                         <Text style={styles.botaoLoginText}>Publicar</Text>
                     </TouchableOpacity>
 
