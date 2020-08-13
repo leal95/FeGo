@@ -7,7 +7,7 @@ import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
 import {listaDeCidades} from '../../functions/cidades';
-import {Autocomplete} from "react-native-dropdown-autocomplete";
+import AutoComplete from 'react-native-autocomplete-select'
 
 
 export default function PublicarCarona() {
@@ -100,6 +100,12 @@ export default function PublicarCarona() {
                     autoCapitalize="words"
                 />
                 <Text>(Digite o nome da cidade por extenso)</Text>
+
+                <AutoComplete
+                    onSelect={setOrigemSugest}
+                    suggestions={listaDeCidades}
+                    value='sug'
+                />
 
                 <Text style={styles.inputTextHeader}></Text>
                 <TextInput
