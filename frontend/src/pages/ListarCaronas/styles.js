@@ -26,36 +26,22 @@ export default StyleSheet.create({
 
     CaronasList:{
         alignSelf:"center",
-        marginTop: 20,
+        marginTop: 10,
     },//Estilo da FlatList
-
-    userFoto: {
-        borderColor: '#F2CA04',
-        borderWidth: 2,
-        borderRadius: 50,
-        width: 100,
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#aaa',
-        marginTop: 30,
-        marginLeft: 10,
-    }, //Estilos da foto de Perfil
-
 
     Caronas: {
         backgroundColor:"#347EBF",
-        width: 315,
-        height:150,
-        marginBottom:20,
-        borderRadius:30,
+        width: 300,
+        marginBottom:10,
+        borderRadius:20,
+        padding: 10,
         flexDirection:"row"
     }, //Botões quadrados das caronas
 
     CaronasText:{
-        alignSelf:"flex-end",
+        alignSelf: 'auto',
         marginTop: 10,
-        maxWidth: 150,
+        maxWidth: 135,
         marginLeft: 55,
         fontWeight: 'bold',
         color: '#ddd',
@@ -80,6 +66,25 @@ export default StyleSheet.create({
         width: 125,
         marginRight: 5,
         padding: 5,
+    },
 
+    motoristaFoto: {
+        borderColor: '#F2CA04',
+        borderWidth: 2,
+        borderRadius: 50,
+        width: 100,
+        height: 100,
+        backgroundColor: '#aaa',
+    },
+
+    motoristaInfo: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+    motoristaNome: {
+        color: '#fff',
+        fontWeight: 'bold',
+        marginTop: 5,
     },
 });

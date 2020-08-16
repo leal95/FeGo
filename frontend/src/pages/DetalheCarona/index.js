@@ -13,6 +13,7 @@ export default function detalheCaronas() {
     const [infosMotorista, setInfosMotorista] = useState('');
 
     const [infosPassageiros, setInfosPassageiros] = useState([]);
+    const [listaEspera, setListaEspera] = useState([]);
 
     let dados = route.params.dados;
 
@@ -21,13 +22,13 @@ export default function detalheCaronas() {
     const infosCarona = route.params.infosCarona;
 
     function verifKeyExtractor(pessoa){
-        if(pessoa){
-            return pessoa
+        /*if(pessoa){
+            return pessoa.email
         }
-        else{
+        else{*/
             keyExtractorCounter++;
             return `${keyExtractorCounter}`
-        }
+        //}
     }
 
     async function getDadosDoMotorista() {
@@ -38,11 +39,11 @@ export default function detalheCaronas() {
 
     async function getDadosDosPassageiros() {
         if(infosCarona.passageiros){
-            var vetorDePassageiros = [];
+            let vetorDePassageiros = [];
             const emailPassageiros = infosCarona.passageiros.split(",");
         
             if(emailPassageiros){
-                for(var i = 0; i<emailPassageiros.length;i++){
+                for(let i = 0; i<emailPassageiros.length;i++){
                     const response = await api.get(`/sessions/?email=${emailPassageiros[i]}`);
 
                     vetorDePassageiros.push(response.data[0]);
@@ -53,10 +54,28 @@ export default function detalheCaronas() {
         else return
     }
 
+    async function getDadosDaListaEspera() {
+        if(infosCarona.listaEspera){
+            let vetorDePassageiros = [];
+            const emailPassageiros = infosCarona.listaEspera.split(",");
+        
+            if(emailPassageiros){
+                for(let i = 0; i<emailPassageiros.length;i++){
+                    const response = await api.get(`/sessions/?email=${emailPassageiros[i]}`);
+
+                    vetorDePassageiros.push(response.data[0]);
+                }
+                setListaEspera(vetorDePassageiros);
+            }
+        }
+        else return
+    }
+
     useEffect(() => {
         getDadosDoMotorista();
         getDadosDosPassageiros();
-    }, []) 
+        getDadosDaListaEspera();
+    }, [])
 
     function botoesSolicitarCarona() {
         if(infosCarona.vagas > 0){
@@ -82,7 +101,7 @@ export default function detalheCaronas() {
     }
 
     async function solicitarCarona() {
-        var vagasAtt = infosCarona.vagas - 1;
+        let vagasAtt = infosCarona.vagas - 1;
 
         const info = ({
             passageiros: [infosCarona.passageiros, dados.email].join(),
@@ -117,91 +136,76 @@ export default function detalheCaronas() {
             alert('Erro ao fazer alteração das informações!');
         };
     }
-
-    function mostrarDetalhesCarona(){
-        return(
-            <>
-                <View style={styles.Caronas} >
-                    <View style={styles.CaronasInfo}>
-                        <Text style={styles.CaronasTextMid}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
-                        <Text style={styles.CaronasText}> {infosCarona.origem}
-                        <Text style={styles.Linhas}> {'-->'} </Text>
-                        {infosCarona.destino.split(",")[0]}</Text>
-                        <Text style={styles.CaronasTextMid}> {infosCarona.hora}:{infosCarona.minuto} </Text>
-                        <Text style={styles.CaronasTextVP}> Paradas: {infosCarona.destino} </Text>
-                        <View style={styles.CaronasViewVP}>
-                            <Text style={styles.CaronasTextVP}> Vagas: {infosCarona.vagas} </Text>
-                            <Text style={styles.CaronasTextVP}> Preco: {infosCarona.preco} reais </Text>
-                        </View>
-                        <Text style={styles.CaronasTextMid}>OBS: {infosCarona.obs}</Text>
-                    </View>
-                </View>
-            </>
-        )
-    }
-
-    function mostrarMotorista() {
-        if(infosMotorista){
-            return(
-                <>
-                    <View style={styles.espacamento}></View>
-                    <Text style={styles.description} >Motorista:</Text>
-                    <Text style={styles.text}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
-                    <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
-                    <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
-                    <Text style={styles.description}> Cor do Carro: {infosMotorista[0].corCarro}</Text>
-                    <Text style={styles.description}> Permite fumar no carro?: {infosMotorista[0].fumante} </Text>
-                    <Text style={styles.description}> Curso: {infosMotorista[0].curso} </Text>
-                    <Text style={styles.description}> Musicas: {infosMotorista[0].musica} </Text>
-                </>
-            )
-        }
-        else{
-            return
-        }
-    }
-
-    function mostrarPassageiro(passageiro){
-        if(passageiro){
-            return(
-                <>
-                    <View style={{marginBottom: 20}}>
-                            <Text style={styles.text}> {passageiro.nome} {passageiro.sobrenome} ({passageiro.apelido}) </Text>
-                            <Text style={styles.description}> Curso: {passageiro.curso} </Text>
-                            <Text style={styles.description}> Permite fumar no carro?: {passageiro.fumante} </Text>
-                        </View>
-                </>
-            )
-        }
-        else{
-            return
-        }
-    }
     
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
-            <View style={styles.header}></View>
+            <Feather name="arrow-left" style={{marginBottom: 10}} size={30} color="#858585" onPress = {navigation.goBack}/>
 
-            <FlatList style={styles.passaDescri}
+            <FlatList
                 ListHeaderComponent={
                     <>
-                        {mostrarDetalhesCarona()}
-                        
-                        {mostrarMotorista()}
+                        <View style={styles.Caronas} >
+                            <View style={styles.CaronasInfo}>
+                                <Text style={{color: '#ddd', alignSelf: 'center'}}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
+                                <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
+                                <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
+                                <Text style={styles.CaronasText}>{infosCarona.destino.split(",")[0]}</Text>
+                                <Text style={{color: '#ddd', alignSelf: 'center', margin: 5}}> {infosCarona.hora}:{infosCarona.minuto} </Text>
+                                <Text style={{color: '#ddd', fontWeight: 'bold'}}> Paradas: {infosCarona.destino} </Text>
+                                <View style={styles.CaronasViewVP}>
+                                    <Text style={{color: '#ddd', fontWeight: 'bold'}}> Vagas: {infosCarona.vagas} </Text>
+                                    <Text style={{color: '#ddd', fontWeight: 'bold'}}> Preco: {infosCarona.preco} reais </Text>
+                                </View>
+                                <Text style={{color: '#ddd', alignSelf: 'center'}}>OBS: {infosCarona.obs}</Text>
+                            </View>
+                        </View>
+
+                        {(infosMotorista) ?
+                        <>
+                            <View style={{margin: 10}}>
+                                <Text style={styles.text}>Motorista:</Text>
+                                <Text style={styles.description}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
+                                <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
+                                <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
+                                <Text style={styles.description}> Cor do Carro: {infosMotorista[0].corCarro}</Text>
+                            </View>
+                        </>
+                        :
+                        null}
 
 
-                        <Text style={styles.passaDescri}>Passageiro(s):</Text>
+                        <Text style={styles.text}>Passageiro(s):</Text>
                     </>
                 }
                 data = {infosPassageiros}
                 keyExtractor={pessoa => verifKeyExtractor(pessoa)}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: pessoa})=>(
-                    mostrarPassageiro(pessoa)
+                    (pessoa) ? 
+                    <>
+                        <View style={{marginBottom: 10}}>
+                            <Text style={styles.description}> {pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                        </View>
+                    </>
+                    : null
                 )}
                 ListFooterComponent={
-                    botoesSolicitarCarona()
+                    <>
+                        <Text style={styles.text}>Lista de Espera:</Text>
+                        <FlatList
+                        data = {listaEspera}
+                        keyExtractor = {pessoa => verifKeyExtractor(pessoa)}
+                        renderItem = {({item: pessoa})=>(
+                            (pessoa) ? 
+                            <>
+                                <View style={{marginBottom: 10}}>
+                                    <Text style={styles.description}> {pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                                </View>
+                            </>
+                            : null
+                        )} />
+                        {botoesSolicitarCarona()}
+                    </>
                 }
                 />
         </View>

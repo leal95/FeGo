@@ -12,6 +12,7 @@ export default function Caronas() {
     const navigation = useNavigation();
 
     const [caronas, setCaronas] = useState([]);
+    const [caronasFiltradas, setCaronasFiltradas] = useState([]);
     const [origem, setOrigem] = useState('');
     const [destino, setDestino] = useState('');
 
@@ -24,19 +25,29 @@ export default function Caronas() {
     async function loadCaronas() {
         const response = await api.get('/caronas');
 
-        setCaronas(response.data);
+        let vetorDeCaronas = [];
+        let horarioMilissegundos = new  Date().valueOf();
+        response.data.map( carona => {
+            if(carona.dataMilissegundos > horarioMilissegundos){
+                vetorDeCaronas.push(carona);
+            }
+        })
+        setCaronas(vetorDeCaronas);
+        setCaronasFiltradas(vetorDeCaronas);
     }
 
     async function buscarCaronas() {
-        try{
-            await api.get(`/caronas/filtros/?origem=${origem}&destino=${destino}`)
-            .then(response => {
-                setCaronas(response.data);
-            })
-        }
-        catch(err){
-            alert('Erro ao pesquisar caronas!');
-        };
+        let vetorDeCaronas = [];
+
+        vetorDeCaronas = caronas.filter( carona => {
+            return carona.origem.indexOf(origem) > -1;
+        })
+
+        vetorDeCaronas = vetorDeCaronas.filter( carona => {
+            return carona.destino.indexOf(destino) > -1;
+        })
+
+        setCaronasFiltradas(vetorDeCaronas);
     }
 
     useEffect(() => {
@@ -45,8 +56,7 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
-            <View style={styles.header}></View>
+            <Feather name="arrow-left" size={30} style={{marginBottom: 10}} color="#858585" onPress = {navigation.goBack}/>
 
             <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
             <View style={{flexDirection: 'row'}}>
@@ -62,23 +72,28 @@ export default function Caronas() {
                     autoCorrect={false}
                     onChangeText={setDestino}
                 />
-                <Feather name="search" size={40} onPress={buscarCaronas} />
+                <Feather name="search" size={30} style={styles.buscar} onPress={buscarCaronas} />
             </View>
             </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}
-            data = {caronas}
+            data = {caronasFiltradas}
             keyExtractor={carona => String(carona.id)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
                 <TouchableOpacity style={styles.Caronas}
                 onPress={() => detalheCarona(carona)}>
-                <View style={styles.userFoto}></View>
+                <View style={styles.motoristaInfo}>
+                    <View style={styles.motoristaFoto}></View>
+                    <Text style={styles.motoristaNome}>{(dados.nome) ? dados.nome : null}</Text>
+                </View>
                 <View style={styles.CaronasInfo}>
-                <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
-                <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
-                <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
-                <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>
+                    <Text style={styles.CaronasText}>{carona.origem} {(carona.encontro) ? `(${carona.encontro})`:null}</Text>
+                    <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
+                    <Text style={styles.CaronasText}>{carona.destino.split(",")[0]} </Text>
+                    <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
+                    <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
+                    <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>
                 </View>
                 </TouchableOpacity>
             )}

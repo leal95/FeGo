@@ -25,6 +25,7 @@ export default StyleSheet.create({
     botoes: {
         alignItems: 'center'
     },
+
     container: {
         flex: 1,
         backgroundColor: 'white',
@@ -33,6 +34,7 @@ export default StyleSheet.create({
 
     header: {
         alignItems:'center',
+        marginBottom: -20,
     },
 
     headerText: {
@@ -57,11 +59,17 @@ export default StyleSheet.create({
         height: 50,
         width: 300,
         padding: 10,
+        marginTop: 15,
     },
 
-    inputTextHeader: {
-        fontSize: 16,
-        color: '#A2A2A2',
+    inputTextOBS: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,
+        width: 300,
+        padding: 10,
+        marginTop: 15,
     },
 
     subtitleText: {

@@ -18,8 +18,6 @@ routes.put('/caronas/:id', CaronasController.edit);
 routes.get('/caronas', CaronasController.index); //listar caronas
 routes.delete('/caronas/:id', CaronasController.delete); //deletar caronas
 
-routes.get('/caronas/filtros', FiltrosController.filtrarCaronas);
-
 routes.post('/usuarios/mensagens', MensagensController.create);
 routes.get('/usuarios/mensagens', MensagensController.mostrarMensagensPorUsuario);
 

@@ -6,8 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
-import {listaDeCidades} from '../../functions/cidades';
-import AutoComplete from 'react-native-autocomplete-select'
+/*import {listaDeCidades} from '../../functions/cidades';*/
 
 
 export default function PublicarCarona() {
@@ -19,7 +18,8 @@ export default function PublicarCarona() {
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const [origem, setOrigem] = useState();
-    const [origemSugest, setOrigemSugest] = useState();
+    const [dataMilissegundos, setDataMilissegundos] = useState();
+    const [encontro, setEncontro] = useState();
     const [destino, setDestino] = useState();
     const [data, setData] = useState();
     const [preco, setPreco] = useState();
@@ -37,45 +37,37 @@ export default function PublicarCarona() {
 
     const handleConfirm = (date) => {
         setData(date.toString().split(" "));
+        setDataMilissegundos(date.getTime());
         setDatePickerVisibility(false);
       };
 
-    function mostrarData(){
-        if(data){
-            return(
-                <Text>{data[2]} {data[1]} {data[3]} {data[4].split(":")[0]}:{data[4].split(":")[1]} </Text>
-            )
-        }
-        else{
-            return
-        }
-    }
-
     async function publicarCarona() {
-
         const info = ({
-            origem, 
+            origem,
+            encontro,
             destino: [destino, paradas].join(),
             hora: data[4].split(":")[0], 
             minuto: data[4].split(":")[1],
             dia: data[2],
             mes: data[1],
             ano: data[3],
+            dataMilissegundos,
             preco,
             vagas,
             obs,
+            nome: dados.nome,
             email: dados.email,
             modeloCarro: dados.placaCarro,
             placaCarro: dados.modeloCarro,
         });
 
         try{
-            console.log(origemSugest);
-            /*await api.post('/caronas', info);
+            console.log("ah", info);
+            await api.post('/caronas', info);
 
             alert("Sua Carona foi publicada com sucesso")
 
-            navigation.navigate('TelaInicial', {dados});*/
+            navigation.navigate('TelaInicial', {dados});
         }
         catch(err){
             alert('Erro ao publicar carona!');
@@ -99,34 +91,33 @@ export default function PublicarCarona() {
                     onChangeText={setOrigem}
                     autoCapitalize="words"
                 />
-                <Text>(Digite o nome da cidade por extenso)</Text>
+                <Text>Digite o nome da cidade origem por extenso</Text>
 
-                <AutoComplete
-                    onSelect={setOrigemSugest}
-                    suggestions={listaDeCidades}
-                    value='sug'
-                />
-
-                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
                     style={styles.inputText} 
                     placeholder="Para onde? (Cidade)"
                     autoCorrect={false}
                     onChangeText={setDestino}
                     />
-                <Text>(Digite o nome da cidade por extenso)</Text>
+                <Text>Digite o nome da cidade destino por extenso</Text>
 
-                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
-                    style={styles.inputText} 
+                    style={styles.inputText}
                     placeholder="Paradas?"
                     autoCorrect={false}
                     autoCapitalize="words"
                     onChangeText={setParadas}
                     />
-                <Text>(separe cidades por virgulas)</Text>
+                <Text>Separe as cidades de parada por virgulas</Text>
 
-                <Text style={styles.inputTextHeader}></Text>
+                <TextInput
+                    style={styles.inputText} 
+                    placeholder="Local de encontro"
+                    autoCorrect={false}
+                    onChangeText={setEncontro}
+                    />
+                <Text>Caso tenha mais de um, separe por virgulas</Text>
+
                 <Button title={`Clique aqui para selecionar data \n e horário de saída`} onPress={showDatePicker} />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
@@ -134,42 +125,42 @@ export default function PublicarCarona() {
                         onConfirm={handleConfirm}
                         onCancel={hideDatePicker}
                     />
-                {mostrarData()}
+                {(data) ? <Text>{data[2]} {data[1]} {data[3]} {data[4].split(":")[0]}:{data[4].split(":")[1]} </Text>: null}
 
-                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
-                    style={styles.inputText} 
-                    placeholder="Informe aqui o preço por pessoa em reais" 
-                    autoCorrect={false}
-                    onChangeText={setPreco}
-                    keyboardType='numeric'
-                    />
+                style={styles.inputText} 
+                placeholder="Informe aqui o preço por pessoa em reais" 
+                autoCorrect={false}
+                onChangeText={setPreco}
+                keyboardType='numeric'
+                />
 
-                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
-                    style={styles.inputText} 
-                    placeholder="Quantas vagas?" 
-                    autoCorrect={false}
-                    onChangeText={setVagas}
-                    keyboardType='numeric'
-                    />
+                style={styles.inputText} 
+                placeholder="Quantas vagas?" 
+                autoCorrect={false}
+                onChangeText={setVagas}
+                keyboardType='numeric'
+                />
 
-                <Text style={styles.inputTextHeader}></Text>
                 <TextInput
-                    style={styles.inputText} 
-                    placeholder="Espaço para observações ou comentários" 
-                    autoCorrect={false}
-                    onChangeText={setOBS}
-                    />
-                <Text style={styles.inputTextHeader}>Sugestões para as observações: </Text>
-                <Text style={styles.inputTextHeader}>{'- Tem ar condicionado?'} </Text>
-                <Text style={styles.inputTextHeader}>{'- Você permite comer no carro?'} </Text>
-                <Text style={styles.inputTextHeader}>{'- Tem espaço para malas?'} </Text>
-                <Text style={styles.inputTextHeader}>{'- Terão animais?'} </Text>
-                <Text style={styles.inputTextHeader}>{'- Você tem Sem Parar?'} </Text>
-                <Text style={styles.inputTextHeader}>{'- Qual o tempo de tolerância?'} </Text>
+                style={styles.inputTextOBS} 
+                placeholder="Espaço para observações ou comentários" 
+                autoCorrect={false}
+                multiline = {true}
+                numberOfLines = {3}
+                onChangeText={setOBS}
+                />
+                
+                <Text>Sugestões para as observações: </Text>
+                <Text>{'- Tem ar condicionado?'} </Text>
+                <Text>{'- Você permite comer no carro?'} </Text>
+                <Text>{'- Tem espaço para malas?'} </Text>
+                <Text>{'- Terão animais?'} </Text>
+                <Text>{'- Você tem Sem Parar?'} </Text>
+                <Text style={{marginBottom: 10}}>{'- Qual o tempo de tolerância?'} </Text>
 
-                <Text style={styles.inputTextHeader}></Text>
+
                 <View style={styles.botoes}>
                     <TouchableOpacity 
                     style={styles.botaoLogin}

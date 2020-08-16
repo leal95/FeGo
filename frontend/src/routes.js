@@ -16,6 +16,7 @@ import Historico from './pages/Historico'
 //importando cada uma das telas
 
 export default function Routes() {
+    console.disableYellowBox = true;
     return(
         <NavigationContainer>
             <AppStack.Navigator screenOptions={{headerShown: false}} >

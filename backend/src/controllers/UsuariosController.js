@@ -44,7 +44,6 @@ module.exports = {
     async create(request, response) { //método post
         const { email, senha, ra, nome, sobrenome, numTelefone } = request.body; //requisitando informações de cadastro
 
-
         try{
             await connection('usuarios').insert({ //inserir dados no banco
                 email,

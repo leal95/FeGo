@@ -32,17 +32,11 @@ export default StyleSheet.create({
         backgroundColor:"#347EBF",
         width: 300,
         height: 'auto',
-        marginBottom: 7,
         padding: 10,
         borderRadius: 15,
         alignSelf: 'center',
         justifyContent: 'center',
     }, //Botões quadrados das caronas
-
-    CaronasTextMid:{
-        color: '#ddd',
-        alignSelf: 'center',
-    },
 
     CaronasText:{
         fontWeight: 'bold',
@@ -50,11 +44,6 @@ export default StyleSheet.create({
         alignSelf: 'center',
         fontSize: 18,
     },//Estilo dos Textos das Informações das caronas
-
-    CaronasTextVP:{
-        color: '#ddd',
-        fontWeight: 'bold',
-    },
 
     CaronasViewVP:{
         flexDirection: 'row',
@@ -70,10 +59,6 @@ export default StyleSheet.create({
         fontSize: 16,
     },
 
-    espacamento: {
-        marginBottom: 15,
-    },
-
     Linhas: {
         color: 'lightgreen',
     },
@@ -82,6 +67,7 @@ export default StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         marginBottom: 5,
+        fontSize: 18,
     },
 
     textPedirCarona: {
@@ -94,12 +80,5 @@ export default StyleSheet.create({
         color: '#347EBF',
         fontWeight: 'bold',
         fontSize: 16
-    },
-
-    passaDescri: {
-        alignSelf: 'center',
-        fontSize: 16,
-        marginTop: 20,
-        marginBottom: 10,
     },
 });

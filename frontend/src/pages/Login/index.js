@@ -25,7 +25,9 @@ export default function Login() {
             nome: "Fernando",
             sobrenome: "Penha",
             numTelefone: "12988259871",
-            apelido: "Sequela"
+            apelido: "Sequela",
+            placaCarro: "bololo",
+            modeloCarro: "bololocar"
           }
         navigation.navigate('TelaInicial', {dados});
     }; //função para navegar para a tela inicial, passando os dados do Sequela (para os testes)

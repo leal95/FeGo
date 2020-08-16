@@ -8,29 +8,33 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const { origem, destino, hora, minuto, dia, mes, ano, preco, 
-            vagas, passageiros, obs, email, modeloCarro, placaCarro } = request.body;
+        const { origem, encontro, destino, hora, minuto, dia, mes, ano, preco, dataMilissegundos,
+            vagas, passageiros, obs, nome, email, modeloCarro, placaCarro } = request.body;
         //A chave que liga ao usuário será puxada pelo headers (método ideal)
 
         try{
             await connection('caronas').insert({ 
-                origem, 
-                destino,
-                hora, 
-                minuto, 
-                dia,
-                mes,
-                ano,
-                preco,
-                vagas,
-                passageiros,
-                obs,
-                email,
-                modeloCarro,
-                placaCarro 
+                origem: origem, 
+                encontro: encontro,
+                destino: destino,
+                hora: hora, 
+                minuto: minuto, 
+                dia: dia,
+                mes: mes,
+                ano: ano,
+                dataMilissegundos: dataMilissegundos,
+                preco: preco,
+                vagas: vagas,
+                passageiros: passageiros,
+                obs: obs,
+                nome: nome,
+                email: email,
+                modeloCarro: modeloCarro,
+                placaCarro: placaCarro, 
                 })
 
-               return response.json({ origem, destino, hora, minuto, dia, mes, ano, preco, vagas, passageiros, obs, email, modeloCarro, placaCarro }); //inserindo carona no banco de dados
+               return response.json({ origem, encontro, destino, hora, minuto, dia, mes, ano, dataMilissegundos, preco, 
+                vagas, passageiros, obs, nome, email, modeloCarro, placaCarro }); //inserindo carona no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
