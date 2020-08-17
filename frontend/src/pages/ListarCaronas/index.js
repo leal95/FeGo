@@ -15,6 +15,10 @@ export default function Caronas() {
     const [caronasFiltradas, setCaronasFiltradas] = useState([]);
     const [origem, setOrigem] = useState('');
     const [destino, setDestino] = useState('');
+    const [horarioInicial, setHorarioInicial] = useState('');
+    const [horarioFinal, setHorarioFinal] = useState('');
+    const [preco, setPreco] = useState('');
+    const [dia, setDia] = useState('');
 
     const dados = route.params.dados;
 
@@ -39,13 +43,35 @@ export default function Caronas() {
     async function buscarCaronas() {
         let vetorDeCaronas = [];
 
+        if(origem) {
         vetorDeCaronas = caronas.filter( carona => {
             return carona.origem.indexOf(origem) > -1;
         })
+        }
 
+        if(destino) {
         vetorDeCaronas = vetorDeCaronas.filter( carona => {
             return carona.destino.indexOf(destino) > -1;
         })
+        }
+
+        if(dia) {
+        vetorDeCaronas = vetorDeCaronas.filter( carona => {
+            return carona.dia == dia;
+        })
+        }
+
+        if(preco) {
+        vetorDeCaronas = vetorDeCaronas.filter( carona => {
+            return carona.preco < preco;
+        })
+        }
+
+        if(horarioInicial && horarioFinal) {
+            vetorDeCaronas = vetorDeCaronas.filter( carona => {
+            return carona.hora > horarioInicial && carona.hora < horarioFinal;
+        })
+        }
 
         setCaronasFiltradas(vetorDeCaronas);
     }
@@ -56,24 +82,62 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" size={30} style={{marginBottom: 10}} color="#858585" onPress = {navigation.goBack}/>
+            <Feather name="arrow-left" style={{height: 30, width: 30}} size={30} color="#858585" onPress = {navigation.goBack}/>
 
             <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
-            <View style={{flexDirection: 'row'}}>
-                <TextInput
-                    style={styles.inputText}
-                    placeholder={`Origem`}
-                    autoCorrect={false}
-                    onChangeText={setOrigem}
-                />
-                <TextInput
-                    style={styles.inputText}
-                    placeholder={`Destino`}
-                    autoCorrect={false}
-                    onChangeText={setDestino}
-                />
-                <Feather name="search" size={30} style={styles.buscar} onPress={buscarCaronas} />
-            </View>
+                <Text>Filtros de Cidade:</Text>
+                <View style={{flexDirection: 'row', marginVertical: 5}}>
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder={`Origem`}
+                        autoCorrect={false}
+                        onChangeText={setOrigem}
+                    />
+                    <TextInput
+                        style={styles.inputText}
+                        placeholder={`Destino`}
+                        autoCorrect={false}
+                        onChangeText={setDestino}
+                    />
+                </View>
+
+                <Text>Filtros de Horario (Intervalo), Dia e Preço:</Text>
+                <View style={{flexDirection: 'row', marginVertical: 5}}>
+                    <TextInput
+                        style={styles.inputText2}
+                        placeholder={`Inicial`}
+                        autoCorrect={false}
+                        onChangeText={setHorarioInicial}
+                        keyboardType='numeric'
+                        returnKeyType="done"
+                    />
+                    <Text style={{justifyContent: 'center', alignSelf: 'center'}}>{'-'}</Text>
+                    <TextInput
+                        style={styles.inputText2}
+                        placeholder={`Final`}
+                        autoCorrect={false}
+                        onChangeText={setHorarioFinal}
+                        keyboardType='numeric'
+                        returnKeyType="done"
+                    />
+                    <TextInput
+                        style={styles.inputText2}
+                        placeholder={`Dia`}
+                        autoCorrect={false}
+                        onChangeText={setDia}
+                        keyboardType='numeric'
+                        returnKeyType="done"
+                    />
+                    <TextInput
+                        style={styles.inputText2}
+                        placeholder={`Preco`}
+                        autoCorrect={false}
+                        onChangeText={setPreco}
+                        keyboardType='numeric'
+                        returnKeyType="done"
+                    />
+                    <Feather name="search" size={30} style={styles.buscarIcon} onPress={buscarCaronas} />
+                </View>
             </KeyboardAvoidingView>
             
             <FlatList style={styles.CaronasList}

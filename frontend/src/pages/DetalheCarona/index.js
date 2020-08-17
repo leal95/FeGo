@@ -18,6 +18,7 @@ export default function detalheCaronas() {
     let dados = route.params.dados;
 
     let keyExtractorCounter = 0;
+    let listaParaRenderizar = infosPassageiros.concat(listaEspera);
 
     const infosCarona = route.params.infosCarona;
 
@@ -148,6 +149,7 @@ export default function detalheCaronas() {
                             <View style={styles.CaronasInfo}>
                                 <Text style={{color: '#ddd', alignSelf: 'center'}}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
                                 <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
+                                <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
                                 <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
                                 <Text style={styles.CaronasText}>{infosCarona.destino.split(",")[0]}</Text>
                                 <Text style={{color: '#ddd', alignSelf: 'center', margin: 5}}> {infosCarona.hora}:{infosCarona.minuto} </Text>
@@ -177,33 +179,35 @@ export default function detalheCaronas() {
                         <Text style={styles.text}>Passageiro(s):</Text>
                     </>
                 }
-                data = {infosPassageiros}
+                data = {listaParaRenderizar}
                 keyExtractor={pessoa => verifKeyExtractor(pessoa)}
                 showsVerticalScrollIndicator = {false}
-                renderItem = {({item: pessoa})=>(
-                    (pessoa) ? 
+                renderItem = {({item: pessoa, index})=>(
+                    (pessoa && index < infosPassageiros.length-1) ?
                     <>
                         <View style={{marginBottom: 10}}>
-                            <Text style={styles.description}> {pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                            <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
                         </View>
                     </>
-                    : null
+                    :
+                    (pessoa && index === infosPassageiros.length-1) ?
+                    <>
+                        <View style={{marginBottom: 10}}>
+                            <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                            <Text></Text>
+                            <Text style={styles.text}>Lista de Espera:</Text>
+                        </View>
+                    </>
+                    :
+                    (pessoa) ?
+                    <View style={{marginBottom: 10}}>
+                        <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                    </View>
+                    :
+                    null
                 )}
                 ListFooterComponent={
                     <>
-                        <Text style={styles.text}>Lista de Espera:</Text>
-                        <FlatList
-                        data = {listaEspera}
-                        keyExtractor = {pessoa => verifKeyExtractor(pessoa)}
-                        renderItem = {({item: pessoa})=>(
-                            (pessoa) ? 
-                            <>
-                                <View style={{marginBottom: 10}}>
-                                    <Text style={styles.description}> {pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
-                                </View>
-                            </>
-                            : null
-                        )} />
                         {botoesSolicitarCarona()}
                     </>
                 }

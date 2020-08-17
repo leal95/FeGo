@@ -2,7 +2,6 @@ const express = require ('express');
 const UsuariosController = require ('./controllers/UsuariosController');
 const SessionController = require ('./controllers/SessionController');
 const CaronasController = require ('./controllers/CaronasController'); 
-const FiltrosController = require ('./controllers/FiltrosController');
 const MensagensController = require ('./controllers/MensagensController'); //importando express e controllers
 
 const routes = express.Router(); //desacoplando Router do express e alocando na nova variável

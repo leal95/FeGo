@@ -5,6 +5,12 @@ export default StyleSheet.create({
     buscar:{
         alignSelf:"center",
         alignItems:"center",
+    },//Estilo da Lista
+
+    buscarIcon:{
+        height: 30,
+        width: 30,
+        alignSelf: 'center',
     },//Estilo do Buscar
 
     container: {
@@ -66,6 +72,19 @@ export default StyleSheet.create({
         width: 125,
         marginRight: 5,
         padding: 5,
+        textAlign: 'center',
+    },
+
+    inputText2: {
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        borderWidth: 2,
+        borderRadius: 10,  
+        height: 50,
+        width: 60,
+        marginHorizontal: 5,
+        padding: 5,
+        textAlign: 'center',
     },
 
     motoristaFoto: {
