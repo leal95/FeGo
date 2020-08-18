@@ -106,7 +106,7 @@ export default function Login() {
                 <TouchableOpacity 
                 style = {{alignSelf: "center"}}
                 onPress={navigateToTelaInicial}>
-                    <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL (bug de login)</Text>
+                    <Text style={styles.botaoCadastrarText}>IR PARA TELA INICIAL</Text>
                 </TouchableOpacity> 
             
         </View>

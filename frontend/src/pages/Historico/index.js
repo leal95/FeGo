@@ -20,9 +20,16 @@ export default function Caronas() {
     };
 
     async function loadCaronas() {
-        const response = await api.get(`/caronas/filtros/?email=${dados.email}`)
+        const response = await api.get('/caronas');
 
-        setCaronas(response.data);
+        let vetorHistorico = [];
+
+        response.data.map( carona => {
+            if(carona.email == dados.email || carona.passageiros.indexOf(dados.email) > -1){
+                vetorHistorico.push(carona);
+            }
+        })
+        setCaronas(vetorHistorico);
     }
 
     useEffect(() => {
@@ -32,6 +39,7 @@ export default function Caronas() {
     return(
         <View style={styles.container}>
             <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
+            <View style={styles.header}><Text style= {styles.headerText}>Histórico de Caronas</Text></View>
             
             <FlatList style={styles.CaronasList}
             data = {caronas}

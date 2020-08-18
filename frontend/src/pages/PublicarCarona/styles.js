@@ -70,6 +70,9 @@ export default StyleSheet.create({
         width: 300,
         padding: 10,
         marginTop: 15,
+        minHeight: 50,
+        justifyContent: 'center',
+        
     },
 
     subtitleText: {

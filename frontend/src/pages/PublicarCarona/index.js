@@ -62,7 +62,6 @@ export default function PublicarCarona() {
         });
 
         try{
-            console.log("ah", info);
             await api.post('/caronas', info);
 
             alert("Sua Carona foi publicada com sucesso")
@@ -76,7 +75,7 @@ export default function PublicarCarona() {
     
     return(
         <View style={styles.container}>
-                <Feather name="arrow-left" size={30} color="#999" onPress={navigation.goBack} /> 
+            <Feather name="arrow-left" size={30} color="#999" onPress={navigation.goBack} /> 
             <View style={styles.header}>
                 <Text style={styles.headerText}>Publicar Carona</Text>
                 <Text style={styles.subtitleText}>(Preencha todos os dados)</Text>

@@ -69,7 +69,12 @@ export default function Caronas() {
 
         if(horarioInicial && horarioFinal) {
             vetorDeCaronas = vetorDeCaronas.filter( carona => {
-            return carona.hora > horarioInicial && carona.hora < horarioFinal;
+                if(carona.hora.indexOf(0) == 0){
+                    return carona.hora[1] > horarioInicial && carona.hora[1] < horarioFinal;
+                }
+                else{
+                    return carona.hora > horarioInicial && carona.hora < horarioFinal;
+                }
         })
         }
 

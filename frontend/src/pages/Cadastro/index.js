@@ -60,8 +60,26 @@ export default function Cadastro() {
         `)
     } //Função para mostrar Termos e Condições
 
+    async function enviarMensagemDeCadastro() {
+        const mensagemBemVindo = ({
+            desinatarioEmail: email,
+            desinatarioNome: nome,
+            emissarioEmail: "sistema",
+            emissarioNome: "sistema",
+            mensagem: `Olá, ${nome} ${sobrenome}!
+            Bem Vindo ao FeGo! Estamos enviando esta mensagem para te dizer que o seu cadastro foi bem sucedido!
+            Agradecemos a confiança e esperamos atingir suas expectativas com o nosso projeto!
+            Prezamos muito pela sua segurança e conforto, por isso pedimos que você também preze pela dos outros usuários do app!
+            Esperamos que você goste do nosso aplicativo,
+            Att. Equipe Fego`
+        }); 
+
+        const response = await api.post(`/usuarios/mensagens`, {mensagemBemVindo});
+    }
 
     async function cadastrarUsuario() {
+
+        enviarMensagemDeCadastro();
         
         const info = ({
             email,

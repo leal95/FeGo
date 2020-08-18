@@ -55,7 +55,7 @@ export default function Mensagens() {
     return(
         <View style={styles.container}>
                 <Feather name="arrow-left" size={24} color="#858585" onPress = {navigation.goBack}/>
-            <View style={styles.header}><Text style= {styles.headerText}>Mensagens</Text></View>
+            <View style={styles.header}><Text style= {styles.headerText}>Mensagens Recebidas</Text></View>
             
             <FlatList 
             style={styles.MensagensList}

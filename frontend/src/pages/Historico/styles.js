@@ -15,7 +15,6 @@ export default StyleSheet.create({
 
     header: {
         alignItems: 'center',
-        marginBottom: 20,
     },
 
     headerText: {
