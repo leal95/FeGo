@@ -24,11 +24,14 @@ export default function Caronas() {
 
         let vetorHistorico = [];
 
-        response.data.map( carona => {
-            if(carona.email == dados.email || carona.passageiros.indexOf(dados.email) > -1){
-                vetorHistorico.push(carona);
-            }
-        })
+        if(response.data){
+            response.data.map( carona => {
+                if(carona.email == dados.email || carona.passageiros.indexOf(dados.email) > -1){
+                    vetorHistorico.push(carona);
+                }
+            })
+        }
+
         setCaronas(vetorHistorico);
     }
 

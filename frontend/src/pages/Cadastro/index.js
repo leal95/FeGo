@@ -67,12 +67,11 @@ export default function Cadastro() {
             emissarioEmail: "sistema",
             emissarioNome: "sistema",
             mensagem: `Olá, ${nome} ${sobrenome}!
-            Bem Vindo ao FeGo! Estamos enviando esta mensagem para te dizer que o seu cadastro foi bem sucedido!
-            Agradecemos a confiança e esperamos atingir suas expectativas com o nosso projeto!
-            Prezamos muito pela sua segurança e conforto, por isso pedimos que você também preze pela dos outros usuários do app!
-            Esperamos que você goste do nosso aplicativo,
+            Bem Vindo ao FeGo, agradecemos por confiar em nós!
+            Prezamos muito pela sua segurança e conforto, por isso pedimos que você sempre preze pelos outros usuários também
+            Esperamos que aproveite a experiência,
             Att. Equipe Fego`
-        }); 
+        });
 
         const response = await api.post(`/usuarios/mensagens`, {mensagemBemVindo});
     }
