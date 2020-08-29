@@ -102,17 +102,26 @@ export default function detalheCaronas() {
     }
 
     async function solicitarCarona() {
-        let vagasAtt = infosCarona.vagas - 1;
+        const pedido = ({
+            mensagem: `Olá ${infosMotorista[0].nome}, me chamo ${dados.nome}
+            Eu gostaria de pegar a carona contigo na data: ${infosCarona.dia} / ${infosCarona.mes} / ${infosCarona.ano} às ${infosCarona.hora}:${infosCarona.minuto}`,
+            destinatarioEmail: infosCarona.email,
+            destinatarioNome: infosMotorista[0].nome,
+            emissarioEmail: dados.email,
+            emissarioNome: dados.nome,
+            idCarona: infosCarona,
+        })
 
         const info = ({
-            passageiros: [infosCarona.passageiros, dados.email].join(),
-            vagas: vagasAtt
+            listaEspera: [infosCarona.listaEspera, dados.email].join(),
         });
 
         try{
             await api.put(`/caronas/${infosCarona.id}`, info);
 
-            alert("Você foi inserido(a) na carona");
+            await api.post(`/usuarios/mensagens`, pedido);
+
+            alert("Sua solicitação foi enviada à/ao motorista, agora é só esperar pela resposta");
 
             navigation.navigate('TelaInicial');
         }
@@ -129,7 +138,7 @@ export default function detalheCaronas() {
         try{
             await api.put(`/caronas/${infosCarona.id}`, info);
 
-            alert("Você foi inserido(a) na lista de espera");
+            alert("Você foi inserido(a) na lista de espera, assim que alguém sair da carona");
 
             navigation.navigate('TelaInicial');
         }

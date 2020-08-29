@@ -11,6 +11,8 @@ exports.up = function(knex) {
         table.string('emissarioEmail').notNullable();
         table.string('emissarioNome').notNullable();
 
+        table.string('idCarona').nullable();
+
         table.foreign('emissarioEmail').references('email').inTable('usuarios');
         table.foreign('destinatarioEmail').references('email').inTable('usuarios'); //relacionando com a chave primária do usuário
     });

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
 import { FlatList } from 'react-native-gesture-handler';
@@ -25,31 +25,124 @@ export default function Mensagens() {
     }, []) 
 
     async function aceitarMensagem(infosMensagem) {
+        const response = await api.get('/caronas');
+
+        let carona = {};
+
+        if(response.data){
+            response.data.map( elemento => {
+                if(elemento.id == infosMensagem.idCarona){
+                    carona = elemento
+                }
+            })
+        }
+
+        if(carona.vagas > 0){
+            aceitarUsuario(carona, infosMensagem);
+        }
+    }
+
+    async function aceitarUsuario(infosCarona, infosMensagem) {
+        let listaEspera = "";
+
+        if(infosCarona.listaEspera){
+            listaEspera = infosCarona.listaEspera.replace(`${infosMensagem.emissarioEmail},`, "")
+        }
+
         const resposta = ({
             desinatarioEmail: infosMensagem.emissarioEmail,
             desinatarioNome: infosMensagem.emissarioNome,
             emissarioEmail: infosMensagem.desinatarioEmail,
             emissarioNome: infosMensagem.desinatarioNome,
-            mensagem: `Olá, eu gostaria de avisar aceitei sua solicitação de carona! Agradeço o seu pedido e nos vemos em breve!`
+            mensagem: `Olá, ${infosMensagem.destinatarioNome}! 
+            Aceitei sua solicitação de carona! Agradeço o pedido e nos vemos em breve!`
         }); 
 
-        const response = await api.post(`/usuarios/mensagens`, {resposta});
+        const info = ({
+            passageiros: [infosCarona.passageiros, dados.email].join(),
+            vagas: infosCarona.vagas - 1,
+            listaEspera,
+        });
 
-        console.log(response.data);
+        try{
+            await api.put(`/caronas/${infosMensagem.idCarona}`, info);
+
+            await api.post(`/usuarios/mensagens`, resposta);
+
+            alert(`${infosMensagem.emissarioNome} foi aceito na carona`);
+        }
+        catch(err){
+            alert('Ocorreu um erro ao aceitar o pedido de carona, tente novamente mais tarde');
+        };
     }
 
     async function rejeitarMensagem(infosMensagem) {
+        const response = await api.get('/caronas');
+
+        let carona = {};
+
+        if(response.data){
+            response.data.map( elemento => {
+                if(elemento.id == infosMensagem.idCarona){
+                    carona = elemento
+                }
+            })
+        }
+
+        rejeitarUsuario(carona, infosMensagem);
+    }
+
+    async function rejeitarUsuario(infosCarona, infosMensagem) {
+        let listaEspera = "";
+
+        if(carona.listaEspera){
+            listaEspera = infosCarona.listaEspera.replace(`${infosMensagem.emissarioEmail},`, "")   
+        }
+
         const resposta = ({
             desinatarioEmail: infosMensagem.emissarioEmail,
             desinatarioNome: infosMensagem.emissarioNome,
             emissarioEmail: infosMensagem.desinatarioEmail,
             emissarioNome: infosMensagem.desinatarioNome,
-            mensagem: `Olá, eu gostaria de avisar que não pude aceitar sua solicitação de carona! Agradeço o pedido e te desejo tudo de bom!`
-        }); 
+            mensagem: `Olá, eu gostaria de avisar que não pude aceitar sua solicitação de carona mas agradeço o seu pedido!`
+        });
 
-        await api.post(`/usuarios/mensagens`, {resposta});
+        const info = ({
+            listaEspera,
+        });
 
-        console.log(response.data);
+        try{
+            await api.put(`/caronas/${infosMensagem.idCarona}`, info);
+
+            await api.post(`/usuarios/mensagens`, resposta);
+
+            alert(`${infosMensagem.emissarioNome} foi rejeitado da carona
+            Aguarde enquanto confirmamos se não há outro pedido`);
+
+            if(listaEspera){
+                const emailPassageiro = infosCarona.listaEspera.split(",")[0];
+
+                const response = await api.get(`/sessions/?email=${emailPassageiro}`)
+
+                const dadosDoPassageiro = response.data[0];
+
+                const novoPedido = ({
+                    desinatarioEmail: dados.email,
+                    desinatarioNome: dados.nome,
+                    emissarioEmail: dadosDoPassageiro.email,
+                    emissarioNome: dadosDoPassageiro.nome,
+                    mensagem: infosMensagem.mensagem.replace(`${infosMensagem.emissarioNome}`, `${dadosDoPassageiro.nome}`),
+                });
+
+                await api.post(`/usuarios/mensagens`, novoPedido);
+
+                alert(`Há mais uma solicitação de carona, vinda de ${dadosDoPassageiro.nome}.
+                Recarregue esta página (saindo e entrando novamente) para visualizar`)
+            }
+        }
+        catch(err){
+            alert('Ocorreu um erro ao aceitar o pedido de carona, tente novamente mais tarde');
+        };
     }
 
     return(

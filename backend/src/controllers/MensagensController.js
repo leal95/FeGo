@@ -12,7 +12,7 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const {mensagem, destinatarioEmail, destinatarioNome, emissarioEmail, emissarioNome } = request.body;
+        const {mensagem, destinatarioEmail, destinatarioNome, emissarioEmail, emissarioNome, idCarona } = request.body;
         
         try{
             await connection('mensagens').insert({ 
@@ -21,9 +21,10 @@ module.exports = {
                 destinatarioNome,
                 emissarioEmail,
                 emissarioNome,
+                idCarona,
                 })
 
-               return response.json({ mensagem, destinatarioEmail, destinatarioNome, emissarioEmail, emissarioNome}); //inserindo mensagens no banco de dados
+               return response.json("Mensagem criada"); //inserindo mensagens no banco de dados
         }
         catch(err){ 
             return response.json({message:err});
