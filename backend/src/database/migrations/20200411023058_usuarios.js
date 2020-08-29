@@ -20,4 +20,3 @@ exports.up = function(knex) {
 exports.down = function(knex) { //  dropar tabela
  return knex.schema.dropTable('usuarios');
 };
-

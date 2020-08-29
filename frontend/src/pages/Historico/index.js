@@ -20,7 +20,7 @@ export default function Caronas() {
     };
 
     async function loadCaronas() {
-        const response = await api.get('/caronas');
+        const response = await api.get('/historico');
 
         let vetorHistorico = [];
 

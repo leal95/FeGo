@@ -31,9 +31,13 @@ export default function Caronas() {
 
         let vetorDeCaronas = [];
         let horarioMilissegundos = new  Date().valueOf();
-        response.data.map( carona => {
+        response.data.map( async carona => {
             if(carona.dataMilissegundos > horarioMilissegundos){
                 vetorDeCaronas.push(carona);
+            }
+            else{
+                await api.post('/historico', carona);
+                await api.delete(`/caronas/${carona.id}`)
             }
         })
         setCaronas(vetorDeCaronas);

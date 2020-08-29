@@ -69,17 +69,11 @@ module.exports = {
 
     async delete (request, response) { //método delete
         const { id } = request.params;
-        const { usuario_email } = request.headers.authorization; //ideal seria usar o authorization, mas para fins de teste, request body também funciona
         
         try{
-        const carona = await connection('caronas')
-                       .where('id, id')
-                       .select(usuario_email)
-                       .first();
-            
-            await connection ('caronas').where('id', id).delete;
+            await connection ('caronas').where('id', id).delete();
 
-            
+            return response.json({message: "Carona Deletada"})
         }
         catch(err){ 
             return response.json({message:err});
