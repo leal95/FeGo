@@ -23,6 +23,7 @@ routes.delete('/caronas/:id', CaronasController.delete); //deletar caronas
 //metodos mensagem
 routes.post('/usuarios/mensagens', MensagensController.create);
 routes.get('/usuarios/mensagens', MensagensController.mostrarMensagensPorUsuario);
+routes.put('/usuarios/mensagens', MensagensController.edit);
 
 //metodos historico
 routes.post('/historico', HistoricoController.create); //postar Historico

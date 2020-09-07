@@ -24,7 +24,7 @@ export default function Mensagens() {
         carregarMensagens();
     }, []) 
 
-    async function aceitarMensagem(infosMensagem) {
+    async function pegarDadosDaCarona() {
         const response = await api.get('/caronas');
 
         let carona = {};
@@ -32,10 +32,18 @@ export default function Mensagens() {
         if(response.data){
             response.data.map( elemento => {
                 if(elemento.id == infosMensagem.idCarona){
-                    carona = elemento
+                    carona = elemento;
+                    break;
                 }
             })
         }
+
+        return carona;
+    }
+
+    function aceitarMensagem(infosMensagem) {
+        let carona = {};
+        carona = pegarDadosDaCarona();
 
         if(carona.vagas > 0){
             aceitarUsuario(carona, infosMensagem);
@@ -50,6 +58,7 @@ export default function Mensagens() {
         }
 
         const resposta = ({
+            estado: "Respondida",
             desinatarioEmail: infosMensagem.emissarioEmail,
             desinatarioNome: infosMensagem.emissarioNome,
             emissarioEmail: infosMensagem.desinatarioEmail,
@@ -58,8 +67,13 @@ export default function Mensagens() {
             Aceitei sua solicitação de carona! Agradeço o pedido e nos vemos em breve!`
         }); 
 
+        const atualizacao = ({
+            id: infosMensagem.id,
+            estado: "Respondida",
+        })
+
         const info = ({
-            passageiros: [infosCarona.passageiros, dados.email].join(),
+            passageiros: [infosCarona.passageiros, infosMensagem.emissarioEmail].join(),
             vagas: infosCarona.vagas - 1,
             listaEspera,
         });
@@ -69,6 +83,8 @@ export default function Mensagens() {
 
             await api.post(`/usuarios/mensagens`, resposta);
 
+            await api.put(`/usuarios/mensagens`, atualizacao);
+
             alert(`${infosMensagem.emissarioNome} foi aceito na carona`);
         }
         catch(err){
@@ -76,18 +92,9 @@ export default function Mensagens() {
         };
     }
 
-    async function rejeitarMensagem(infosMensagem) {
-        const response = await api.get('/caronas');
-
+    function rejeitarMensagem(infosMensagem) {
         let carona = {};
-
-        if(response.data){
-            response.data.map( elemento => {
-                if(elemento.id == infosMensagem.idCarona){
-                    carona = elemento
-                }
-            })
-        }
+        carona = pegarDadosDaCarona();
 
         rejeitarUsuario(carona, infosMensagem);
     }
@@ -100,12 +107,18 @@ export default function Mensagens() {
         }
 
         const resposta = ({
+            estado: "Respondida",
             desinatarioEmail: infosMensagem.emissarioEmail,
             desinatarioNome: infosMensagem.emissarioNome,
             emissarioEmail: infosMensagem.desinatarioEmail,
             emissarioNome: infosMensagem.desinatarioNome,
             mensagem: `Olá, eu gostaria de avisar que não pude aceitar sua solicitação de carona mas agradeço o seu pedido!`
         });
+
+        const atualizacao = ({
+            id: infosMensagem.id,
+            estado: "Respondida",
+        })
 
         const info = ({
             listaEspera,
@@ -116,32 +129,12 @@ export default function Mensagens() {
 
             await api.post(`/usuarios/mensagens`, resposta);
 
-            alert(`${infosMensagem.emissarioNome} foi rejeitado da carona
-            Aguarde enquanto confirmamos se não há outro pedido`);
+            await api.put(`/usuarios/mensagens`, atualizacao);
 
-            if(listaEspera){
-                const emailPassageiro = infosCarona.listaEspera.split(",")[0];
-
-                const response = await api.get(`/sessions/?email=${emailPassageiro}`)
-
-                const dadosDoPassageiro = response.data[0];
-
-                const novoPedido = ({
-                    desinatarioEmail: dados.email,
-                    desinatarioNome: dados.nome,
-                    emissarioEmail: dadosDoPassageiro.email,
-                    emissarioNome: dadosDoPassageiro.nome,
-                    mensagem: infosMensagem.mensagem.replace(`${infosMensagem.emissarioNome}`, `${dadosDoPassageiro.nome}`),
-                });
-
-                await api.post(`/usuarios/mensagens`, novoPedido);
-
-                alert(`Há mais uma solicitação de carona, vinda de ${dadosDoPassageiro.nome}.
-                Recarregue esta página (saindo e entrando novamente) para visualizar`)
-            }
+            alert(`${infosMensagem.emissarioNome} foi rejeitado da carona`);
         }
         catch(err){
-            alert('Ocorreu um erro ao aceitar o pedido de carona, tente novamente mais tarde');
+            alert('Ocorreu um erro ao rejeitar o pedido de carona, tente novamente mais tarde');
         };
     }
 
@@ -163,6 +156,8 @@ export default function Mensagens() {
                 <Text style = {styles.Conteudo}>{mensagem.emissarioNome} </Text>
                 <Text style = {styles.Conteudo}>{mensagem.mensagem} </Text>
                 </View>
+                {(mensagem.estado === "Respondida") ?
+                null :
                 <View style={{justifyContent: 'space-evenly'}}>
                 <MaterialCommunityIcons style = {styles.Icons} 
                 name = "check" size={30} color="white"
@@ -172,7 +167,7 @@ export default function Mensagens() {
                 name = "close" size={30} color="white"
                 onPress={() => rejeitarMensagem(mensagem)}/>
 
-                </View>
+                </View>}
                 </View>)}/>
         </View>
     )

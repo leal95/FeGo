@@ -12,10 +12,11 @@ module.exports = {
     },
     
     async create(request, response) { 
-        const {mensagem, destinatarioEmail, destinatarioNome, emissarioEmail, emissarioNome, idCarona } = request.body;
+        const {estado, mensagem, destinatarioEmail, destinatarioNome, emissarioEmail, emissarioNome, idCarona } = request.body;
         
         try{
             await connection('mensagens').insert({ 
+                estado,
                 mensagem,
                 destinatarioEmail,
                 destinatarioNome,
@@ -29,5 +30,31 @@ module.exports = {
         catch(err){ 
             return response.json({message:err});
         }
-    }
+    },
+
+    async edit (request, response){
+       
+        const {id, estado, mensagem, destinatarioEmail, destinatarioNome, emissarioEmail, emissarioNome, idCarona } = request.body;
+        //Entrada de dados pelo usuário
+
+        try{
+            await connection('mensagens')
+            .where('id', id)
+            .update({
+                estado,
+                mensagem,
+                destinatarioEmail,
+                destinatarioNome,
+                emissarioEmail,
+                emissarioNome,
+                idCarona,
+            }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
+
+            return response.json("Mensagem alterada"); //retornar usuário atualizado
+        }
+        catch(err){ 
+            response.json({message: err});
+        }
+
+    },
 }    
