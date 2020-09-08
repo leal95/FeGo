@@ -33,7 +33,6 @@ export default function Mensagens() {
             response.data.map( elemento => {
                 if(elemento.id == infosMensagem.idCarona){
                     carona = elemento;
-                    break;
                 }
             })
         }

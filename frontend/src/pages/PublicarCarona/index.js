@@ -132,6 +132,7 @@ export default function PublicarCarona() {
                 autoCorrect={false}
                 onChangeText={setPreco}
                 keyboardType='numeric'
+                returnKeyType="done"
                 />
 
                 <TextInput
@@ -140,6 +141,7 @@ export default function PublicarCarona() {
                 autoCorrect={false}
                 onChangeText={setVagas}
                 keyboardType='numeric'
+                returnKeyType="done"
                 />
 
                 <TextInput

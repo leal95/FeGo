@@ -28,5 +28,6 @@ routes.put('/usuarios/mensagens', MensagensController.edit);
 //metodos historico
 routes.post('/historico', HistoricoController.create); //postar Historico
 routes.get('/historico', HistoricoController.index); //listar Historico
+routes.put('/historico', HistoricoController.edit);
 
 module.exports = routes;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { FlatList } from 'react-native-gesture-handler';
@@ -16,11 +16,15 @@ export default function detalheCaronas() {
     const [listaEspera, setListaEspera] = useState([]);
 
     let dados = route.params.dados;
+    let paginaAnterior = "";
+    const infosCarona = route.params.infosCarona;
+
+    if(route.params.paginaAnterior){
+        paginaAnterior = route.params.paginaAnterior;
+    }
 
     let keyExtractorCounter = 0;
     let listaParaRenderizar = infosPassageiros.concat(listaEspera);
-
-    const infosCarona = route.params.infosCarona;
 
     function verifKeyExtractor(pessoa){
         /*if(pessoa){
@@ -112,18 +116,10 @@ export default function detalheCaronas() {
             idCarona: infosCarona,
         })
 
-        const info = ({
-            listaEspera: [infosCarona.listaEspera, dados.email].join(),
-        });
-
         try{
-            await api.put(`/caronas/${infosCarona.id}`, info);
-
             await api.post(`/usuarios/mensagens`, pedido);
-
-            alert("Sua solicitação foi enviada à/ao motorista, agora é só esperar pela resposta");
-
-            navigation.navigate('TelaInicial');
+            
+            colocarEmEspera();
         }
         catch(err){
             alert('Erro ao fazer alteração das informações!');
@@ -138,13 +134,113 @@ export default function detalheCaronas() {
         try{
             await api.put(`/caronas/${infosCarona.id}`, info);
 
-            alert("Você foi inserido(a) na lista de espera, assim que alguém sair da carona");
+            alert(`Você foi inserido(a) na lista de espera, caso ainda tenha vagas basta esperar a resposta do motorista.
+            Se não, assim que uma delas for liberada sua solicitação vai ser enviada ao/à motorista. 
+            Agora é só esperar!`);
 
             navigation.navigate('TelaInicial');
         }
         catch(err){
             alert('Erro ao fazer alteração das informações!');
         };
+    }
+
+    function definirPlaceholder(parametro) {
+        let retorno = "";
+
+        if(infosCarona.avaliacoes){
+            if(infosCarona.avaliacoes[`${dados.email}`][`${parametro}`]){
+                retorno = infosCarona.avaliacoes[`${dados.email}`][`${parametro}`]
+            }
+        }
+        else{
+            retorno = "(0-5)"
+        }
+
+        return retorno
+    }
+
+    function configurandoObjeto(email, value){
+        let avaliacaoColetiva = {};
+        let avaliacaoIndividual = {
+            [email]: value
+        };
+
+        if(infosCarona.avaliacoes){
+            avaliacaoColetiva = infosCarona.avaliacoes;
+        }
+
+        avaliacaoColetiva = ({...avaliacaoColetiva, [`${dados.email}`]: avaliacaoIndividual})
+
+        return avaliacaoColetiva;
+    }
+
+    function calculandoNovaNota(valor, dadosDaPessoa) {
+        let objeto = {};
+        let denominador, numerador;
+
+        if(dadosDaPessoa.avaliadores){
+            if(dadosDaPessoa.avaliadores.indexOf(dados.email) > -1){
+                objeto = {
+                    notaDaAvaliacao: dadosDaPessoa.notaDaAvaliacao,
+                    avaliadores: dadosDaPessoa.avaliadores,
+                }
+                return objeto;
+            }
+            else{
+                denominador = dadosDaPessoa.avaliadores.split(",").length;
+                numerador = dadosDaPessoa.notaDaAvaliacao*denominador + valor;
+                numerador = numerador / denominador++;
+
+                objeto = {
+                    notaDaAvaliacao: numerador,
+                    avaliadores: [dadosDaPessoa.avaliadores, dados.email].join(),
+                }
+
+                return objeto;
+            }
+        }
+        else{
+            objeto = {
+                notaDaAvaliacao: valor,
+                avaliadores: dados.email,
+            }
+            return objeto;
+        }
+    }
+
+    async function submitAvaliacao(value, dadosDaPessoa){
+        if(value >= 0 && value <= 5){
+
+            let avaliacaoColetiva = configurandoObjeto(dadosDaPessoa.email, value);
+
+            let novaAvaliacaoDoUsuario = calculandoNovaNota(value, dadosDaPessoa)
+
+            const info = ({
+                avaliacoes: avaliacaoColetiva,
+            })
+
+            const usuarioAvaliado = ({
+                email: dadosDaPessoa.email,
+                avaliadores: novaAvaliacaoDoUsuario.avaliadores,
+                notaDaAvaliacao: novaAvaliacaoDoUsuario.notaDaAvaliacao,
+            })
+    
+            try{
+                await api.put(`/historico/${infosCarona.id}`, info);
+
+                await api.put('/usuarios', usuarioAvaliado);
+
+                alert(`${dadosDaPessoa.nome} foi avaliado/a com sucesso! Obrigado!`)
+            }
+            catch(err){
+                alert('Erro ao fazer avaliação do usuário/a!');
+            };
+        }
+        else{
+            alert(`O valor informado para a avaliação deve estar entre 0 e 5, por favor preste atenção.
+            Caso você tenha inserido um valor correto, podemos estar diante de um bug`)
+        }
     }
     
     return(
@@ -157,7 +253,6 @@ export default function detalheCaronas() {
                         <View style={styles.Caronas} >
                             <View style={styles.CaronasInfo}>
                                 <Text style={{color: '#ddd', alignSelf: 'center'}}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
-                                <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
                                 <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
                                 <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
                                 <Text style={styles.CaronasText}>{infosCarona.destino.split(",")[0]}</Text>
@@ -173,17 +268,33 @@ export default function detalheCaronas() {
 
                         {(infosMotorista) ?
                         <>
-                            <View style={{margin: 10}}>
+                            <View style={{marginTop: 10}}>
                                 <Text style={styles.text}>Motorista:</Text>
                                 <Text style={styles.description}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
                                 <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
                                 <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
                                 <Text style={styles.description}> Cor do Carro: {infosMotorista[0].corCarro}</Text>
+                                <Text style={styles.description}> Avaliacao: {(infosMotorista[0].notaDaAvaliacao) ?
+                                    `${infosMotorista[0].notaDaAvaliacao} / 5`
+                                    : "Ainda nao foi avaliado/a"}</Text>
                             </View>
                         </>
                         :
                         null}
 
+                        {(paginaAnterior && dados.email != infosCarona.email) ?
+                        <View style={styles.avaliacaoView}>
+                            <Text style={styles.description}>Avaliacao: </Text>
+                            <TextInput
+                            style={styles.inputText}
+                            autoCorrect={false}
+                            placeholder={definirPlaceholder(infosMotorista[0])}
+                            keyboardType='numeric'
+                            returnKeyType="done"
+                            onSubmitEditing={(e) => submitAvaliacao(e.nativeEvent.text, infosMotorista[0])}
+                            />
+                        </View>:
+                        null}
 
                         <Text style={styles.text}>Passageiro(s):</Text>
                     </>
@@ -196,6 +307,25 @@ export default function detalheCaronas() {
                     <>
                         <View style={{marginBottom: 10}}>
                             <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                            <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
+                                `${pessoa.notaDaAvaliacao} / 5`
+                                : "Ainda nao foi avaliado/a"}
+                            </Text>
+                            
+                            {(paginaAnterior && pessoa.email != dados.email) ?
+                            <View style={styles.avaliacaoView}>
+                                <Text style={styles.description}>Avaliacao: </Text>
+                                <TextInput
+                                style={styles.inputText}
+                                autoCorrect={false}
+                                placeholder={definirPlaceholder(`passageiro${index}`)}
+                                keyboardType='numeric'
+                                returnKeyType="done"
+                                onSubmitEditing={(e) => submitAvaliacao(e.nativeEvent.text, pessoa)}
+                                />
+                            </View>:
+                            null}
+
                         </View>
                     </>
                     :
@@ -203,6 +333,25 @@ export default function detalheCaronas() {
                     <>
                         <View style={{marginBottom: 10}}>
                             <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                            <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
+                                `${pessoa.notaDaAvaliacao} / 5`
+                                : "Ainda nao foi avaliado/a"}
+                            </Text>
+
+                            {(paginaAnterior && pessoa.email != dados.email) ?
+                            <View style={styles.avaliacaoView}>
+                                <Text style={styles.description}>Avaliacao: </Text>
+                                <TextInput
+                                style={styles.inputText}
+                                autoCorrect={false}
+                                placeholder={definirPlaceholder(`passageiro${index}`)}
+                                keyboardType='numeric'
+                                returnKeyType="done"
+                                onSubmitEditing={(e) => submitAvaliacao(e.nativeEvent.text, pessoa)}
+                                />
+                            </View>:
+                            null}
+
                             <Text></Text>
                             <Text style={styles.text}>Lista de Espera:</Text>
                         </View>
@@ -217,7 +366,9 @@ export default function detalheCaronas() {
                 )}
                 ListFooterComponent={
                     <>
-                        {botoesSolicitarCarona()}
+                        {(paginaAnterior) ?
+                        null :
+                        botoesSolicitarCarona()}
                     </>
                 }
                 />

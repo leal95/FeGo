@@ -16,7 +16,8 @@ export default function Caronas() {
     const dados = route.params.dados;
 
     function detalheCarona (infosCarona) {
-        navigation.navigate('DetalheCarona', {dados, infosCarona});
+        let paginaAnterior = "historico"
+        navigation.navigate('DetalheCarona', {dados, infosCarona, paginaAnterior});
     };
 
     async function loadCaronas() {
@@ -26,8 +27,15 @@ export default function Caronas() {
 
         if(response.data){
             response.data.map( carona => {
-                if(carona.email == dados.email || carona.passageiros.indexOf(dados.email) > -1){
+                if(carona.email == dados.email){
                     vetorHistorico.push(carona);
+                }
+                else{
+                    if(carona.passageiros){
+                        if(carona.passageiros.indexOf(dados.email) > -1){
+                            vetorHistorico.push(carona);
+                        }
+                    }
                 }
             })
         }
@@ -43,22 +51,25 @@ export default function Caronas() {
         <View style={styles.container}>
             <Feather name="arrow-left" size={30} color="#858585" onPress = {navigation.goBack}/>
             <View style={styles.header}><Text style= {styles.headerText}>Histórico de Caronas</Text></View>
+            <Text style={styles.description}>Clique na carona para avaliar as pessoas que viajaram contigo!</Text>
             
             <FlatList style={styles.CaronasList}
             data = {caronas}
             keyExtractor={carona => String(carona.id)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
-                <TouchableOpacity style={styles.Caronas}
-                onPress={() => detalheCarona(carona)}>
-                <View style={styles.userFoto}></View>
-                <View style={styles.CaronasInfo}>
-                <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
-                <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
-                <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
-                <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>
-                </View>
-                </TouchableOpacity>
+                <>
+                    <TouchableOpacity style={styles.Caronas}
+                    onPress={() => detalheCarona(carona)}>
+                    <View style={styles.userFoto}></View>
+                    <View>
+                    <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
+                    <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>
+                    <Text style={styles.CaronasText}> Data: {carona.dia}/{carona.mes} </Text>
+                    <Text style={styles.CaronasTextPreco}> R${carona.preco} </Text>
+                    </View>
+                    </TouchableOpacity>
+                </>
             )}
             />
         </View>

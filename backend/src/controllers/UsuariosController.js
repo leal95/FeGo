@@ -11,14 +11,14 @@ module.exports = {
 
     async edit (request, response){
        
-        const {numeroDeAvaliadores, notaDaAvaliacao, email, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro, corCarro} = request.body;
+        const {avaliadores, notaDaAvaliacao, email, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro, corCarro} = request.body;
         //Entrada de dados pelo usuário
 
         try{
             await connection('usuarios')
             .where('email', email)
             .update({
-                numeroDeAvaliadores,
+                avaliadores,
                 notaDaAvaliacao,
                 ra,
                 nome,

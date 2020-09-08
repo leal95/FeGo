@@ -28,25 +28,11 @@ export default StyleSheet.create({
         marginTop: 20,
     },//Estilo da FlatList
 
-    userFoto: {
-        borderColor: '#F2CA04',
-        borderWidth: 2,
-        borderRadius: 50,
-        width: 100,
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#aaa',
-        marginTop: 30,
-        marginLeft: 10,
-    }, //Estilos da foto de Perfil
-
-
     Caronas: {
         backgroundColor:"#347EBF",
         width: 315,
-        height:150,
         marginBottom:20,
+        paddingBottom: 10,
         borderRadius:30,
         flexDirection:"row"
     }, //Botões quadrados das caronas
@@ -70,6 +56,12 @@ export default StyleSheet.create({
         color: '#ddd',
     },
 
+    description: {
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        textAlign: 'center',
+    },
+
     inputText: {
         backgroundColor: '#fff',
         borderColor: '#347EBF',
@@ -79,6 +71,18 @@ export default StyleSheet.create({
         width: 125,
         marginRight: 5,
         padding: 5,
-
     },
+
+    userFoto: {
+        borderColor: '#F2CA04',
+        borderWidth: 2,
+        borderRadius: 50,
+        width: 100,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#aaa',
+        marginTop: 15,
+        marginLeft: 10,
+    }, //Estilos da foto de Perfil
 });

@@ -73,6 +73,14 @@ export default function Cadastro() {
                         <View style={styles.userFoto}></View>
                         <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
                         <Text style={styles.userEmail}> {dados.email} </Text>
+
+                        <Text style={{fontWeight: 'bold', fontSize: 16}}>{`Avaliacao:`}</Text>
+
+                        <Text style={{fontWeight: 'bold', fontSize: 16}}>
+                            {(dados.notaDaAvaliacao) ? 
+                            `${dados.notaDaAvaliacao} / 5`: 
+                            "Prezado 0.0"} 
+                        </Text>
                     </View>
                         
                         <Text style={{marginLeft: 10}}>Nome:</Text>

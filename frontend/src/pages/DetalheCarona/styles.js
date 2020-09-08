@@ -2,6 +2,12 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
+    avaliacaoView: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        marginBottom: 10,
+    },
+
     botaoPedirCarona: {
         backgroundColor: '#347EBF',
         height: 50,
@@ -58,6 +64,18 @@ export default StyleSheet.create({
         marginBottom: 5,
         fontSize: 16,
     },
+
+    inputText: {
+        alignSelf: 'center',
+        backgroundColor: '#fff',
+        borderColor: '#347EBF',
+        textAlign: 'center',
+        borderWidth: 2,
+        borderRadius: 10,
+        padding: 5,
+        width: 50,
+        marginLeft: 5,
+    }, //Estilo das caixas de input de Texto
 
     Linhas: {
         color: 'lightgreen',

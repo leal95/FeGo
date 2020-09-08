@@ -40,6 +40,24 @@ module.exports = {
         }
     },
 
+    async edit (request, response){
+        const { id } = request.params;
+        const { avaliacoes } = request.body;
+
+        try{
+            await connection('caronas')
+            .where('id', id)
+            .update({
+                avaliacoes
+                })
+
+               return response.json({message: "Avaliação Feita"}); //inserindo carona no banco de dados
+        }
+        catch(err){ 
+            return response.json({message:err});
+        }
+    },
+
     async delete (request, response) { //método delete
         const { id } = request.params;
         

@@ -14,7 +14,7 @@ exports.up = function(knex) {
       table.string('modeloCarro').nullable();
       table.string('placaCarro').nullable();
       table.string('corCarro').nullable();
-      table.string('numeroDeAvaliadores').nullable();
+      table.string('avaliadores').nullable();
       table.string('notaDaAvaliacao').nullable();
   }); //criando a tabela de Usuários
 };

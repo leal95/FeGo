@@ -17,6 +17,7 @@ exports.up = function(knex) {
         table.string('passageiros').nullable();
         table.string('listaEspera').nullable();
         table.string('obs').nullable();
+        table.json('avaliacoes').nullable();
         //estruturando os dados de caronas
         //deixando cada componente do horário e da data separados, para facilitar a inserção de dados no front end
 
