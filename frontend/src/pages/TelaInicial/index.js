@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 //importando react, ícones, useNavigation, useRoute e componentes do react native necessários
 
 import styles from './styles'
@@ -21,7 +21,11 @@ export default function Cadastro() {
         <View style={styles.container}>
 
             <View style={styles.user}>
-                <TouchableOpacity style={styles.userFoto} onPress={() => navigateToPage('Perfil')}></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigateToPage('Perfil')}>
+                    <Image style={styles.userFoto}
+                    source={require('../../Carica.png')} />
+                </TouchableOpacity>
+                
                 <TouchableOpacity onPress={() => navigateToPage('Perfil')}>
                     <Text style={styles.userName}> {dados.nome} {dados.sobrenome}</Text>
                 </TouchableOpacity>

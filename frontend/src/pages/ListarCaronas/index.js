@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { View, Image, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 
@@ -157,7 +157,7 @@ export default function Caronas() {
                 <TouchableOpacity style={styles.Caronas}
                 onPress={() => detalheCarona(carona)}>
                 <View style={styles.motoristaInfo}>
-                    <View style={styles.motoristaFoto}></View>
+                    <Image style={styles.userFoto} source={require('../../Carica.png')} />
                     <Text style={styles.motoristaNome}>{(dados.nome) ? dados.nome : null}</Text>
                 </View>
                 <View style={styles.CaronasInfo}>

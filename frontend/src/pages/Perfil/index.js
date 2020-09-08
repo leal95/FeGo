@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
+import { View, Image, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { TextInput } from 'react-native-gesture-handler';
 //Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
@@ -70,7 +70,7 @@ export default function Cadastro() {
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.user}>
-                        <View style={styles.userFoto}></View>
+                        <Image style={styles.userFoto} source={require('../../Carica.png')} />
                         <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
                         <Text style={styles.userEmail}> {dados.email} </Text>
 
