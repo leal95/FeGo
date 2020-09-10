@@ -6,8 +6,6 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
-/*import {listaDeCidades} from '../../functions/cidades';*/
-
 
 export default function PublicarCarona() {
     const route = useRoute();
