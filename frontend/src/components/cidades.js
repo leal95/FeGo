@@ -1,4 +1,4 @@
-export const listaDeCidades = [ 
+export let listaDeCidades = [ 
     'Atibaia',
     'Campinas',
     'Guaratinguetá',

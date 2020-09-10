@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
 import api from '../../services/api';
+import {listaDeCidades} from '../../components/cidades'
 
 export default function PublicarCarona() {
     const route = useRoute();
@@ -24,6 +25,8 @@ export default function PublicarCarona() {
     const [vagas, setVagas] = useState();
     const [obs, setOBS] = useState();
     const [paradas, setParadas] = useState([]);
+    const [focusOrigem, setFocusOrigem] = useState(false);
+    const [focusDestino, setFocusDestino] = useState(false);
 
     const showDatePicker = () => {
         setDatePickerVisibility(true);
@@ -70,6 +73,36 @@ export default function PublicarCarona() {
             alert('Erro ao publicar carona!');
         };
     }
+
+    function filtrarCidades(parametro) {
+        let filtro = [];
+
+        filtro = listaDeCidades.filter( cidade => {
+            return cidade.indexOf(parametro) > -1;
+        })
+
+        if(filtro){
+            return filtro.map((element) => (
+                <TouchableOpacity onPress={() => console.log(element)} >
+                    <Text>{element}</Text>
+                </TouchableOpacity>
+            ))
+        }
+    }
+
+    function filtrarOrigem(parametro) {
+        let cidadesOrigemFiltradas = filtrarCidades(parametro)
+
+        if(focusOrigem) return cidadesOrigemFiltradas
+        else null
+    }
+
+    function filtrarDestino(parametro) {
+        let cidadesDestinoFiltradas = filtrarCidades(parametro)
+
+        if(focusDestino) return cidadesDestinoFiltradas
+        else null
+    }
     
     return(
         <View style={styles.container}>
@@ -81,23 +114,30 @@ export default function PublicarCarona() {
 
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
             <ScrollView showsVerticalScrollIndicator={false}>
+                <Text>Digite o nome da cidade origem por extenso</Text>
                 <TextInput
                     style={styles.inputText}
-                    placeholder="De onde? (Cidade)"
+                    placeholder="De onde?"
                     autoCorrect={false}
                     onChangeText={setOrigem}
                     autoCapitalize="words"
+                    onFocus={() => setFocusOrigem(true)}
+                    onBlur={() => setFocusOrigem(false)}
                 />
-                <Text>Digite o nome da cidade origem por extenso</Text>
-
+                {filtrarOrigem(origem)}
+                
+                <Text>Digite o nome da cidade destino por extenso</Text>
                 <TextInput
                     style={styles.inputText} 
-                    placeholder="Para onde? (Cidade)"
+                    placeholder="Para onde?"
                     autoCorrect={false}
                     onChangeText={setDestino}
+                    onFocus={() => setFocusDestino(true)}
+                    onBlur={() => setFocusDestino(false)}
                     />
-                <Text>Digite o nome da cidade destino por extenso</Text>
+                {filtrarDestino(destino)}
 
+                <Text>Separe as cidades de parada por virgulas</Text>
                 <TextInput
                     style={styles.inputText}
                     placeholder="Paradas?"
@@ -105,15 +145,14 @@ export default function PublicarCarona() {
                     autoCapitalize="words"
                     onChangeText={setParadas}
                     />
-                <Text>Separe as cidades de parada por virgulas</Text>
 
+                <Text>Caso tenha mais de um, separe por virgulas</Text>
                 <TextInput
                     style={styles.inputText} 
                     placeholder="Local de encontro"
                     autoCorrect={false}
                     onChangeText={setEncontro}
                     />
-                <Text>Caso tenha mais de um, separe por virgulas</Text>
 
                 <Button title={`Clique aqui para selecionar data \n e horário de saída`} onPress={showDatePicker} />
                     <DateTimePickerModal
