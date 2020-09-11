@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity} from 'react-native';
+import { View, Text, TouchableOpacity, Image} from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { FlatList } from 'react-native-gesture-handler';
 
@@ -61,7 +61,9 @@ export default function Caronas() {
                 <>
                     <TouchableOpacity style={styles.Caronas}
                     onPress={() => detalheCarona(carona)}>
-                    <View style={styles.userFoto}></View>
+                    <Image style={styles.userFoto}
+                    source={('../../../tmp/uploads/Carica.png') ? 
+                    require('../../../tmp/uploads/Carica.png') : null} />
                     <View>
                     <Text style={styles.CaronasText}> {carona.origem} {'->'} {carona.destino.split(",")[0]} </Text>
                     <Text style={styles.CaronasText}> Horário: {carona.hora}:{carona.minuto} </Text>

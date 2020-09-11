@@ -4,11 +4,11 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Image, Text, TouchableOpacity, KeyboardAvoidingView, ScrollView, StyleSheet } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { TextInput } from 'react-native-gesture-handler';
-//Importando React, useState, ícones, useNavigation, useRoutes e componentes necessários do react native
+import * as ImagePicker from 'expo-image-picker'
+import * as Permissions from 'expo-permissions'
 
 import styles from './styles';
 import api from '../../services/api'; 
-//Importando os stylos do arquivo styles.js e api do arquivo api.js na pasta services
 
 export default function Cadastro() {
     const route = useRoute();
@@ -27,6 +27,37 @@ export default function Cadastro() {
     const [modeloCarro, setModeloCarro] = useState(dados.modeloCarro);
     const [placaCarro, setPlacaCarro] = useState(dados.placaCarro);
     const [corCarro, setCorCarro] = useState(dados.corCarro);
+    const [imgSource, setImgSource] = useState('');
+
+    const askForPermission = async () => {
+		const permissionResult = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+		if (permissionResult.status !== 'granted') {
+			Alert.alert('Não temos permissão para acessar suas fotos!', [{ text: 'ok' }])
+			return false
+		}
+		return true
+    }
+    
+    takeImage = async () => {
+		// make sure that we have the permission
+		const hasPermission = await askForPermission()
+		if (!hasPermission) {
+			return
+		} else {
+			// launch the camera with the following settings
+			let image = await ImagePicker.launchImageLibraryAsync({
+				mediaTypes: ImagePicker.MediaTypeOptions.Images,
+				allowsEditing: true,
+				aspect: [3, 3],
+				quality: 1,
+				base64: true,
+			})
+			// make sure a image was taken:
+			if (!image.cancelled) {
+				setImgSource(image.base64)
+			}
+		}
+	}
 
     async function salvarDados() {
     //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
@@ -43,7 +74,8 @@ export default function Cadastro() {
             placaCarro,
             modeloCarro,
             corCarro,
-        }); 
+            imgsource,
+        });
 
         try{
             const response = await api.put('/usuarios', info);
@@ -70,7 +102,11 @@ export default function Cadastro() {
             <KeyboardAvoidingView behavior="padding" style={styles.inputs}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.user}>
-                        <Image style={styles.userFoto} source={require('../../Carica.png')} />
+                        <TouchableOpacity onPress={() => takeImage()}>
+                            <Image style={styles.userFoto} 
+                            source={('../../../tmp/uploads/Carica.png') ? 
+                            require('../../../tmp/uploads/Carica.png') : null} />
+                        </TouchableOpacity>
                         <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
                         <Text style={styles.userEmail}> {dados.email} </Text>
 

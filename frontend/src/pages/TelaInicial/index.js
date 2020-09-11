@@ -23,7 +23,8 @@ export default function Cadastro() {
             <View style={styles.user}>
                 <TouchableOpacity onPress={() => navigateToPage('Perfil')}>
                     <Image style={styles.userFoto}
-                    source={require('../../Carica.png')} />
+                    source={('../../../tmp/uploads/Carica.png') ? 
+                    require('../../../tmp/uploads/Carica.png') : null} />
                 </TouchableOpacity>
                 
                 <TouchableOpacity onPress={() => navigateToPage('Perfil')}>

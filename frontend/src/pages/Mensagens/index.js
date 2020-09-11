@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import styles from './styles';
 import { FlatList } from 'react-native-gesture-handler';
@@ -148,8 +148,10 @@ export default function Mensagens() {
             data = {mensagens}
             renderItem ={ ({item: mensagem}) => (
                 <View style={styles.Mensagens}>
-                <TouchableOpacity style={styles.userFoto} 
-                onPress={() => alert("Seria legal aparecer o perfil da pessoa, quando clicado")}>
+                <TouchableOpacity onPress={() => alert("Seria legal aparecer o perfil da pessoa")}>
+                    <Image style={styles.userFoto}
+                    source={('../../../tmp/uploads/Carica.png') ? 
+                    require('../../../tmp/uploads/Carica.png') : null} />
                 </TouchableOpacity>
                 <View style={styles.Conteudo}>
                 <Text style = {styles.Conteudo}>{mensagem.emissarioNome} </Text>

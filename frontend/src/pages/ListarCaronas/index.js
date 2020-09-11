@@ -157,7 +157,9 @@ export default function Caronas() {
                 <TouchableOpacity style={styles.Caronas}
                 onPress={() => detalheCarona(carona)}>
                 <View style={styles.motoristaInfo}>
-                    <Image style={styles.userFoto} source={require('../../Carica.png')} />
+                    <Image style={styles.userFoto}
+                    source={('../../../tmp/uploads/Carica.png') ? 
+                    require('../../../tmp/uploads/Carica.png') : null} />
                     <Text style={styles.motoristaNome}>{(dados.nome) ? dados.nome : null}</Text>
                 </View>
                 <View style={styles.CaronasInfo}>
