@@ -1,4 +1,5 @@
 const connection = require ('../database/connection');
+const fs = require('fs')
 
 module.exports = {
     async index (request, response) { //método get
@@ -11,7 +12,8 @@ module.exports = {
 
     async edit (request, response){
        
-        const {avaliadores, notaDaAvaliacao, email, ra, nome, sobrenome, numTelefone, apelido, fumante, curso, musica, modeloCarro, placaCarro, corCarro} = request.body;
+        const {avaliadores, notaDaAvaliacao, email, ra, nome, sobrenome, numTelefone, apelido, 
+            fumante, curso, musica, modeloCarro, placaCarro, corCarro, imgsource} = request.body;
         //Entrada de dados pelo usuário
 
         try{
@@ -32,6 +34,10 @@ module.exports = {
                 placaCarro,
                 corCarro,
             }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
+
+            fs.writeFile(`../../../frontend/tmp/uploads/${email}.png`, imgsource, 'base64', (err) => {
+                if (err) throw err
+            })
 
             return response.json("Usuario Atualizado"); //retornar usuário atualizado
         }
