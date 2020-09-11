@@ -148,7 +148,7 @@ export default function Mensagens() {
             data = {mensagens}
             renderItem ={ ({item: mensagem}) => (
                 <View style={styles.Mensagens}>
-                <TouchableOpacity onPress={() => alert("Seria legal aparecer o perfil da pessoa")}>
+                <TouchableOpacity style={styles.fotoButton} onPress={() => alert("Seria legal aparecer o perfil da pessoa")}>
                     <Image style={styles.userFoto}
                     source={('../../../tmp/uploads/Carica.png') ? 
                     require('../../../tmp/uploads/Carica.png') : null} />

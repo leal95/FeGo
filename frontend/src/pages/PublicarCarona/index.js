@@ -83,7 +83,7 @@ export default function PublicarCarona() {
 
         if(filtro){
             return filtro.map((element) => (
-                <TouchableOpacity onPress={() => console.log(element)} >
+                <TouchableOpacity key={`${element}-${parametro}`} onPress={() => console.log(element)} >
                     <Text>{element}</Text>
                 </TouchableOpacity>
             ))

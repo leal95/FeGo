@@ -31,6 +31,10 @@ export default StyleSheet.create({
         alignSelf:"center",
     },//Estilo da FlatList
 
+    fotoButton: {
+        alignItems: 'center'
+    },
+
     userFoto: {
         borderColor: '#F2CA04',
         borderWidth: 2,
@@ -40,7 +44,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#aaa',
-        marginTop: 25,
         marginLeft: 10,
     }, //Estilos da foto de Perfil
 
@@ -48,14 +51,13 @@ export default StyleSheet.create({
     Mensagens: {
         backgroundColor:"#347EBF",
         width: 315,
-        height:150,
         marginBottom:20,
         borderRadius:30,
-        flexDirection:"row"
+        flexDirection:"row",
+        paddingVertical: 10,
     }, //Quadrados das caronas
 
     Conteudo:{
-        marginTop: 10,
         maxWidth: 150,
         marginLeft: 10,
         marginRight: 10,

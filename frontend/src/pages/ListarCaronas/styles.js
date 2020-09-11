@@ -106,4 +106,15 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 5,
     },
+
+    userFoto: {
+        borderColor: '#F2CA04',
+        borderWidth: 3,
+        borderRadius: 40,
+        width: 100,
+        height: 100,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#aaa',  
+    }, //estilo da foto de perfil
 });
