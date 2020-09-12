@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, KeyboardAvoidingView, Image } from 'react-native';
 //Importando, react, useState, ícones, Navigation e componentes do react native necessários
 
 import styles from './styles';
@@ -111,7 +111,7 @@ export default function Cadastro() {
     return(
         <View style={styles.container}>
             <Feather name="arrow-left" size={30} color="#999" onPress={navigateToLogin}/> 
-            <View style={styles.header}>
+            <View>
                 <Text style={styles.headerText}>Crie sua conta</Text> 
             </View>
 

@@ -51,19 +51,17 @@ export default StyleSheet.create({
         paddingTop: Constants.statusBarHeight + 35,
     }, //Estilo do container
 
-    header: {
-        paddingLeft: 32,
-    }, //Estilo do cabeçalho
-
     headerText: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#818181'
+        color: '#818181',
+        textAlign: 'center',
+        marginTop: 10,
     }, //Estilo do texto do cabeçalho
 
     inputs: {
         alignItems: 'center',
-        height: 360,
+        height: 250,
         justifyContent: 'center'
     }, //posição e alinhamento das caixas de input
 

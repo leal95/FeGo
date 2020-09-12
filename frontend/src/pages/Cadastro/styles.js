@@ -46,14 +46,11 @@ export default StyleSheet.create({
         paddingTop: Constants.statusBarHeight + 15,
     }, //Estilo do container 
 
-    header: {
-        alignItems: 'center'
-    }, //Estilo dos headers, para o conteúdo estar alinhado no centro 
-
     headerText: {
         fontSize: 22,
         fontWeight: 'bold',
         color: '#999',
+        textAlign: 'center'
     }, //Estilo do Texto do cabeçalho
 
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native'
-import { View, Text, TouchableOpacity, KeyboardAvoidingView,Image } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, Image } from 'react-native';
 
 import styles from './styles';
 import { TextInput } from 'react-native-gesture-handler';
@@ -12,6 +12,10 @@ export default function Login() {
     const [senha, setSenha] = useState();
 
     const navigation = useNavigation();
+
+    /*useEffect(() => {
+        alert('Ao usar o aplicativo você concorda com os Termos de Serviço, você poderá ler a qualquer momento pela tela de Cadastro')
+    }, [])*/
 
     function navigateToCadastro() {
         navigation.navigate('Cadastro');
@@ -56,7 +60,9 @@ export default function Login() {
 
     return(
         <View style={styles.container}>
-            <View style={styles.header}>
+            <View>
+                <Image style={{height: 100, width: 100, alignSelf: 'center'}}
+                    source={require('../../../assets/FeGoIcon.png')} />
                 <Text style={styles.headerText}>Faça seu login para continuar</Text>
             </View> 
 

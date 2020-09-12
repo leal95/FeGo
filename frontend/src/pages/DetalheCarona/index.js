@@ -26,14 +26,9 @@ export default function detalheCaronas() {
     let keyExtractorCounter = 0;
     let listaParaRenderizar = infosPassageiros.concat(listaEspera);
 
-    function verifKeyExtractor(pessoa){
-        /*if(pessoa){
-            return pessoa.email
-        }
-        else{*/
+    function verifKeyExtractor(){
             keyExtractorCounter++;
             return `${keyExtractorCounter}`
-        //}
     }
 
     async function getDadosDoMotorista() {
@@ -300,7 +295,7 @@ export default function detalheCaronas() {
                     </>
                 }
                 data = {listaParaRenderizar}
-                keyExtractor={pessoa => verifKeyExtractor(pessoa)}
+                keyExtractor={verifKeyExtractor()}
                 showsVerticalScrollIndicator = {false}
                 renderItem = {({item: pessoa, index})=>(
                     (pessoa && index < infosPassageiros.length-1) ?
