@@ -63,11 +63,46 @@ export default function PublicarCarona() {
         });
 
         try{
-            await api.post('/caronas', info);
+            const response = await api.get('/caronas')
 
-            alert("Sua Carona foi publicada com sucesso")
+            let permissaoPublicar = true;
+            
+            response.data.map( carona => {
+                if(carona.email == dados.email){
+                    alert("Você já tem uma carona publicada, caso ela já tenha se encerrado vá para a página de Procurar Caronas e volte aqui para recarregar")
 
-            navigation.navigate('TelaInicial', {dados});
+                    permissaoPublicar = false;
+
+                    navigation.navigate('TelaInicial', {dados});
+                }
+                else{
+                    if(carona.passageiros){
+                        if(carona.passageiros.indexOf(dados.email) > -1){
+                            alert("Você está listado como passageiro em uma carona já e por isso você não pode publicar")
+
+                            permissaoPublicar = false;
+
+                            navigation.navigate('TelaInicial', {dados});
+                        }
+                    }
+                    
+                }
+            })
+
+            if(permissaoPublicar){
+                try{
+                    await api.post('/caronas', info);
+
+                    alert("Sua Carona foi publicada com sucesso")
+
+                    navigation.navigate('TelaInicial', {dados});
+                }
+                catch(err){
+                    alert('Erro ao publicar carona!')
+                }
+            }
+
+            
         }
         catch(err){
             alert('Erro ao publicar carona!');
@@ -183,20 +218,12 @@ export default function PublicarCarona() {
 
                 <TextInput
                 style={styles.inputTextOBS} 
-                placeholder="Espaço para observações ou comentários" 
+                placeholder="Escreva aqui se tem sem parar, ar condicionado, espaço para malas, animais ou se pode comer no carro" 
                 autoCorrect={false}
                 multiline = {true}
                 numberOfLines = {3}
                 onChangeText={setOBS}
                 />
-                
-                <Text>Sugestões para as observações: </Text>
-                <Text>{'- Tem ar condicionado?'} </Text>
-                <Text>{'- Você permite comer no carro?'} </Text>
-                <Text>{'- Tem espaço para malas?'} </Text>
-                <Text>{'- Terão animais?'} </Text>
-                <Text>{'- Você tem Sem Parar?'} </Text>
-                <Text style={{marginBottom: 10}}>{'- Qual o tempo de tolerância?'} </Text>
 
 
                 <View style={styles.botoes}>

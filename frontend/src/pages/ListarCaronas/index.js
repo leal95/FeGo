@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { View, Image, Text, TouchableOpacity, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, AntDesign } from '@expo/vector-icons';
 import { TextInput, FlatList } from 'react-native-gesture-handler';
 
 import styles from './styles';
@@ -19,6 +19,7 @@ export default function Caronas() {
     const [horarioFinal, setHorarioFinal] = useState('');
     const [preco, setPreco] = useState('');
     const [dia, setDia] = useState('');
+    const [filtrosVisivel, setFiltrosVisivel] = useState(true);
 
     const dados = route.params.dados;
 
@@ -26,11 +27,20 @@ export default function Caronas() {
         navigation.navigate('DetalheCarona', {dados, infosCarona});
     };
 
+    function showHideFiltros(){
+        if(filtrosVisivel){
+            setFiltrosVisivel(false)
+        }
+        else{
+            setFiltrosVisivel(true);
+        }
+    }
+
     async function loadCaronas() {
         const response = await api.get('/caronas');
 
         let vetorDeCaronas = [];
-        let caronaCriada = {};
+        let caronaCriada = [];
         let horarioMilissegundos = new  Date().valueOf();
         response.data.map( async carona => {
             if(carona.dataMilissegundos > horarioMilissegundos){
@@ -69,6 +79,8 @@ export default function Caronas() {
     async function buscarCaronas() {
         let vetorDeCaronas = [];
 
+        console.log("hi")
+
         if(origem) {
         vetorDeCaronas = caronas.filter( carona => {
             return carona.origem.indexOf(origem) > -1;
@@ -104,11 +116,13 @@ export default function Caronas() {
         })
         }
 
-        vetorDeCaronas.sort((a,b) => {
-            return b.avaliacao - a.avaliacao;
-        })
+        if(vetorDeCaronas){
+            vetorDeCaronas.sort((a,b) => {
+                return b.avaliacao - a.avaliacao;
+            })
 
-        setCaronasFiltradas(vetorDeCaronas);
+            setCaronasFiltradas(vetorDeCaronas);
+        }
     }
 
     useEffect(() => {
@@ -117,9 +131,15 @@ export default function Caronas() {
     
     return(
         <View style={styles.container}>
-            <Feather name="arrow-left" style={{height: 30, width: 30}} size={30} color="#858585" onPress = {navigation.goBack}/>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Feather name="arrow-left" style={{height: 30, width: 30}} size={30} color="#858585" onPress = {navigation.goBack}/>
+                {(filtrosVisivel) ? 
+                <AntDesign name="up" style={{height: 30, width: 30}} size={30} color="#347EBF" onPress = {() => showHideFiltros()} />
+                :
+                <AntDesign name="down" style={{height: 30, width: 30}} size={30} color="#347EBF" onPress = {() => showHideFiltros()} />}
+            </View>
 
-            <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
+            {(filtrosVisivel) ? <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
                 <Text>Filtros de Cidade:</Text>
                 <View style={{flexDirection: 'row', marginVertical: 5}}>
                     <TextInput
@@ -171,9 +191,11 @@ export default function Caronas() {
                         keyboardType='numeric'
                         returnKeyType="done"
                     />
-                    <Feather name="search" size={30} style={styles.buscarIcon} onPress={buscarCaronas} />
+                    <Feather name="search" size={30} style={styles.buscarIcon} onPress={() => buscarCaronas()} />
                 </View>
             </KeyboardAvoidingView>
+            :
+            null}
             
             <FlatList style={styles.CaronasList}
             data = {caronasFiltradas}
