@@ -30,18 +30,40 @@ export default function Caronas() {
         const response = await api.get('/caronas');
 
         let vetorDeCaronas = [];
+        let caronaCriada = {};
         let horarioMilissegundos = new  Date().valueOf();
         response.data.map( async carona => {
             if(carona.dataMilissegundos > horarioMilissegundos){
                 vetorDeCaronas.push(carona);
+                if(carona.email == dados.email){
+                    caronaCriada.push(carona);
+                }
+                else{
+                    if(carona.passageiros){
+                        if(carona.passageiros.indexOf(dados.email) > -1){
+                            caronaCriada.push(carona);
+                        }
+                    }
+                }
             }
             else{
                 await api.post('/historico', carona);
                 await api.delete(`/caronas/${carona.id}`)
             }
         })
-        setCaronas(vetorDeCaronas);
-        setCaronasFiltradas(vetorDeCaronas);
+
+        vetorDeCaronas.sort((a,b) => {
+            return b.avaliacao - a.avaliacao;
+        })
+
+        if(caronaCriada){
+            setCaronas(caronaCriada);
+            setCaronasFiltradas(caronaCriada);
+        }
+        else{
+            setCaronas(vetorDeCaronas);
+            setCaronasFiltradas(vetorDeCaronas);
+        }
     }
 
     async function buscarCaronas() {
@@ -82,12 +104,16 @@ export default function Caronas() {
         })
         }
 
+        vetorDeCaronas.sort((a,b) => {
+            return b.avaliacao - a.avaliacao;
+        })
+
         setCaronasFiltradas(vetorDeCaronas);
     }
 
     useEffect(() => {
         loadCaronas();
-    }, []) 
+    }, [])
     
     return(
         <View style={styles.container}>
@@ -160,7 +186,7 @@ export default function Caronas() {
                     <Image style={styles.userFoto}
                     source={('../../../tmp/uploads/Carica.png') ? 
                     require('../../../tmp/uploads/Carica.png') : null} />
-                    <Text style={styles.motoristaNome}>{(dados.nome) ? dados.nome : null}</Text>
+                    <Text style={styles.motoristaNome}>{carona.nome}</Text>
                 </View>
                 <View style={styles.CaronasInfo}>
                     <Text style={styles.CaronasText}>{carona.origem} {(carona.encontro) ? `(${carona.encontro})`:null}</Text>

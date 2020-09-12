@@ -22,6 +22,7 @@ exports.up = function(knex) {
 
         table.string('email').notNullable();
         table.string('nome').notNullable();
+        table.string('avaliacao').nullable();
         table.string('modeloCarro').notNullable();
         table.string('placaCarro').notNullable();
     });
