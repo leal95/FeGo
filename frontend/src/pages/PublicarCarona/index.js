@@ -116,10 +116,17 @@ export default function PublicarCarona() {
             return cidade.indexOf(parametro) > -1;
         })
 
+        if(filtro == parametro){
+            filtro = [];
+        }
+
         if(filtro){
             return filtro.map((element) => (
-                <TouchableOpacity key={`${element}-${parametro}`} onPress={() => console.log(element)} >
-                    <Text>{element}</Text>
+                <TouchableOpacity style={{marginVertical: 2}} key={`${element}-${parametro}`} onPress={() => {
+                    if(!focusDestino) setOrigem(element);
+                    else setDestino(element);
+                }} >
+                    <Text style={{fontWeight: 'bold'}}>{element}</Text>
                 </TouchableOpacity>
             ))
         }
@@ -128,14 +135,14 @@ export default function PublicarCarona() {
     function filtrarOrigem(parametro) {
         let cidadesOrigemFiltradas = filtrarCidades(parametro)
 
-        if(focusOrigem) return cidadesOrigemFiltradas
+        if(!focusDestino) return cidadesOrigemFiltradas
         else null
     }
 
     function filtrarDestino(parametro) {
         let cidadesDestinoFiltradas = filtrarCidades(parametro)
 
-        if(focusDestino) return cidadesDestinoFiltradas
+        if(!focusOrigem) return cidadesDestinoFiltradas
         else null
     }
     
@@ -155,6 +162,7 @@ export default function PublicarCarona() {
                     placeholder="De onde?"
                     autoCorrect={false}
                     onChangeText={setOrigem}
+                    value={origem}
                     autoCapitalize="words"
                     onFocus={() => setFocusOrigem(true)}
                     onBlur={() => setFocusOrigem(false)}
@@ -167,6 +175,7 @@ export default function PublicarCarona() {
                     placeholder="Para onde?"
                     autoCorrect={false}
                     onChangeText={setDestino}
+                    value={destino}
                     onFocus={() => setFocusDestino(true)}
                     onBlur={() => setFocusDestino(false)}
                     />

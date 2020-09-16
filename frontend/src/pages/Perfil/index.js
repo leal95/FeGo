@@ -51,7 +51,7 @@ export default function Cadastro() {
 				aspect: [3, 3],
 				quality: 1,
 				base64: true,
-			})
+            })
 			// make sure a image was taken:
 			if (!image.cancelled) {
 				setImgSource(image.base64)
@@ -60,7 +60,7 @@ export default function Cadastro() {
 	}
 
     async function salvarDados() {
-    //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
+        //função para salvar os dados modificados e lidar com cláusulas referentes aos dados modificados
         const info = ({
             email: dados.email,
             nome,
@@ -74,19 +74,23 @@ export default function Cadastro() {
             placaCarro,
             modeloCarro,
             corCarro,
-            imgsource,
+            imgSource,
         });
 
         try{
             const response = await api.put('/usuarios', info);
             
-            const dados = response.data[0];
+            let dadosAtt;
 
-            if(dados){
+            if(response.data[0].nome){
+                dadosAtt = response.data[0];
+            }
+
+            if(dadosAtt){
                 navigation.navigate('TelaInicial', {dados} );
             }
             else{
-                alert("Não foi possível salvar os dados, tente novamente mais tarde")
+                alert("Não foi possível salvar os dados, tente novamente mais tarde ou inclua uma imagem menor (em MB)")
             }
         }
         catch(err){

@@ -13,7 +13,7 @@ module.exports = {
     async edit (request, response){
        
         const {avaliadores, notaDaAvaliacao, email, ra, nome, sobrenome, numTelefone, apelido, 
-            fumante, curso, musica, modeloCarro, placaCarro, corCarro, imgsource} = request.body;
+            fumante, curso, musica, modeloCarro, placaCarro, corCarro, imgSource} = request.body;
         //Entrada de dados pelo usuário
 
         try{
@@ -35,11 +35,13 @@ module.exports = {
                 corCarro,
             }) // Atualiza o Banco de Dados com as informações fornecidas pelo usuário
 
-            fs.writeFile(`../../../frontend/tmp/uploads/${email}.png`, imgsource, 'base64', (err) => {
+            fs.writeFile(`../frontend/tmp/uploads/${email}.png`, imgSource, 'base64', (err) => {
                 if (err) throw err
             })
 
-            return response.json("Usuario Atualizado"); //retornar usuário atualizado
+            const usuarioAtualizado = await connection('usuarios').where('email', email).select('*'); //buscar tabela de usuários
+
+            return response.json(usuarioAtualizado); //retornar usuário atualizado
         }
         catch(err){ 
             response.json({message: err});
