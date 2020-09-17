@@ -16,7 +16,7 @@ export default function detalheCaronas() {
     const [listaEspera, setListaEspera] = useState([]);
 
     let dados = route.params.dados;
-    let paginaAnterior = "";
+    let paginaAnterior = {};
     const infosCarona = route.params.infosCarona;
 
     if(route.params.paginaAnterior){
@@ -76,6 +76,70 @@ export default function detalheCaronas() {
         getDadosDosPassageiros();
         getDadosDaListaEspera();
     }, [])
+
+    function showCarona() {
+        return (
+        <View style={styles.Caronas} >
+            <View style={styles.CaronasInfo}>
+                <Text style={{color: '#ddd', alignSelf: 'center'}}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
+                <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
+                <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
+                <Text style={styles.CaronasText}>{infosCarona.destino.split(",")[0]}</Text>
+                <Text style={{color: '#ddd', alignSelf: 'center', margin: 5}}> {infosCarona.hora}:{infosCarona.minuto} </Text>
+                <Text style={{color: '#ddd', fontWeight: 'bold'}}> Paradas: {infosCarona.destino} </Text>
+                <View style={styles.CaronasViewVP}>
+                    <Text style={{color: '#ddd', fontWeight: 'bold'}}> Vagas: {infosCarona.vagas} </Text>
+                    <Text style={{color: '#ddd', fontWeight: 'bold'}}> Preco: {infosCarona.preco} reais </Text>
+                </View>
+                <Text style={{color: '#ddd', alignSelf: 'center'}}>OBS: {infosCarona.obs}</Text>
+            </View>
+        </View>
+        )
+    }
+
+    function showMotorista() {
+        return (
+            <>
+                <View style={{marginTop: 10}}>
+                    <Text style={styles.text}>Motorista:</Text>
+                    <Text style={styles.description}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
+                    <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
+                    <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
+                    <Text style={styles.description}> Cor do Carro: {infosMotorista[0].corCarro}</Text>
+                    <Text style={styles.description}> Avaliacao: {(infosMotorista[0].notaDaAvaliacao) ?
+                        `${infosMotorista[0].notaDaAvaliacao} / 5`
+                        : "Ainda nao foi avaliado/a"}</Text>
+                </View>
+            </>
+        )
+    }
+
+    function showPassageiro(pessoa, index) {
+        return (
+            <View style={{marginBottom: 10}}>
+                <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
+                    `${pessoa.notaDaAvaliacao} / 5`
+                    : "Ainda nao foi avaliado/a"}
+                </Text>
+                
+                {(paginaAnterior && pessoa.email != dados.email) ?
+                <View style={styles.avaliacaoView}>
+                    <Text style={styles.description}>Avaliacao: </Text>
+                    <TextInput
+                    style={styles.inputText}
+                    autoCorrect={false}
+                    placeholder={definirPlaceholder(`passageiro${index}`)}
+                    keyboardType='numeric'
+                    returnKeyType="done"
+                    onSubmitEditing={(e) => submitAvaliacao(e.nativeEvent.text, pessoa)}
+                    />
+                </View>:
+                null}
+
+            </View>
+        )
+    }
 
     function botoesSolicitarCarona() {
         if(infosCarona.vagas > 0){
@@ -245,35 +309,10 @@ export default function detalheCaronas() {
             <FlatList
                 ListHeaderComponent={
                     <>
-                        <View style={styles.Caronas} >
-                            <View style={styles.CaronasInfo}>
-                                <Text style={{color: '#ddd', alignSelf: 'center'}}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
-                                <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
-                                <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
-                                <Text style={styles.CaronasText}>{infosCarona.destino.split(",")[0]}</Text>
-                                <Text style={{color: '#ddd', alignSelf: 'center', margin: 5}}> {infosCarona.hora}:{infosCarona.minuto} </Text>
-                                <Text style={{color: '#ddd', fontWeight: 'bold'}}> Paradas: {infosCarona.destino} </Text>
-                                <View style={styles.CaronasViewVP}>
-                                    <Text style={{color: '#ddd', fontWeight: 'bold'}}> Vagas: {infosCarona.vagas} </Text>
-                                    <Text style={{color: '#ddd', fontWeight: 'bold'}}> Preco: {infosCarona.preco} reais </Text>
-                                </View>
-                                <Text style={{color: '#ddd', alignSelf: 'center'}}>OBS: {infosCarona.obs}</Text>
-                            </View>
-                        </View>
+                        {showCarona()}
 
                         {(infosMotorista) ?
-                        <>
-                            <View style={{marginTop: 10}}>
-                                <Text style={styles.text}>Motorista:</Text>
-                                <Text style={styles.description}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
-                                <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
-                                <Text style={styles.description}> Placa do Carro: {infosMotorista[0].placaCarro}</Text>
-                                <Text style={styles.description}> Cor do Carro: {infosMotorista[0].corCarro}</Text>
-                                <Text style={styles.description}> Avaliacao: {(infosMotorista[0].notaDaAvaliacao) ?
-                                    `${infosMotorista[0].notaDaAvaliacao} / 5`
-                                    : "Ainda nao foi avaliado/a"}</Text>
-                            </View>
-                        </>
+                        showMotorista()
                         :
                         null}
 
@@ -300,60 +339,18 @@ export default function detalheCaronas() {
                 renderItem = {({item: pessoa, index})=>(
                     (pessoa && index < infosPassageiros.length-1) ?
                     <>
-                        <View style={{marginBottom: 10}}>
-                            <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
-                            <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
-                                `${pessoa.notaDaAvaliacao} / 5`
-                                : "Ainda nao foi avaliado/a"}
-                            </Text>
-                            
-                            {(paginaAnterior && pessoa.email != dados.email) ?
-                            <View style={styles.avaliacaoView}>
-                                <Text style={styles.description}>Avaliacao: </Text>
-                                <TextInput
-                                style={styles.inputText}
-                                autoCorrect={false}
-                                placeholder={definirPlaceholder(`passageiro${index}`)}
-                                keyboardType='numeric'
-                                returnKeyType="done"
-                                onSubmitEditing={(e) => submitAvaliacao(e.nativeEvent.text, pessoa)}
-                                />
-                            </View>:
-                            null}
-
-                        </View>
+                        {showPassageiro(pessoa, index)}
                     </>
                     :
                     (pessoa && index === infosPassageiros.length-1) ?
                     <>
-                        <View style={{marginBottom: 10}}>
-                            <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
-                            <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
-                                `${pessoa.notaDaAvaliacao} / 5`
-                                : "Ainda nao foi avaliado/a"}
-                            </Text>
+                        {showPassageiro(pessoa, index)}
 
-                            {(paginaAnterior && pessoa.email != dados.email) ?
-                            <View style={styles.avaliacaoView}>
-                                <Text style={styles.description}>Avaliacao: </Text>
-                                <TextInput
-                                style={styles.inputText}
-                                autoCorrect={false}
-                                placeholder={definirPlaceholder(`passageiro${index}`)}
-                                keyboardType='numeric'
-                                returnKeyType="done"
-                                onSubmitEditing={(e) => submitAvaliacao(e.nativeEvent.text, pessoa)}
-                                />
-                            </View>:
-                            null}
-
-                            <Text></Text>
-                            <Text style={styles.text}>Lista de Espera:</Text>
-                        </View>
+                        <Text style={styles.text}>Lista de Espera:</Text>
                     </>
                     :
                     (pessoa) ?
-                    <View style={{marginBottom: 10}}>
+                    <View style={{marginVertical: 10}}>
                         <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
                     </View>
                     :
