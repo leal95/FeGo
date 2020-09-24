@@ -137,6 +137,14 @@ export default function Mensagens() {
         };
     }
 
+    async function showPerson(emailPessoal) {
+        const response = await api.get(`/sessions/?email=${emailPessoal}`);
+
+        const terceiro = response.data[0]
+
+        navigation.navigate('VerPessoa', {terceiro});
+    }
+
     return(
         <View style={styles.container}>
                 <Feather name="arrow-left" size={24} color="#858585" onPress = {navigation.goBack}/>
@@ -148,7 +156,7 @@ export default function Mensagens() {
             data = {mensagens}
             renderItem ={ ({item: mensagem}) => (
                 <View style={styles.Mensagens}>
-                <TouchableOpacity style={styles.fotoButton} onPress={() => alert("Seria legal aparecer o perfil da pessoa")}>
+                <TouchableOpacity style={styles.fotoButton} onPress={() => showPerson(mensagem.emissarioEmail)}>
                     <Image style={styles.userFoto}
                     source={('../../../tmp/uploads/Carica.png') ? 
                     require('../../../tmp/uploads/Carica.png') : null} />

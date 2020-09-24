@@ -9,7 +9,7 @@ export default function Cadastro() {
     const route = useRoute();
     const navigation = useNavigation();
 
-    const dados = route.params.dados;
+    const terceiro = route.params.terceiro;
 
     return(
         <>
@@ -21,50 +21,50 @@ export default function Cadastro() {
                     <Image style={styles.userFoto} 
                         source={('../../../tmp/uploads/Carica.png') ? 
                         require('../../../tmp/uploads/Carica.png') : null} />
-                    <Text style={styles.userName}> {dados.nome} {dados.sobrenome} </Text>
-                    <Text style={styles.userEmail}> {dados.email} </Text>
+                    <Text style={styles.userName}> {terceiro.nome} {terceiro.sobrenome} </Text>
+                    <Text style={styles.userEmail}> {terceiro.email} </Text>
 
                     <Text style={{fontWeight: 'bold', fontSize: 16}}>{`Avaliacao:`}</Text>
 
                     <Text style={{fontWeight: 'bold', fontSize: 16}}>
-                        {(dados.notaDaAvaliacao) ? 
-                        `${dados.notaDaAvaliacao} / 5`: 
+                        {(terceiro.notaDaAvaliacao) ? 
+                        `${terceiro.notaDaAvaliacao} / 5`: 
                         "Prezado 0.0"} 
                     </Text>
                 </View>
                     
                     <Text style={{marginLeft: 10}}>Nome:</Text>
-                    <Text>{(dados.nome) ? dados.nome : null}</Text>
+                    <Text>{(terceiro.nome) ? terceiro.nome : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Sobrenome:</Text>
-                    <Text>{(dados.sobrenome) ? dados.sobrenome : null}</Text>
+                    <Text>{(terceiro.sobrenome) ? terceiro.sobrenome : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Apelido:</Text>  
-                    <Text>{(dados.apelido) ? dados.apelido : null}</Text>
+                    <Text>{(terceiro.apelido) ? terceiro.apelido : null}</Text>
                         
                     <Text style={{marginLeft: 10}}>Telefone:</Text>
-                    <Text>{(dados.telefone) ? dados.telefone : null}</Text>
+                    <Text>{(terceiro.telefone) ? terceiro.telefone : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Placa do Carro:</Text>  
-                    <Text>{(dados.placaCarro) ? dados.placaCarro : null}</Text>
+                    <Text>{(terceiro.placaCarro) ? terceiro.placaCarro : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Modelo do Carro:</Text>  
-                    <Text>{(dados.modeloCarro) ? dados.modeloCarro : null}</Text>
+                    <Text>{(terceiro.modeloCarro) ? terceiro.modeloCarro : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Cor do Carro:</Text>  
-                    <Text>{(dados.corCarro) ? dados.corCarro : null}</Text>
+                    <Text>{(terceiro.corCarro) ? terceiro.corCarro : null}</Text>
 
                     <Text style={{marginLeft: 10}}>RA:</Text>
-                    <Text>{(dados.ra) ? dados.ra : null}</Text>
+                    <Text>{(terceiro.ra) ? terceiro.ra : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Permite fumar no carro?:</Text>
-                    <Text>{(dados.fumante) ? dados.fumante : null}</Text>
+                    <Text>{(terceiro.fumante) ? terceiro.fumante : null}</Text>
                     
                     <Text style={{marginLeft: 10}}>Curso:</Text>
-                    <Text>{(dados.curso) ? dados.curso : null}</Text>
+                    <Text>{(terceiro.curso) ? terceiro.curso : null}</Text>
 
                     <Text style={{marginLeft: 10}}>Musicas:</Text>
-                    <Text>{(dados.musica) ? dados.musica : null}</Text>
+                    <Text>{(terceiro.musica) ? terceiro.musica : null}</Text>
             </ScrollView>
         </View>
         </>
