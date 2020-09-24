@@ -16,19 +16,15 @@ export default function detalheCaronas() {
     const [listaEspera, setListaEspera] = useState([]);
 
     let dados = route.params.dados;
-    let paginaAnterior = {};
+    let paginaAnterior = (route.params.paginaAnterior) ? route.params.paginaAnterior : null;
     const infosCarona = route.params.infosCarona;
-
-    if(route.params.paginaAnterior){
-        paginaAnterior = route.params.paginaAnterior;
-    }
 
     let keyExtractorCounter = 0;
     let listaParaRenderizar = infosPassageiros.concat(listaEspera);
 
     function verifKeyExtractor(){
-            keyExtractorCounter++;
-            return `${keyExtractorCounter}`
+        keyExtractorCounter++;
+        return `${keyExtractorCounter}`
     }
 
     async function getDadosDoMotorista() {
@@ -182,7 +178,7 @@ export default function detalheCaronas() {
     async function solicitarCarona() {
         const pedido = ({
             mensagem: `Olá ${infosMotorista[0].nome}, me chamo ${dados.nome}
-            Eu gostaria de pegar a carona contigo na data: ${infosCarona.dia} / ${infosCarona.mes} / ${infosCarona.ano} às ${infosCarona.hora}:${infosCarona.minuto}`,
+Eu gostaria de pegar a carona contigo na data: ${infosCarona.dia} / ${infosCarona.mes} / ${infosCarona.ano} às ${infosCarona.hora}:${infosCarona.minuto}`,
             destinatarioEmail: infosCarona.email,
             destinatarioNome: infosMotorista[0].nome,
             emissarioEmail: dados.email,
@@ -210,7 +206,7 @@ export default function detalheCaronas() {
 
             alert(`Você foi inserido(a) na lista de espera, caso ainda tenha vagas basta esperar a resposta do motorista.
             Se não, assim que uma delas for liberada sua solicitação vai ser enviada ao/à motorista. 
-            Agora é só esperar!`);
+Agora é só esperar!`);
 
             navigation.navigate('TelaInicial');
         }

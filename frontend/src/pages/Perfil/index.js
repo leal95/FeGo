@@ -27,7 +27,7 @@ export default function Cadastro() {
     const [modeloCarro, setModeloCarro] = useState(dados.modeloCarro);
     const [placaCarro, setPlacaCarro] = useState(dados.placaCarro);
     const [corCarro, setCorCarro] = useState(dados.corCarro);
-    const [imgSource, setImgSource] = useState('');
+    const [imgSource, setImgSource] = useState(dados.imgSource);
 
     const askForPermission = async () => {
 		const permissionResult = await Permissions.askAsync(Permissions.CAMERA_ROLL)
