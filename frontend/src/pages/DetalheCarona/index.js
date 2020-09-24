@@ -97,10 +97,16 @@ export default function detalheCaronas() {
         )
     }
 
+    function showPerson(infos) {
+        const terceiro = infos;
+
+        navigation.navigate('VerPessoa', {terceiro})
+    }
+
     function showMotorista() {
         return (
             <>
-                <View style={{marginTop: 10}}>
+                <TouchableOpacity onPress={() => showPerson(infosMotorista)} style={{marginTop: 10}}>
                     <Text style={styles.text}>Motorista:</Text>
                     <Text style={styles.description}> {infosMotorista[0].nome} {infosMotorista[0].sobrenome} ({infosMotorista[0].apelido}) </Text>
                     <Text style={styles.description}> Modelo do Carro: {infosMotorista[0].modeloCarro}</Text>
@@ -109,7 +115,7 @@ export default function detalheCaronas() {
                     <Text style={styles.description}> Avaliacao: {(infosMotorista[0].notaDaAvaliacao) ?
                         `${infosMotorista[0].notaDaAvaliacao} / 5`
                         : "Ainda nao foi avaliado/a"}</Text>
-                </View>
+                </TouchableOpacity>
             </>
         )
     }
@@ -117,11 +123,20 @@ export default function detalheCaronas() {
     function showPassageiro(pessoa, index) {
         return (
             <View style={{marginBottom: 10}}>
-                <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
-                <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
-                    `${pessoa.notaDaAvaliacao} / 5`
-                    : "Ainda nao foi avaliado/a"}
-                </Text>
+                <TouchableOpacity onPress={() => showPerson(pessoa)}>
+                    <Text style={styles.description}>{pessoa.nome} {pessoa.sobrenome} ({pessoa.apelido}) </Text>
+                    <Text style={styles.description}> {(pessoa.notaDaAvaliacao) ?
+                        `${pessoa.notaDaAvaliacao} / 5`
+                        : "Ainda nao foi avaliado/a"}
+                    </Text>
+                </TouchableOpacity>
+
+                {(!paginaAnterior && pessoa.email == dados.email) ?
+                <TouchableOpacity onPress={() => removerPessoa(pessoa)} style={{backgroundColor: 'red'}}>
+                    X
+                </TouchableOpacity>
+                :
+                null}
                 
                 {(paginaAnterior && pessoa.email != dados.email) ?
                 <View style={styles.avaliacaoView}>
@@ -201,6 +216,39 @@ export default function detalheCaronas() {
         }
         catch(err){
             alert('Erro ao fazer alteração das informações!');
+        };
+    }
+
+    async function removerPessoa(infos) {
+        let passageiros = "";
+
+        if(carona.passageiros){
+            passageiros = infosCarona.passageiros.replace(`${infos.email},`, "")   
+        }
+
+        const aviso = ({
+            estado: "Respondida",
+            desinatarioEmail: infosMotorista.email,
+            desinatarioNome: infosMotorista.nome,
+            emissarioEmail: dados.email,
+            emissarioNome: dados.nome,
+            mensagem: `Olá, eu gostaria de avisar que tive que sair da carona, me desculpe por qualquer transtorno que isso venha a causar`
+        })
+
+        const info = ({
+            passageiros,
+            vagas: infosCarona.vagas + 1,
+        });
+
+        try{
+            await api.put(`/caronas/${infosCarona.idCarona}`, info);
+
+            await api.post(`/usuarios/mensagens`, aviso);
+
+            alert(`Você foi removido da carona e o/a motorista já foi notificado`);
+        }
+        catch(err){
+            alert('Ocorreu um erro tente novamente mais tarde');
         };
     }
 
