@@ -27,21 +27,13 @@ export default function Caronas() {
         navigation.navigate('DetalheCarona', {dados, infosCarona});
     };
 
-    function showHideFiltros(){
-        if(filtrosVisivel){
-            setFiltrosVisivel(false)
-        }
-        else{
-            setFiltrosVisivel(true);
-        }
-    }
-
     async function loadCaronas() {
         const response = await api.get('/caronas');
 
         let vetorDeCaronas = [];
         let caronaCriada = [];
         let horarioMilissegundos = new  Date().valueOf();
+
         response.data.map( async carona => {
             if(carona.dataMilissegundos > horarioMilissegundos){
                 vetorDeCaronas.push(carona);
@@ -78,8 +70,6 @@ export default function Caronas() {
 
     async function buscarCaronas() {
         let vetorDeCaronas = [];
-
-        console.log("hi")
 
         if(origem) {
         vetorDeCaronas = caronas.filter( carona => {
@@ -123,6 +113,8 @@ export default function Caronas() {
 
             setCaronasFiltradas(vetorDeCaronas);
         }
+
+        setFiltrosVisivel(false);
     }
 
     useEffect(() => {
@@ -134,9 +126,9 @@ export default function Caronas() {
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
                 <Feather name="arrow-left" style={{height: 30, width: 30}} size={30} color="#858585" onPress = {navigation.goBack}/>
                 {(filtrosVisivel) ? 
-                <AntDesign name="up" style={{height: 30, width: 30}} size={30} color="#347EBF" onPress = {() => showHideFiltros()} />
+                <AntDesign name="up" style={{height: 30, width: 30}} size={30} color="#347EBF" onPress = {() => setFiltrosVisivel(false)} />
                 :
-                <AntDesign name="down" style={{height: 30, width: 30}} size={30} color="#347EBF" onPress = {() => showHideFiltros()} />}
+                <AntDesign name="down" style={{height: 30, width: 30}} size={30} color="#347EBF" onPress = {() => setFiltrosVisivel(true)} />}
             </View>
 
             {(filtrosVisivel) ? <KeyboardAvoidingView behavior="padding" style={styles.buscar}>
@@ -198,7 +190,7 @@ export default function Caronas() {
             null}
             
             <FlatList style={styles.CaronasList}
-            data = {caronasFiltradas}
+            data = {(filtrosVisivel) ? caronasFiltradas : null}
             keyExtractor={carona => String(carona.id)}
             showsVerticalScrollIndicator = {false}
             renderItem = {({item: carona})=>(
@@ -224,24 +216,3 @@ export default function Caronas() {
         </View>
     )
 }
-
-const pickerSelectStyles = StyleSheet.create({
-    inputIOS: {
-        backgroundColor: '#fff',
-        borderColor: '#347EBF',
-        borderWidth: 2,
-        borderRadius: 10,  
-        height: 50,
-        width: 200,
-        padding: 10,
-    },
-    inputAndroid: {
-        backgroundColor: '#fff',
-        borderColor: '#347EBF',
-        borderWidth: 2,
-        borderRadius: 10,  
-        height: 50,
-        width: 100,
-        padding: 10,
-    },
-  });

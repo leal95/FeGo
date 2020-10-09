@@ -10,7 +10,7 @@ import * as Permissions from 'expo-permissions'
 import styles from './styles';
 import api from '../../services/api'; 
 
-export default function Cadastro() {
+export default function Perfil() {
     const route = useRoute();
     const navigation = useNavigation();
 
@@ -125,8 +125,8 @@ export default function Cadastro() {
                         
                         <Text style={{marginLeft: 10}}>Nome:</Text>
                         <TextInput
+                            defaultValue={dados.nome}
                             style={styles.inputText}
-                            placeholder={dados.nome}
                             autoCorrect={false}
                             onChangeText={setNome}
                         />
@@ -134,7 +134,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Sobrenome:</Text>
                         <TextInput
                             style={styles.inputText}
-                            placeholder={dados.sobrenome}
+                            defaultValue={dados.sobrenome}
                             autoCorrect={false}
                             onChangeText={setSobrenome}
                         />
@@ -142,7 +142,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Apelido:</Text>  
                         <TextInput
                             style={styles.inputText} 
-                            placeholder={dados.apelido}
+                            defaultValue={dados.apelido}
                             autoCorrect={false}
                             onChangeText={setApelido}
                             />
@@ -150,7 +150,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Telefone:</Text>
                         <TextInput
                         style={styles.inputText} 
-                        placeholder={dados.numTelefone}
+                        defaultValue={dados.numTelefone}
                         autoCorrect={false}
                         onChangeText={setNumTelefone}  
                         autoCapitalize='none'
@@ -160,7 +160,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Placa do Carro:</Text>  
                         <TextInput
                             style={styles.inputText} 
-                            placeholder={dados.placaCarro}
+                            defaultValue={dados.placaCarro}
                             autoCorrect={false}
                             onChangeText={setPlacaCarro}
                             />
@@ -168,7 +168,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Modelo do Carro:</Text>  
                         <TextInput
                             style={styles.inputText} 
-                            placeholder={dados.modeloCarro}
+                            defaultValue={dados.modeloCarro}
                             autoCorrect={false}
                             onChangeText={setModeloCarro}
                             />
@@ -176,7 +176,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Cor do Carro:</Text>  
                         <TextInput
                             style={styles.inputText} 
-                            placeholder={dados.corCarro}
+                            defaultValue={dados.corCarro}
                             autoCorrect={false}
                             onChangeText={setCorCarro}
                             />
@@ -184,7 +184,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>RA:</Text>
                         <TextInput
                             style={styles.inputText} 
-                            placeholder={dados.ra}
+                            defaultValue={dados.ra}
                             autoCorrect={false}
                             onChangeText={setRA}  
                             autoCapitalize='none'
@@ -194,7 +194,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Permite fumar no carro?:</Text>
                         <RNPickerSelect
                             style={pickerSelectStyles}
-                            placeholder={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Permite fumar no carro?', value: null}}
+                            defaultValue={dados.fumante? {label: dados.fumante, value: dados.fumante} : {label: 'Permite fumar no carro?', value: null}}
                             onValueChange={(value) => setFumante(value)}
                             items={[
                                 { label: 'Sim', value: 'Sim' },
@@ -205,7 +205,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Curso:</Text>
                         <RNPickerSelect
                             style={pickerSelectStyles}
-                            placeholder={dados.curso? {label: dados.curso, value: dados.curso} : {label: 'Curso', value: null}}
+                            defaultValue={dados.curso? {label: dados.curso, value: dados.curso} : {label: 'Curso', value: null}}
                             onValueChange={(value) => setCurso(value)}
                             items={[
                                 { label: 'Engenharia Civil', value: 'Engenharia Civil' },
@@ -222,7 +222,7 @@ export default function Cadastro() {
                         <Text style={{marginLeft: 10}}>Musicas:</Text>
                         <TextInput
                             style={styles.inputText} 
-                            placeholder={dados.musica}
+                            defaultValue={dados.musica}
                             autoCorrect={false}
                             onChangeText={setMusica}
                             /> 

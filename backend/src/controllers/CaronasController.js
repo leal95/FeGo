@@ -43,17 +43,21 @@ module.exports = {
 
     async edit (request, response){
         const { id } = request.params;
-        const { hora, minuto, dia, mes, ano, vagas, passageiros, listaEspera, obs } = request.body;
+        const { destino, encontro, hora, minuto, dia, mes, ano, dataMilissegundos, preco, vagas, passageiros, listaEspera, obs } = request.body;
 
         try{
             await connection('caronas')
             .where('id', id)
             .update({
+                destino,
+                encontro,
                 hora, 
                 minuto, 
                 dia,
                 mes,
                 ano,
+                dataMilissegundos,
+                preco,
                 vagas,
                 passageiros,
                 listaEspera,

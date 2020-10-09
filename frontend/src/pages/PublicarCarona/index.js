@@ -14,17 +14,21 @@ export default function PublicarCarona() {
 
     const dados = route.params.dados;
 
+    let infosCarona;
+
+    (route.params.infosCarona) ? infosCarona = route.params.infosCarona : infosCarona = {};
+
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-    const [origem, setOrigem] = useState();
-    const [dataMilissegundos, setDataMilissegundos] = useState();
-    const [encontro, setEncontro] = useState();
-    const [destino, setDestino] = useState();
+    const [origem, setOrigem] = useState(infosCarona.origem);
+    const [dataMilissegundos, setDataMilissegundos] = useState(infosCarona.dataMilissegundos);
+    const [encontro, setEncontro] = useState(infosCarona.encontro);
+    const [destino, setDestino] = useState(infosCarona.destino.split(",")[0]);
     const [data, setData] = useState();
-    const [preco, setPreco] = useState();
-    const [vagas, setVagas] = useState();
-    const [obs, setOBS] = useState();
-    const [paradas, setParadas] = useState([]);
+    const [preco, setPreco] = useState(infosCarona.preco);
+    const [vagas, setVagas] = useState(infosCarona.vagas);
+    const [obs, setOBS] = useState(infosCarona.obs);
+    const [paradas, setParadas] = useState(infosCarona.destino);
     const [focusOrigem, setFocusOrigem] = useState(false);
     const [focusDestino, setFocusDestino] = useState(false);
 
@@ -101,12 +105,61 @@ export default function PublicarCarona() {
                     alert('Erro ao publicar carona!')
                 }
             }
-
-            
         }
+
         catch(err){
             alert('Erro ao publicar carona!');
         };
+    }
+
+    async function salvarCarona() {
+        const info = ({
+            encontro,
+            destino: paradas,
+            hora: data[3], 
+            minuto: data[4],
+            dia: data[0],
+            mes: data[1],
+            ano: data[2],
+            dataMilissegundos,
+            preco,
+            vagas,
+            obs,
+        });
+
+        try{
+            let listaEspera = infosCarona.listaEspera
+            if(listaEspera){
+                listaEspera.split(',').map((element) => {
+                    const mensagem = ({
+                        estado: "Respondida",
+                        desinatarioEmail: element,
+                        desinatarioNome: 'Passenger',
+                        emissarioEmail: dados.email,
+                        emissarioNome: dados.nome,
+                        mensagem: `Olá, passageiro! 
+                        Fiz alterações nas informações da nossa carona, por favor confira! 
+                        (Caso não tenha notado nenhuma diferenca nao tem problema)`
+                    })
+
+                    await api.post(`/usuarios/mensagens`, mensagem);
+                })
+            }
+        }
+        catch(err){
+            alert('Erro ao enviar mensagens para os passageiros')
+        }
+
+        try{
+            await api.put('/caronas', info);
+
+            alert("Sua Carona foi alterada com sucesso e os passageiros foram avisados")
+
+            navigation.navigate('TelaInicial', {dados});
+        }
+        catch(err){
+            alert('Erro ao publicar carona!')
+        }
     }
 
     function filtrarCidades(parametro) {
@@ -159,6 +212,7 @@ export default function PublicarCarona() {
                 <Text>Digite o nome da cidade origem por extenso</Text>
                 <TextInput
                     style={styles.inputText}
+                    defaultValue={infosCarona.origem}
                     placeholder="De onde?"
                     autoCorrect={false}
                     onChangeText={setOrigem}
@@ -172,6 +226,7 @@ export default function PublicarCarona() {
                 <Text>Digite o nome da cidade destino por extenso</Text>
                 <TextInput
                     style={styles.inputText} 
+                    defaultValue={infosCarona.destino}
                     placeholder="Para onde?"
                     autoCorrect={false}
                     onChangeText={setDestino}
@@ -184,6 +239,7 @@ export default function PublicarCarona() {
                 <Text>Separe as cidades de parada por virgulas</Text>
                 <TextInput
                     style={styles.inputText}
+                    defaultValue={infosCarona.paradas}
                     placeholder="Paradas?"
                     autoCorrect={false}
                     autoCapitalize="words"
@@ -193,6 +249,7 @@ export default function PublicarCarona() {
                 <Text>Caso tenha mais de um, separe por virgulas</Text>
                 <TextInput
                     style={styles.inputText} 
+                    defaultValue={infosCarona.encontro}
                     placeholder="Local de encontro"
                     autoCorrect={false}
                     onChangeText={setEncontro}
@@ -209,6 +266,7 @@ export default function PublicarCarona() {
 
                 <TextInput
                 style={styles.inputText} 
+                defaultValue={infosCarona.preco}
                 placeholder="Informe aqui o preço por pessoa em reais" 
                 autoCorrect={false}
                 onChangeText={setPreco}
@@ -218,6 +276,7 @@ export default function PublicarCarona() {
 
                 <TextInput
                 style={styles.inputText} 
+                defaultValue={infosCarona.vagas}
                 placeholder="Quantas vagas?" 
                 autoCorrect={false}
                 onChangeText={setVagas}
@@ -227,6 +286,7 @@ export default function PublicarCarona() {
 
                 <TextInput
                 style={styles.inputTextOBS} 
+                defaultValue={infosCarona.obs}
                 placeholder="Escreva aqui se tem sem parar, ar condicionado, espaço para malas, animais ou se pode comer no carro" 
                 autoCorrect={false}
                 multiline = {true}
@@ -236,11 +296,18 @@ export default function PublicarCarona() {
 
 
                 <View style={styles.botoes}>
+                    {(infosCarona) ?
+                    <TouchableOpacity 
+                    style={styles.botaoLogin}
+                    onPress={() => salvarCarona()}>
+                        <Text style={styles.botaoLoginText}>Salvar</Text>
+                    </TouchableOpacity>
+                    :
                     <TouchableOpacity 
                     style={styles.botaoLogin}
                     onPress={() => publicarCarona()}>
                         <Text style={styles.botaoLoginText}>Publicar</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>}
 
                 </View>
                 </ScrollView>

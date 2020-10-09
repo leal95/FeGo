@@ -15,7 +15,7 @@ export default function detalheCaronas() {
     const [infosPassageiros, setInfosPassageiros] = useState([]);
     const [listaEspera, setListaEspera] = useState([]);
 
-    let dados = route.params.dados;
+    const dados = route.params.dados;
     let paginaAnterior = (route.params.paginaAnterior) ? route.params.paginaAnterior : null;
     const infosCarona = route.params.infosCarona;
 
@@ -77,12 +77,26 @@ export default function detalheCaronas() {
         return (
         <View style={styles.Caronas} >
             <View style={styles.CaronasInfo}>
-                <Text style={{color: '#ddd', alignSelf: 'center'}}> {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} </Text>
+                <Text style={{color: '#ddd', alignSelf: 'center'}}> 
+                    {infosCarona.dia} / {infosCarona.mes} / {infosCarona.ano} 
+
+                    {(infosMotorista.email == dados.email) ? 
+                    <TouchableOpacity  
+                    onPress={() => editarCarona()}>
+                        <Text style={styles.textPedirCarona}>Editar</Text>
+                    </TouchableOpacity> 
+                    :
+                    null}
+
+                </Text>
+
                 <Text style={styles.CaronasText}> {infosCarona.origem}</Text>
                 <Feather style={{alignSelf: 'center'}} name="arrow-down" size={20} color="#fff"/>
                 <Text style={styles.CaronasText}>{infosCarona.destino.split(",")[0]}</Text>
+
                 <Text style={{color: '#ddd', alignSelf: 'center', margin: 5}}> {infosCarona.hora}:{infosCarona.minuto} </Text>
                 <Text style={{color: '#ddd', fontWeight: 'bold'}}> Paradas: {infosCarona.destino} </Text>
+
                 <View style={styles.CaronasViewVP}>
                     <Text style={{color: '#ddd', fontWeight: 'bold'}}> Vagas: {infosCarona.vagas} </Text>
                     <Text style={{color: '#ddd', fontWeight: 'bold'}}> Preco: {infosCarona.preco} reais </Text>
@@ -344,6 +358,10 @@ Agora é só esperar!`);
             alert(`O valor informado para a avaliação deve estar entre 0 e 5, por favor preste atenção.
             Caso você tenha inserido um valor correto, podemos estar diante de um bug`)
         }
+    }
+
+    function editarCarona() {
+        navigation.navigate('PublicarCarona', {dados, infosCarona})
     }
     
     return(
